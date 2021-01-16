@@ -1,0 +1,12 @@
+{
+  "name": "vue-cnguu-admin",
+  "version": "0.0.1",
+  "description": "Backend templates for vue",
+  "repository": "https://github.com/spider-nest/vue-cnguu-admin.git",
+  "homepage": "https://github.com/spider-nest/vue-cnguu-admin",
+  "bugs": {
+    "url": "https://github.com/spider-nest/vue-cnguu-admin/issues"
+  },
+  "author": "spider-nest",
+  "license": "MIT"
+}
