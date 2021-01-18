@@ -1,13 +1,13 @@
 {
-  "name": "vue-cnguu-admin",
+  "name": "vue-spider-admin",
   "version": "0.0.1",
   "description": "Backend templates for vue",
-  "repository": "https://github.com/spider-nest/vue-cnguu-admin.git",
-  "homepage": "https://github.com/spider-nest/vue-cnguu-admin",
+  "repository": "https://github.com/spider-nest/vue-spider-admin.git",
+  "homepage": "https://github.com/spider-nest/vue-spider-admin",
   "bugs": {
-    "url": "https://github.com/spider-nest/vue-cnguu-admin/issues"
+    "url": "https://github.com/spider-nest/vue-spider-admin/issues"
   },
-  "author": "spider-nest",
+  "author": "cnguu",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
