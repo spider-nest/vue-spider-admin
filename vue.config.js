@@ -4,7 +4,7 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const APP_VERSION = `"${require("./package.json").version}"`;
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.node_env === "production";
 
 module.exports = {
   publicPath: "/",
@@ -68,7 +68,9 @@ module.exports = {
     sourceMap: false,
     loaderOptions: {
       less: {
-        javascriptEnabled: true,
+        lessOptions: {
+          javascriptEnabled: true,
+        },
       },
     },
   },
@@ -83,7 +85,7 @@ module.exports = {
       //   changeOrigin: true
       // },
       "/api": {
-        target: `https://${process.env.VUE_APP_API_DOMAIN}`,
+        target: `https://${process.env.domain}`,
         ws: true,
         changeOrigin: true,
         secure: false,

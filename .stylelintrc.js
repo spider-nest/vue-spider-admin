@@ -6,13 +6,26 @@ module.exports = {
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        ignorePseudoClasses: ["global"],
+        ignorePseudoClasses: [
+          "export",
+          "import",
+          "global",
+          "local",
+          "external",
+        ],
+      },
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        ignoreProperties: ["composes", "compose-with"],
+        ignoreSelectors: [":export", /^:import/],
       },
     ],
     "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: ["function", "if", "each", "include", "mixin"],
+        ignoreAtRules: ["function", "if", "each", "include", "mixin", "value"],
       },
     ],
     "no-empty-source": null,
