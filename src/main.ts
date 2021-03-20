@@ -1,7 +1,18 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "@/views/spider.vue";
 
-import router from "./router";
-import store from "./store";
+import { setupLocale } from "@/locales";
 
-createApp(App).use(store).use(router).mount("#spider");
+import router, { setupRouter } from "@/router";
+
+(async () => {
+  const app = createApp(App);
+
+  await setupLocale(app);
+
+  setupRouter(app);
+
+  await router.isReady();
+
+  app.mount("#spider", true);
+})();

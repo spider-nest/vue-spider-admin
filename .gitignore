@@ -21,3 +21,5 @@ yarn-error.log*
 *.sw?
 
 *.lock
+package-lock.json
+tsconfig.tsbuildinfo

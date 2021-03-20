@@ -1,10 +1,10 @@
-const { join } = require("path");
+const { resolve } = require("path");
 const webpack = require("webpack");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const APP_VERSION = `"${require("./package.json").version}"`;
 
-const isProd = process.env.node_env === "production";
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   publicPath: "/",
@@ -38,7 +38,9 @@ module.exports = {
     }
   },
   chainWebpack: (config) => {
-    config.resolve.alias.set("@$", join(__dirname, "src"));
+    config.resolve.alias
+      .set("@$", resolve(__dirname, "src"))
+      .set("#$", resolve(__dirname, "types"));
 
     config
       .plugin("ignore")
@@ -77,27 +79,22 @@ module.exports = {
   devServer: {
     https: false,
     host: "localhost",
-    port: 9527,
+    port: process.env.VUE_APP_API_PORT,
     proxy: {
-      // "/api": {
-      //   target: "https://mock.ihx.me/mock/5baf3052f7da7e07e04a5116/antd-pro",
-      //   ws: false,
-      //   changeOrigin: true
-      // },
-      "/api": {
-        target: `https://${process.env.domain}`,
+      [process.env.VUE_APP_API_URL]: {
+        target: process.env.VUE_APP_API_TARGET,
         ws: true,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          "^/api": "",
+          [`^${process.env.VUE_APP_API_URL}`]: "",
         },
       },
     },
   },
   parallel: require("os").cpus().length > 1,
   pwa: {
-    name: "Vue Spider Admin",
+    name: process.env.VUE_APP_NAME,
     themeColor: "#000000",
     msTileColor: "#000000",
     appleMobileWebAppStatusBarStyle: "black",
