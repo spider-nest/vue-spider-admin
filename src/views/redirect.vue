@@ -15,11 +15,11 @@ export default defineComponent({
     const _path = isArray(path) ? path.join("/") : path;
 
     replace({
-      path: "/" + _path,
+      path: `/${_path}`,
       query,
     });
 
-    return {};
+    return () => <div />;
   },
 });
 </script>

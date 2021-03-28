@@ -1,12 +1,11 @@
-<script lang="jsx">
+<script lang="tsx">
 import { defineComponent } from "vue";
-import { RouterView } from "vue-router";
 
 export default defineComponent({
-  name: "BasicLayout",
+  name: "Exception403",
   setup() {
     return () => {
-      return <RouterView />;
+      return <div>Exception403</div>;
     };
   },
 });
