@@ -7,14 +7,14 @@ import { isArray } from "@/utils/is";
 export default defineComponent({
   name: "Redirect",
   setup() {
-    const { currentRoute, replace } = useRouter();
+    const { currentRoute, push } = useRouter();
 
     const { params, query } = unref(currentRoute);
     const { path } = params;
 
     const _path = isArray(path) ? path.join("/") : path;
 
-    replace({
+    push({
       path: `/${_path}`,
       query,
     });
