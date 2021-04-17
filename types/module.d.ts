@@ -1,14 +1,3 @@
-declare namespace NodeJS {
-  interface Process {
-    env: ProcessEnv;
-  }
-  interface ProcessEnv {
-    readonly NODE_ENV: "development" | "production";
-  }
-}
-
-declare let process: NodeJS.Process;
-
 declare module "*.vue" {
   import { defineComponent } from "vue";
   const Component: ReturnType<typeof defineComponent>;
@@ -29,4 +18,9 @@ declare module "ant-design-vue/es/locale/*" {
   import { Locale } from "ant-design-vue/types/locale-provider";
   const locale: Locale & ReadonlyRecordable;
   export default locale as Locale & ReadonlyRecordable;
+}
+
+declare module "virtual:*" {
+  const result: any;
+  export default result;
 }

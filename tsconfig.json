@@ -17,14 +17,14 @@
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "lib": ["dom", "esnext"],
-    "types": ["node", "webpack-env", "jest"],
+    "types": ["node", "vite/client"],
     "typeRoots": ["./node_modules/@types/", "./types"],
     "incremental": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "/@/*": ["src/*"],
+      "/#/*": ["types/*"]
     }
   },
   "include": [
@@ -34,9 +34,9 @@
     "src/**/*.d.ts",
     "types/**/*.d.ts",
     "types/**/*.ts",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "mock/**/*.ts"
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "vite.config.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }
