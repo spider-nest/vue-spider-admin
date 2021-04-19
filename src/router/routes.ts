@@ -1,19 +1,19 @@
 import type { Menu } from "./types";
 
-import { useLocale } from "@/hooks";
+import { useLocale } from "/@/hooks";
 
 const { t } = useLocale;
 
-const BasicLayout = () => import("@/layouts/basic.vue");
+const BasicLayout = () => import("/@/layouts/basic.vue");
 
 const components = {
-  Exception401: () => import("@/views/exception/401.vue"),
-  Exception403: () => import("@/views/exception/403.vue"),
-  Exception404: () => import("@/views/exception/404.vue"),
-  Exception500: () => import("@/views/exception/500.vue"),
-  Redirect: () => import("@/views/redirect.vue"),
-  HumanLogin: () => import("@/views/human/login.vue"),
-  Home: () => import("@/views/home.vue"),
+  Exception401: () => import("/@/views/exception/401.vue"),
+  Exception403: () => import("/@/views/exception/403.vue"),
+  Exception404: () => import("/@/views/exception/404.vue"),
+  Exception500: () => import("/@/views/exception/500.vue"),
+  Redirect: () => import("/@/views/redirect.vue"),
+  HumanLogin: () => import("/@/views/human/login.vue"),
+  Home: () => import("/@/views/home.vue"),
 };
 
 export const basicRoutes: Menu[] = [

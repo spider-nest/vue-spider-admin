@@ -1,8 +1,12 @@
+<template>
+  <div />
+</template>
+
 <script lang="tsx">
 import { defineComponent, unref } from "vue";
 import { useRouter } from "vue-router";
 
-import { isArray } from "@/utils/is";
+import { isArray } from "/@/utils/is";
 
 export default defineComponent({
   name: "Redirect",
@@ -19,7 +23,7 @@ export default defineComponent({
       query,
     });
 
-    return () => <div />;
+    return {};
   },
 });
 </script>

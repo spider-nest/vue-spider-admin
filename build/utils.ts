@@ -7,7 +7,7 @@ export function isReportMode(): boolean {
 }
 
 export function getEnvConfig(
-  match = "VITE_GLOB_",
+  match = "VITE_",
   confFiles = [".env", ".env.production"]
 ) {
   let envConfig = {};

@@ -39,7 +39,7 @@ export default function themePlugin(isBuild: boolean): Plugin[] {
           process.cwd(),
           "node_modules/ant-design-vue/dist/antd.less"
         ),
-        path.resolve(process.cwd(), "src/design/index.less"),
+        path.resolve(process.cwd(), "src/styles/index.less"),
       ],
       filter: (id) => (isBuild ? !id.endsWith("antd.less") : true),
       darkModifyVars: {

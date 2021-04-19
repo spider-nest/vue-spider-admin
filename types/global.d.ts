@@ -8,6 +8,10 @@ declare const __APP_INFO__: {
   lastBuildTime: string;
 };
 
+declare interface Window {
+  __APP__: App<Element>;
+}
+
 declare type Recordable<T = any> = Record<string, T>;
 
 declare interface ViteEnv {
