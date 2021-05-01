@@ -1,8 +1,6 @@
 import { createApp } from "vue";
 import "vite-plugin-svg-icons/register";
 
-import "virtual:windi.css";
-
 import App from "/@/views/spider.vue";
 import { setupLocale } from "/@/locales";
 import router, { setupRouter } from "/@/router";

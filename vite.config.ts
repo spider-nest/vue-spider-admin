@@ -1,7 +1,7 @@
 import type { UserConfig, ConfigEnv } from "vite";
 
-import { loadEnv } from "vite";
 import { resolve } from "path";
+import { loadEnv } from "vite";
 import moment from "moment";
 
 import pkg from "./package.json";
@@ -53,6 +53,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       proxy: createProxy(VITE_PROXY),
     },
     build: {
+      minify: "esbuild",
       target: "es2015",
       outDir: OUTPUT_DIR,
       terserOptions: {
@@ -62,7 +63,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
       },
       brotliSize: false,
-      chunkSizeWarningLimit: 1500,
+      chunkSizeWarningLimit: 1024,
     },
     define: {
       __APP_INFO__: JSON.stringify(__APP_INFO__),

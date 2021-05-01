@@ -9,7 +9,6 @@ import {
   hmrPlugin,
   htmlPlugin,
   svgIconsPlugin,
-  windiCssPlugin,
   styleImportPlugin,
   visualizerRollupPlugin,
   themePlugin,
@@ -23,7 +22,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   vitePlugins.push(htmlPlugin(viteEnv, isBuild));
   vitePlugins.push(svgIconsPlugin(isBuild));
-  vitePlugins.push(windiCssPlugin());
   vitePlugins.push(purgeIconsPlugin());
   vitePlugins.push(visualizerRollupPlugin());
   vitePlugins.push(themePlugin(isBuild));
