@@ -1,8 +1,6 @@
 import type { Menu } from "./types";
 
-import { useLocale } from "/@/hooks";
-
-const { t } = useLocale;
+import { t } from "/@/hooks/useLocale";
 
 const BasicLayout = () => import("/@/layouts/basic.vue");
 
@@ -14,6 +12,24 @@ const components = {
   Redirect: () => import("/@/views/redirect.vue"),
   HumanLogin: () => import("/@/views/human/login.vue"),
   Home: () => import("/@/views/home.vue"),
+};
+
+export const RedirectMenu = {
+  path: "/redirect/:path(.*)",
+  name: "Redirect",
+  component: components.Redirect,
+  meta: {
+    title: t("routes.redirect"),
+  },
+};
+
+export const HumanLoginMenu = {
+  path: "/human-login",
+  name: "HumanLogin",
+  component: components.HumanLogin,
+  meta: {
+    title: t("routes.login"),
+  },
 };
 
 export const basicRoutes: Menu[] = [
@@ -49,22 +65,8 @@ export const basicRoutes: Menu[] = [
       title: t("routes.exception500"),
     },
   },
-  {
-    path: "/redirect/:path(.*)",
-    name: "Redirect",
-    component: components.Redirect,
-    meta: {
-      title: t("routes.redirect"),
-    },
-  },
-  {
-    path: "/human-login",
-    name: "HumanLogin",
-    component: components.HumanLogin,
-    meta: {
-      title: t("routes.login"),
-    },
-  },
+  RedirectMenu,
+  HumanLoginMenu,
   {
     path: "/",
     name: "Index",

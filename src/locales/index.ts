@@ -1,23 +1,29 @@
 import type { App } from "vue";
-import type { I18nOptions } from "vue-i18n";
+import type { I18nOptions, I18n } from "vue-i18n";
 
 import { createI18n } from "vue-i18n";
 
+import { useLocaleStoreWithout } from "/@/store/modules/locale";
+import { localeSetting } from "/@/settings/locale";
+
 export let i18n: ReturnType<typeof createI18n>;
 
+const { fallback, availableLocales } = localeSetting;
+
 async function createI18nOptions(): Promise<I18nOptions> {
-  const locale = "zh_CN";
+  const localeStore = useLocaleStoreWithout();
+  const locale = localeStore.getLocale;
   const defaultLocal = await import(`./lang/${locale}.ts`);
   const message = defaultLocal.default?.message ?? {};
 
   return {
     legacy: false,
     locale,
-    fallbackLocale: locale,
+    fallbackLocale: fallback,
     messages: {
       [locale]: message,
     },
-    availableLocales: ["zh_CN", "en"],
+    availableLocales: availableLocales,
     sync: true,
     silentTranslationWarn: true,
     missingWarn: false,
@@ -27,6 +33,6 @@ async function createI18nOptions(): Promise<I18nOptions> {
 
 export async function setupLocale(app: App) {
   const options = await createI18nOptions();
-  i18n = createI18n(options);
+  i18n = createI18n(options) as I18n;
   app.use(i18n);
 }

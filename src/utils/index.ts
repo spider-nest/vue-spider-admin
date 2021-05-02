@@ -1,3 +1,5 @@
+import { isObject } from "/@/utils/is";
+
 /**
  * 将对象作为参数添加到 URL 中
  * @param baseUrl
@@ -19,27 +21,12 @@ export function httpBuildQuery(baseUrl: string, obj: Object): string {
     : baseUrl.replace(/\/?$/, "?") + parameters;
 }
 
-/**
- * 设置页面标题
- * @param title
- * @param subtitle
- */
-export function setTitle(title: string, subtitle?: string) {
-  if (title) {
-    document.title = subtitle ? `${title}-${subtitle}` : title;
-
-    const ua = navigator.userAgent;
-    const regex = /\bMicroMessenger\/([\d.]+)/;
-    if (regex.test(ua) && /ip(hone|od|ad)/i.test(ua)) {
-      const i = document.createElement("iframe");
-      i.src = "/favicon.ico";
-      i.style.display = "none";
-      i.onload = () => {
-        setTimeout(() => {
-          i.remove();
-        }, 50);
-      };
-      document.body.appendChild(i);
-    }
+export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
+  let key: string;
+  for (key in target) {
+    src[key] = isObject(src[key])
+      ? deepMerge(src[key], target[key])
+      : (src[key] = target[key]);
   }
+  return src;
 }

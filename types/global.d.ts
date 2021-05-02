@@ -14,6 +14,14 @@ declare interface Window {
 
 declare type Recordable<T = any> = Record<string, T>;
 
+declare type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
+
+declare type TimeoutHandle = ReturnType<typeof setTimeout>;
+
+declare type IntervalHandle = ReturnType<typeof setInterval>;
+
 declare interface ViteEnv {
   VITE_PORT: number;
   VITE_APP_NAME: string;

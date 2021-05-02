@@ -2,7 +2,7 @@
   <div />
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { defineComponent, unref } from "vue";
 import { useRouter } from "vue-router";
 

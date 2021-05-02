@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import "vite-plugin-svg-icons/register";
 
 import App from "/@/views/spider.vue";
+import { setupStore } from "/@/store";
 import { setupLocale } from "/@/locales";
 import router, { setupRouter } from "/@/router";
 
@@ -12,6 +13,8 @@ if (import.meta.env.DEV) {
 
 (async () => {
   const app = createApp(App);
+
+  setupStore(app);
 
   await setupLocale(app);
 
