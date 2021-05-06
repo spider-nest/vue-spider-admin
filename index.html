@@ -33,7 +33,119 @@
         }
       })();
     </script>
-    <div id="spider"></div>
+    <div id="spider">
+      <style type="text/css">
+        .debut-loading {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .debut-loading__logo {
+          max-width: 128px;
+        }
+
+        .debut-loading__loading {
+          margin-top: 24px;
+          opacity: 1;
+        }
+
+        .debut-loading__loading > span {
+          position: relative;
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          font-size: 32px;
+          transform: rotate(45deg);
+          animation: antRotate 1.2s infinite linear;
+        }
+
+        .debut-loading__loading > span > i {
+          position: absolute;
+          display: block;
+          width: 14px;
+          height: 14px;
+          background-color: #99b6c2;
+          border-radius: 100%;
+          opacity: 0.3;
+          transform: scale(0.75);
+          animation: antSpinMove 1s infinite linear alternate;
+          transform-origin: 50% 50%;
+        }
+
+        .debut-loading__loading > span > i:nth-child(1) {
+          top: 0;
+          left: 0;
+        }
+
+        .debut-loading__loading > span > i:nth-child(2) {
+          top: 0;
+          right: 0;
+          -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+        }
+
+        .debut-loading__loading > span > i:nth-child(3) {
+          right: 0;
+          bottom: 0;
+          -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+        }
+
+        .debut-loading__loading > span > i:nth-child(4) {
+          bottom: 0;
+          left: 0;
+          -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+        }
+
+        .debut-loading__title {
+          margin-top: 24px;
+          font-size: 24px;
+        }
+
+        @keyframes antRotate {
+          to {
+            -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+          }
+        }
+
+        @-webkit-keyframes antRotate {
+          to {
+            -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+          }
+        }
+
+        @keyframes antSpinMove {
+          to {
+            opacity: 1;
+          }
+        }
+
+        @-webkit-keyframes antSpinMove {
+          to {
+            opacity: 1;
+          }
+        }
+      </style>
+      <div class="debut-loading">
+        <img class="debut-loading__logo" src="/logo.png" alt="logo" />
+        <div class="debut-loading__loading">
+          <span>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+        </div>
+        <div class="debut-loading__title"><%= title %></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

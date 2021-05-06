@@ -2,7 +2,7 @@ import { generate } from "@ant-design/colors";
 
 type Fn = (...arg: any) => any;
 
-export const primaryColor = "#722ed1";
+export const primaryColor = "#99b6c2";
 
 export interface GenerateColorsParams {
   mixLighten: Fn;
