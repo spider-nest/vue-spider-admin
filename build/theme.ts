@@ -2,14 +2,17 @@ import { generate } from "@ant-design/colors";
 
 type Fn = (...arg: any) => any;
 
-export const primaryColor = "#99b6c2";
-
 export interface GenerateColorsParams {
   mixLighten: Fn;
   mixDarken: Fn;
   tinycolor: any;
   color?: string;
 }
+
+export const primaryColor = "#0336ff";
+export const successColor = "#356859";
+export const errorColor = "#e30425";
+export const warningColor = "#f9aa33";
 
 export function generateAntColors(color: string) {
   return generate(color, {
