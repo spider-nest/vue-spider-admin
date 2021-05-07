@@ -9,6 +9,7 @@
 import { defineComponent, computed } from "vue";
 import { Button } from "ant-design-vue";
 
+import { useStyles } from "/@/hooks/useStyles";
 import PropTypes, { withUndefined } from "/@/utils/vue-types";
 
 export default defineComponent({
@@ -43,15 +44,15 @@ export default defineComponent({
     ]).def("info"),
   },
   setup(props, { attrs }) {
-    const className = "spider-btn";
+    const { prefixCls } = useStyles("btn");
     const classes = computed(() => {
-      const { type } = props;
+      const { type, linkType } = props;
       return {
-        [className]: true,
-        [`${className}--success`]: type === "success",
-        [`${className}--warning`]: type === "warning",
-        [`${className}--info`]: type === "info",
-        [`${className}--link__${props.linkType}`]: type === "link",
+        [prefixCls]: true,
+        [`${prefixCls}-success`]: type === "success",
+        [`${prefixCls}-warning`]: type === "warning",
+        [`${prefixCls}-info`]: type === "info",
+        [`${prefixCls}-link-${linkType}`]: type === "link",
       };
     });
 
@@ -225,45 +226,42 @@ a.@{spider-btn-prefix-cls},
 .@{ant-btn-prefix-cls},
 a.@{ant-btn-prefix-cls} {
   // success button
-  &-success,
-  &--success {
+  &-success {
     .button-variant(@btn-success-color; @btn-success-bg);
     .button-group-variant(@success-5);
   }
 
   // warning button
-  &-warning,
-  &--warning {
+  &-warning {
     .button-variant(@btn-warning-color; @btn-warning-bg);
     .button-group-variant(@warning-5);
   }
 
   // info button
-  &-info,
-  &--info {
+  &-info {
     .button-variant(@btn-info-color; @btn-info-bg);
     .button-group-variant(@primary-5);
   }
 
   // link button
-  &--link {
-    &__default {
+  &-link {
+    &-default {
       .button-variant-link(@text-color);
     }
 
-    &__success {
+    &-success {
       .button-variant-link(@success-color);
     }
 
-    &__warning {
+    &-warning {
       .button-variant-link(@warning-color);
     }
 
-    &__info {
+    &-info {
       .button-variant-link(@info-color);
     }
 
-    &__danger {
+    &-danger {
       .button-variant-link(@error-color);
     }
   }

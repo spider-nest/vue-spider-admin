@@ -1,14 +1,16 @@
 <template>
-  <GithubOutlined />
+  //todo
+  <SIcon icon="ion:language" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { GithubOutlined } from "@ant-design/icons-vue";
+
+import SIcon from "/@/components/icon";
 
 export default defineComponent({
-  name: "CommonFooter",
-  components: { GithubOutlined },
+  name: "LocalePicker",
+  components: { SIcon },
   inheritAttrs: false,
 });
 </script>

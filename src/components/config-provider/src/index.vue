@@ -15,11 +15,16 @@ import { useLocale } from "/@/hooks/useLocale";
 import { createBreakpointListen } from "/@/hooks/useBreakpoint";
 import { createAppProviderContext } from "/@/hooks/useAppContext";
 import { useAppStore } from "/@/store/modules/app";
+import PropTypes from "/@/utils/vue-types";
+import { prefixCls } from "/@/settings/style";
 
 export default defineComponent({
   name: "SConfigProvider",
   components: { ConfigProvider },
   inheritAttrs: false,
+  props: {
+    prefixCls: PropTypes.string.def(prefixCls),
+  },
   setup(props) {
     useTitle();
 

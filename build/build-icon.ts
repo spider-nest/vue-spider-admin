@@ -42,7 +42,7 @@ async function generateIcon() {
         type: "input",
         name: "output",
         message: "Select the icon set that needs to be generated?",
-        default: "src/components/icon/data",
+        default: "src/components/icon/data.ts",
       },
     ])
     .then(async (answers) => {

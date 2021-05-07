@@ -33,3 +33,5 @@ declare interface ViteEnv {
   VITE_LEGACY: boolean;
   VITE_IMAGEMIN: boolean;
 }
+
+declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>;
