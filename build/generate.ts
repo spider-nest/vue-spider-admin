@@ -9,31 +9,39 @@ import {
   warningColor,
 } from "./theme";
 
+const swatch = () => {
+  const colors = [
+    { type: "primary", value: primaryColor },
+    { type: "success", value: successColor },
+    { type: "error", value: errorColor },
+    { type: "warning", value: warningColor },
+  ];
+  const swatches = {};
+  colors.map((color) => {
+    const palettes = generateAntColors(color.value);
+    for (let index = 0; index < 10; index++) {
+      swatches[`${color.type}-${index + 1}`] = palettes[index];
+    }
+    swatches[`${color.type}-color`] = color.value;
+    if (color.type === "primary") {
+      swatches["info-color"] = color.value;
+      swatches["processing-color"] = color.value;
+      swatches["link-color"] = color.value;
+    } else if (color.type === "error") {
+      swatches["highlight-color"] = color.value;
+    }
+  });
+  return swatches;
+};
+
 export function generateModifyVars(dark = false) {
-  // primaryColor === palettes[5]
-  const palettes = generateAntColors(primaryColor);
-  const primary = palettes[5];
-
-  const primaryColorObj: Record<string, string> = {};
-
-  for (let index = 0; index < 10; index++) {
-    primaryColorObj[`primary-${index + 1}`] = palettes[index];
-  }
-
   const modifyVars = getThemeVariables({ dark });
+  const swatches = swatch();
   return {
     ...modifyVars,
     hack: `${modifyVars.hack} @import (reference) "${resolve(
       "src/styles/config.less"
     )}";`,
-    "primary-color": primary,
-    ...primaryColorObj,
-    "info-color": primary,
-    "success-color": successColor,
-    "processing-color": primary,
-    "error-color": errorColor,
-    "highlight-color": errorColor,
-    "waring-color": warningColor,
-    "link-color": primary,
+    ...swatches,
   };
 }

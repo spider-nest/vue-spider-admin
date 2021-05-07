@@ -24,13 +24,13 @@ export const useAppStore = defineStore({
     beforeRestoreInfo: {},
   }),
   getters: {
-    getPageLoading() {
+    getPageLoading(): boolean {
       return this.pageLoading;
     },
     getDarkMode(): string {
       return this.darkMode || darkMode;
     },
-    getBeforeRestoreInfo() {
+    getBeforeRestoreInfo(): BeforeRestoreInfo {
       return this.beforeRestoreInfo;
     },
     getConfig(): ViteEnv {

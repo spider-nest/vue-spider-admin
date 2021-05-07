@@ -19,8 +19,3 @@ declare module "ant-design-vue/es/locale/*" {
   const locale: Locale & ReadonlyRecordable;
   export default locale as Locale & ReadonlyRecordable;
 }
-
-declare module "virtual:*" {
-  const result: any;
-  export default result;
-}
