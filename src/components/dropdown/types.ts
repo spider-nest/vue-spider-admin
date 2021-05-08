@@ -6,7 +6,7 @@ export interface DropdownMenu {
   icon?: string;
   disabled?: boolean;
   divider?: boolean;
-  popConfirm?: boolean;
+  popConfirm?: object;
   to?: string;
   onClick?: Fn;
 }

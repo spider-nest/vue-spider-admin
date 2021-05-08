@@ -11,13 +11,13 @@
             :disabled="option.disabled"
             @click="onClickMenu(option)"
           >
-            <PopConfirm v-if="popConfirm && option.popConfirm" v-bind="option">
-              <SIcon v-if="option.icon" :icon="option.icon" />
-              <span>{{ option.title }}</span>
-            </PopConfirm>
+            <template v-if="option.popConfirm">
+              <PopConfirm v-bind="option.popConfirm">
+                <MenuItemContent :option="option" />
+              </PopConfirm>
+            </template>
             <template v-else>
-              <SIcon v-if="option.icon" :icon="option.icon" />
-              <span>{{ option.title }}</span>
+              <MenuItemContent :option="option" />
             </template>
           </MenuItem>
           <MenuDivider v-if="option.divider" :key="`divider-${option.event}`" />
@@ -33,7 +33,7 @@ import type { DropdownMenu, DropdownMenuEvent } from "../types";
 import { defineComponent } from "vue";
 import { Dropdown, Menu, Popconfirm } from "ant-design-vue";
 
-import { SIcon } from "/@/components/icon";
+import MenuItemContent from "./menu-item-content.vue";
 import PropTypes from "/@/utils/vue-types";
 
 export default defineComponent({
@@ -44,7 +44,7 @@ export default defineComponent({
     MenuItem: Menu.Item,
     MenuDivider: Menu.Divider,
     PopConfirm: Popconfirm,
-    SIcon,
+    MenuItemContent,
   },
   inheritAttrs: false,
   props: {
@@ -53,7 +53,6 @@ export default defineComponent({
     ).def(["hover"]),
     options: PropTypes.array.def([]),
     selectedKeys: PropTypes.arrayOf(PropTypes.string).def([]),
-    popConfirm: PropTypes.looseBool.def(false),
   },
   emits: ["clickMenu"],
   setup(props, { emit }) {
