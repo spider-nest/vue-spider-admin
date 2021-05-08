@@ -1,6 +1,6 @@
 import type { Menu } from "./types";
 
-import { t } from "/@/hooks/useLocale";
+import { qt } from "/@/hooks/useLocale";
 
 const BasicLayout = () => import("/@/layouts/basic.vue");
 
@@ -19,7 +19,7 @@ export const RedirectMenu = {
   name: "Redirect",
   component: components.Redirect,
   meta: {
-    title: t("routes.redirect"),
+    title: qt("routes.redirect"),
   },
 };
 
@@ -28,7 +28,7 @@ export const HumanLoginMenu = {
   name: "HumanLogin",
   component: components.HumanLogin,
   meta: {
-    title: t("routes.login"),
+    title: qt("routes.login"),
   },
 };
 
@@ -38,7 +38,7 @@ export const basicRoutes: Menu[] = [
     name: "Exception401",
     component: components.Exception401,
     meta: {
-      title: t("routes.exception401"),
+      title: qt("routes.exception401"),
     },
   },
   {
@@ -46,7 +46,7 @@ export const basicRoutes: Menu[] = [
     name: "Exception403",
     component: components.Exception403,
     meta: {
-      title: t("routes.exception403"),
+      title: qt("routes.exception403"),
     },
   },
   {
@@ -54,7 +54,7 @@ export const basicRoutes: Menu[] = [
     name: "Exception404",
     component: components.Exception404,
     meta: {
-      title: t("routes.exception404"),
+      title: qt("routes.exception404"),
     },
   },
   {
@@ -62,7 +62,7 @@ export const basicRoutes: Menu[] = [
     name: "Exception500",
     component: components.Exception500,
     meta: {
-      title: t("routes.exception500"),
+      title: qt("routes.exception500"),
     },
   },
   RedirectMenu,
@@ -81,7 +81,7 @@ export const asyncRoutes: Menu[] = [
     name: "Home",
     component: components.Home,
     meta: {
-      title: t("routes.home"),
+      title: qt("routes.home"),
     },
   },
 ];

@@ -10,10 +10,10 @@ interface LocaleState {
 export const useLocaleStore = defineStore({
   id: "app-locale",
   state: (): LocaleState => ({
-    localInfo: {} as LocaleSetting,
+    localInfo: localeSetting,
   }),
   getters: {
-    getShowPicker() {
+    getShowPicker(): boolean {
       return !!this.localInfo?.showPicker;
     },
     getLocale(): LocaleType {

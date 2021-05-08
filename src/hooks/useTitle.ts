@@ -6,11 +6,17 @@ import { useSetting } from "/@/hooks/useSetting";
 import { useI18n } from "/@/hooks/useLocale";
 import { RedirectMenu } from "/@/router/routes";
 
-export function useTitle() {
-  const { currentRoute } = useRouter();
+export function setTitle(routeTitle: string) {
   const newTitle = vueUseTitle();
   const { title } = useSetting();
   const { t } = useI18n();
+  const tTitle = t(routeTitle);
+
+  newTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`;
+}
+
+export function useTitle() {
+  const { currentRoute } = useRouter();
 
   watch(
     () => currentRoute.value.path,
@@ -19,9 +25,7 @@ export function useTitle() {
       if (route.name === RedirectMenu.name) {
         return;
       }
-
-      const tTitle = t(route?.meta?.title as string);
-      newTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`;
+      setTitle(route?.meta?.title as string);
     },
     { immediate: true }
   );

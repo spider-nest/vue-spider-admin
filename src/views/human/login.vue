@@ -3,7 +3,7 @@
     <div :class="`${prefixCls}-locale`">
       <LocalePicker />
     </div>
-    <div :class="`${prefixCls}-content`"></div>
+    <div :class="`${prefixCls}-content`">123</div>
     <CommonFooter />
   </div>
 </template>
@@ -32,25 +32,16 @@ export default defineComponent({
 .@{spider-human-login-prefix-cls} {
   display: flex;
   height: 100%;
-  padding: @padding-lg;
-  overflow: hidden;
   flex-direction: column;
 
   &-locale {
     width: 100%;
+    padding: @padding-lg;
     text-align: right;
   }
 
   &-content {
-    padding: 32px 0;
-    flex: 1;
-  }
-}
-@media (min-width: @screen-md-min) {
-  .@{spider-human-login-prefix-cls} {
-    &-content {
-      padding: 32px 0 24px;
-    }
+    margin: auto;
   }
 }
 </style>

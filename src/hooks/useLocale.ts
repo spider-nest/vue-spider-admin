@@ -3,6 +3,7 @@ import moment from "moment";
 
 import { i18n } from "/@/locales";
 import { useLocaleStoreWithout } from "/@/store/modules/locale";
+import { setTitle } from "/@/hooks/useTitle";
 
 type I18nGlobalTranslation = {
   (key: string): string;
@@ -18,14 +19,12 @@ interface LangModule {
   momentLocale: Recordable;
   momentLocaleName: string;
 }
-type I18nTranslationRestParameters = [string, any];
 
-// This function is only used for routing and menus
-export const t = (key: string) => key;
+type I18nTranslationRestParameters = [string, any];
 
 const loadLocalePool: LocaleType[] = [];
 
-function setI18nLanguage(locale: LocaleType) {
+function setI18nLanguage(locale: LocaleType, routeTitle: string) {
   const localeStore = useLocaleStoreWithout();
 
   if (i18n.mode === "legacy") {
@@ -34,6 +33,7 @@ function setI18nLanguage(locale: LocaleType) {
     (i18n.global.locale as any).value = locale;
   }
   localeStore.setLocaleInfo({ locale });
+  setTitle(routeTitle);
   document.querySelector("html")?.setAttribute("lang", locale);
 }
 
@@ -43,31 +43,31 @@ export function useLocale() {
   const getShowLocalePicker = computed(() => localeStore.getShowPicker);
 
   const getAntdLocale = computed(() => {
-    return i18n.global.getLocaleMessage("zh_CN")?.antDesignLocale ?? {};
+    return (
+      i18n.global.getLocaleMessage(unref(getLocale))?.antDesignLocale ?? {}
+    );
   });
 
-  async function changeLocale(locale: LocaleType) {
+  async function changeLocale(locale: LocaleType, routeTitle: string) {
     const globalI18n = i18n.global;
     const currentLocale = unref(globalI18n.locale);
     if (currentLocale === locale) {
       return locale;
     }
-
     if (loadLocalePool.includes(locale)) {
-      setI18nLanguage(locale);
+      setI18nLanguage(locale, routeTitle);
       return locale;
     }
-    const langModule = ((await import(`/@/locales/lang/${locale}.ts`)) as any)
+
+    const langModule = (await import(`../locales/lang/${locale}.ts`))
       .default as LangModule;
     if (!langModule) return;
 
     const { message, momentLocale, momentLocaleName } = langModule;
-
     globalI18n.setLocaleMessage(locale, message);
     moment.updateLocale(momentLocaleName, momentLocale);
     loadLocalePool.push(locale);
-
-    setI18nLanguage(locale);
+    setI18nLanguage(locale, routeTitle);
     return locale;
   }
 
@@ -116,3 +116,6 @@ export function useI18n(
     t: tFn,
   };
 }
+
+// This function is only used for routing and menus
+export const qt = (key: string) => key;

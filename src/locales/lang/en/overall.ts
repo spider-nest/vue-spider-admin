@@ -1,0 +1,17 @@
+export default {
+  ok: "OK",
+  close: "Close",
+  cancel: "Cancel",
+  loading: "Loading...",
+  save: "Save",
+  del: "Delete",
+  reset: "Reset",
+  search: "Search",
+  query: "Search",
+  input: "Please enter",
+  choose: "Please choose",
+  redo: "Refresh",
+  back: "Back",
+  light: "Light",
+  dark: "Dark",
+};

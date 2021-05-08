@@ -15,9 +15,9 @@ function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir);
 }
 
-const { dependencies, devDependencies, name, version } = pkg;
+const { dependencies, devDependencies, name, version, homepage } = pkg;
 const __APP_INFO__ = {
-  pkg: { dependencies, devDependencies, name, version },
+  pkg: { dependencies, devDependencies, name, version, homepage },
   lastBuildTime: moment().format("YYYY-MM-DD HH:mm:ss"),
 };
 
