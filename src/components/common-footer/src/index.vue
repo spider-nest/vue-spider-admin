@@ -1,14 +1,18 @@
 <template>
   <div :class="prefixCls">
-    <div :class="`${prefixCls}-copyright`">
-      <CopyrightOutlined
-        :title="`${t('system.lastBuildTime')}: ${lastBuildTime}`"
-      />
-      &nbsp;2021&nbsp;{{ copyright }}&nbsp;
-      <a v-if="homepage" :href="homepage" target="_blank" title="github">
-        <GithubOutlined />
-      </a>
-    </div>
+    <CopyrightOutlined
+      :title="`${t('system.lastBuildTime')}: ${lastBuildTime}`"
+    />
+    &nbsp;2021&nbsp;{{ copyright }}&nbsp;
+    <a
+      v-if="homepage"
+      :class="`${prefixCls}-github`"
+      :href="homepage"
+      target="_blank"
+      title="github"
+    >
+      <GithubOutlined />
+    </a>
   </div>
 </template>
 
@@ -25,10 +29,10 @@ export default defineComponent({
   components: { GithubOutlined, CopyrightOutlined },
   inheritAttrs: false,
   setup() {
+    const { t } = useI18n();
     const { prefixCls } = useStyles("footer");
     const { pkg, lastBuildTime } = __APP_INFO__;
     const { title } = useSetting();
-    const { t } = useI18n();
 
     return {
       t,
@@ -49,8 +53,8 @@ export default defineComponent({
   color: rgba(0, 0, 0, 0.45);
   text-align: center;
 
-  &-copyright {
-    margin-top: (@padding-lg / 2);
+  &-github {
+    color: inherit;
   }
 }
 </style>
