@@ -21,7 +21,7 @@ export default defineComponent({
     ghost: PropTypes.looseBool,
     htmlType: PropTypes.oneOf(["submit", "button", "reset"]).def("button"),
     loading: withUndefined(
-      PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object])
+      PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
     ),
     shape: PropTypes.oneOf(["circle", "circle-outline", "round"]),
     size: PropTypes.oneOf(["large", "default", "small"]).def("default"),

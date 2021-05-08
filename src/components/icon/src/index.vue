@@ -35,7 +35,7 @@ export default defineComponent({
     icon: PropTypes.string,
     pixel: PropTypes.number.def(16),
     color: PropTypes.string,
-    spin: PropTypes.looseBool.def(false),
+    spin: PropTypes.bool.def(false),
   },
   setup(props) {
     const className = "iconify";

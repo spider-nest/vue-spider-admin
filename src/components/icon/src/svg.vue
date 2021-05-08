@@ -23,7 +23,7 @@ export default defineComponent({
     prefix: PropTypes.string.def("icon"),
     name: PropTypes.string.isRequired,
     pixel: PropTypes.number.def(16),
-    spin: PropTypes.looseBool.def(false),
+    spin: PropTypes.bool.def(false),
   },
   setup(props) {
     const { prefixCls } = useStyles("svg-icon");

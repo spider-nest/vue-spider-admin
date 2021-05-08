@@ -27,8 +27,8 @@ export default defineComponent({
   components: { SDropdown, SIcon },
   inheritAttrs: false,
   props: {
-    showTitle: PropTypes.looseBool.def(true),
-    reload: PropTypes.looseBool.def(false),
+    showTitle: PropTypes.bool.def(true),
+    reload: PropTypes.bool.def(false),
   },
   setup(props) {
     const selectedKeys = ref<string[]>([]);
