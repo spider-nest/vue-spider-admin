@@ -14,11 +14,11 @@ export const localeSetting: LocaleSetting = {
 
 export const localeList: DropdownMenu[] = [
   {
-    text: "简体中文",
     event: LOCALE.ZH_CN,
+    title: "简体中文",
   },
   {
-    text: "English",
     event: LOCALE.EN_US,
+    title: "English",
   },
 ];

@@ -1,9 +1,12 @@
+export type DropdownMenuEvent = string | number;
+
 export interface DropdownMenu {
-  onClick?: Fn;
-  to?: string;
+  event: DropdownMenuEvent; // key
+  title: string;
   icon?: string;
-  event: string | number;
-  text: string;
   disabled?: boolean;
   divider?: boolean;
+  popConfirm?: boolean;
+  to?: string;
+  onClick?: Fn;
 }

@@ -1,19 +1,58 @@
 <template>
-  <SIcon icon="ion:language" />
+  <SDropdown
+    placement="bottomCenter"
+    :options="localeList"
+    :selectedKeys="selectedKeys"
+    @clickMenu="onClickMenu"
+  >
+    <SIcon icon="ion:language" />
+    <span v-if="showTitle">{{ title }}</span>
+  </SDropdown>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import type { DropdownMenu } from "/@/components/dropdown/types";
 
+import { defineComponent, ref, watchEffect, unref, computed } from "vue";
+
+import SDropdown from "/@/components/dropdown";
 import SIcon from "/@/components/icon";
 import { localeList } from "/@/settings/locale";
+import PropTypes from "/@/utils/vue-types";
+import { useLocale } from "/@/hooks/useLocale";
 
 export default defineComponent({
   name: "LocalePicker",
-  components: { SIcon },
+  components: { SDropdown, SIcon },
   inheritAttrs: false,
-  setup() {
-    return { localeList };
+  props: {
+    showTitle: PropTypes.looseBool.def(true),
+    reload: PropTypes.looseBool.def(false),
+  },
+  setup(props) {
+    const selectedKeys = ref<string[]>([]);
+    const { changeLocale, getLocale } = useLocale();
+    watchEffect(() => {
+      selectedKeys.value = [unref(getLocale)];
+    });
+
+    const title = computed(() => {
+      const key = selectedKeys.value[0];
+      if (!key) return undefined;
+      return localeList.find((locale) => locale.event === key)?.title;
+    });
+
+    const toggleLocale = async (locale: LocaleType) => {
+      await changeLocale(locale);
+      selectedKeys.value = [locale];
+      props.reload && window.location.reload();
+    };
+    const onClickMenu = (menuItem: DropdownMenu) => {
+      if (unref(getLocale) === menuItem.event) return;
+      toggleLocale(menuItem.event);
+    };
+
+    return { localeList, selectedKeys, title, onClickMenu };
   },
 });
 </script>

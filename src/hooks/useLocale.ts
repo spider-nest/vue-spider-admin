@@ -57,7 +57,7 @@ export function useLocale() {
       setI18nLanguage(locale);
       return locale;
     }
-    const langModule = ((await import(`./lang/${locale}.ts`)) as any)
+    const langModule = ((await import(`/@/locales/lang/${locale}.ts`)) as any)
       .default as LangModule;
     if (!langModule) return;
 

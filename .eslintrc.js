@@ -26,6 +26,15 @@ module.exports = defineConfig({
   ],
   rules: {
     "no-use-before-define": "off",
+    "vue/name-property-casing": ["error", "PascalCase"],
+    "vue/prop-name-casing": ["error", "camelCase"],
+    "vue/attribute-hyphenation": [
+      "error",
+      "never",
+      {
+        ignore: [],
+      },
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": [
