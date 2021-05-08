@@ -1,5 +1,5 @@
 <template>
-  <SvgIcon v-if="isSvg" :name="svgIcon" :size="fontSize" :spin="spin" />
+  <SvgIcon v-if="isSvg" :name="svgIcon" :pixel="pixel" :spin="spin" />
   <span
     v-else
     ref="elRef"
@@ -33,7 +33,7 @@ export default defineComponent({
   props: {
     prefix: PropTypes.string.def(""),
     icon: PropTypes.string,
-    fontSize: PropTypes.number.def(16),
+    pixel: PropTypes.number.def(16),
     color: PropTypes.string,
     spin: PropTypes.looseBool.def(false),
   },
@@ -61,24 +61,23 @@ export default defineComponent({
       if (!icon) return;
 
       const svg = Iconify.renderSVG(icon, {});
+      el.textContent = "";
       if (svg) {
-        el.textContent = "";
         el.appendChild(svg);
       } else {
         const span = document.createElement("span");
         span.className = className;
         span.dataset.icon = icon;
-        el.textContent = "";
         el.appendChild(span);
       }
     };
 
     const styles = computed(
       (): CSSProperties => {
-        const { fontSize, color } = props;
+        const { pixel, color } = props;
         return {
           display: "inline-flex",
-          fontSize: `${fontSize}px`,
+          fontSize: `${pixel}px`,
           color,
         };
       }

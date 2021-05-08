@@ -1,6 +1,6 @@
 <template>
   <ConfigProvider :locale="getAntdLocale">
-    <slot />
+    <RouterView />
   </ConfigProvider>
 </template>
 
@@ -9,7 +9,6 @@ import { defineComponent, ref, toRefs, unref } from "vue";
 import { ConfigProvider } from "ant-design-vue";
 
 import { MenuModeEnum, MenuTypeEnum } from "/@/enums/menu";
-
 import { useTitle } from "/@/hooks/useTitle";
 import { useLocale } from "/@/hooks/useLocale";
 import { createBreakpointListen } from "/@/hooks/useBreakpoint";

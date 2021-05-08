@@ -45,10 +45,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less" scoped>
-@prefix-cls: ~"@{prefix-cls}-svg-icon";
+<style lang="less">
+@spider-svg-icon-prefix-cls: ~"@{spider-prefix}-svg-icon";
 
-.@{prefix-cls} {
+.@{spider-svg-icon-prefix-cls} {
   display: inline-block;
   overflow: hidden;
   vertical-align: -0.15em;

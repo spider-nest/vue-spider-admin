@@ -1,3 +1,5 @@
+import type { DropdownMenu } from "/@/components/dropdown/types";
+
 export const LOCALE: { [key: string]: LocaleType } = {
   ZH_CN: "zh_CN",
   EN_US: "en",
@@ -9,3 +11,14 @@ export const localeSetting: LocaleSetting = {
   fallback: LOCALE.ZH_CN,
   availableLocales: [LOCALE.ZH_CN, LOCALE.EN_US],
 };
+
+export const localeList: DropdownMenu[] = [
+  {
+    text: "简体中文",
+    event: LOCALE.ZH_CN,
+  },
+  {
+    text: "English",
+    event: LOCALE.EN_US,
+  },
+];

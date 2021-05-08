@@ -1,7 +1,8 @@
+import type { ThemeEnum } from "/@/enums/app";
+
 import { defineStore } from "pinia";
 import { store } from "/@/store";
 
-import { ThemeEnum } from "/@/enums/app";
 import { darkMode } from "/@/settings/style";
 import { resetRouter } from "/@/router";
 import { deepMerge } from "/@/utils";
