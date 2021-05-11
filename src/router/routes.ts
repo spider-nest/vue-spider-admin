@@ -1,5 +1,6 @@
 import type { Menu } from "./types";
 
+import { PageEnum } from "/@/enums/page";
 import { qt } from "/@/hooks/useLocale";
 
 const BasicLayout = () => import("/@/layouts/basic.vue");
@@ -24,7 +25,7 @@ export const RedirectMenu = {
 };
 
 export const HumanLoginMenu = {
-  path: "/human-login",
+  path: PageEnum.BASE_LOGIN_PATH,
   name: "HumanLogin",
   component: components.HumanLogin,
   meta: {
@@ -77,7 +78,7 @@ export const basicRoutes: Menu[] = [
 
 export const asyncRoutes: Menu[] = [
   {
-    path: "/home",
+    path: PageEnum.BASE_HOME_PATH,
     name: "Home",
     component: components.Home,
     meta: {

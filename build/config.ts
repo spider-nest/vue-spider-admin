@@ -8,25 +8,24 @@ export const GLOB_CONFIG_FILE_NAME = "_app.config.js";
 
 export const OUTPUT_DIR = "dist";
 
-function createConfig(
-  {
-    configName,
-    config,
-    configFileName = GLOB_CONFIG_FILE_NAME,
-  }: { configName: string; config: any; configFileName?: string } = {
-    configName: "",
-    config: {},
-  }
-) {
+function createConfig({
+  config = {},
+  configName = "",
+  configFileName = GLOB_CONFIG_FILE_NAME,
+}: {
+  config: any;
+  configName: string;
+  configFileName?: string;
+}) {
   try {
     const windowConf = `window.${configName}`;
-    const configStr = `${windowConf}=${JSON.stringify(config)};
+    const configStr = `${windowConf}=${JSON.stringify(config)};${`
       Object.freeze(${windowConf});
       Object.defineProperty(window, "${configName}", {
         configurable: false,
         writable: false,
       });
-    `.replace(/\s/g, "");
+    `.replace(/\s/g, "")}`;
     fs.mkdirp(getRootPath(OUTPUT_DIR));
     writeFileSync(getRootPath(`${OUTPUT_DIR}/${configFileName}`), configStr);
 
