@@ -1,8 +1,8 @@
-import PasswordLoginForm from "./password-login-form.vue";
-import PhoneLoginForm from "./phone-login-form.vue";
-import QrCodeLoginForm from "./qr-code-login-form.vue";
-import RegisterForm from "./register-form.vue";
-import ResetPasswordForm from "./reset-password-form.vue";
+import PasswordLoginForm from "./password-login.vue";
+import PhoneLoginForm from "./phone-login.vue";
+import QrCodeLoginForm from "./qr-code-login.vue";
+import RegisterForm from "./register.vue";
+import ResetPasswordForm from "./reset-password.vue";
 
 export {
   PasswordLoginForm,
