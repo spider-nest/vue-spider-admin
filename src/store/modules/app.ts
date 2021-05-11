@@ -1,3 +1,5 @@
+import type { AppConfig } from "/#/config";
+import type { BeforeRestoreInfo } from "/#/store";
 import type { ThemeEnum } from "/@/enums/app";
 
 import { defineStore } from "pinia";
@@ -10,7 +12,7 @@ import { deepMerge } from "/@/utils";
 interface AppState {
   darkMode?: ThemeEnum;
   pageLoading: boolean;
-  config: ViteEnv | null;
+  config: AppConfig | null;
   beforeRestoreInfo: BeforeRestoreInfo;
 }
 
@@ -34,8 +36,8 @@ export const useAppStore = defineStore({
     getBeforeRestoreInfo(): BeforeRestoreInfo {
       return this.beforeRestoreInfo;
     },
-    getConfig(): ViteEnv {
-      return this.config || ({} as ViteEnv);
+    getAppConfig(): AppConfig {
+      return this.config || ({} as AppConfig);
     },
   },
   actions: {
@@ -48,7 +50,7 @@ export const useAppStore = defineStore({
     setBeforeRestoreInfo(state: BeforeRestoreInfo): void {
       this.beforeRestoreInfo = state;
     },
-    setConfig(config: DeepPartial<ViteEnv>): void {
+    setAppConfig(config: DeepPartial<AppConfig>): void {
       this.config = deepMerge(this.config || {}, config);
     },
     async resetAllState() {

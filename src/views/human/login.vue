@@ -3,7 +3,9 @@
     <div :class="`${prefixCls}-locale`">
       <LocalePicker />
     </div>
-    <div :class="`${prefixCls}-content`">123</div>
+    <div :class="`${prefixCls}-content`">
+      <Nameplate />
+    </div>
     <CommonFooter />
   </div>
 </template>
@@ -12,12 +14,13 @@
 import { defineComponent } from "vue";
 
 import LocalePicker from "/@/components/locale-picker";
+import Nameplate from "/@/components/nameplate";
 import CommonFooter from "/@/components/common-footer";
 import { useStyles } from "/@/hooks/useStyles";
 
 export default defineComponent({
   name: "HumanLogin",
-  components: { LocalePicker, CommonFooter },
+  components: { LocalePicker, Nameplate, CommonFooter },
   setup() {
     const { prefixCls } = useStyles("human-login");
 

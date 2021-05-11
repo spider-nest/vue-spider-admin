@@ -1,6 +1,7 @@
-declare interface BeforeRestoreInfo {
+import { MenuModeEnum, MenuTypeEnum } from "/@/enums/menuEnum";
+
+export interface BeforeRestoreInfo {
   menuCollapsed?: boolean;
-  menuSplit?: boolean;
   menuMode?: MenuModeEnum;
   menuType?: MenuTypeEnum;
 }

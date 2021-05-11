@@ -26,7 +26,7 @@ export function useBreakpoint() {
 }
 
 export function createBreakpointListen(
-  fn?: (opt: CreateCallbackParams) => void
+  fn?: (options: CreateCallbackParams) => void
 ) {
   const screenRef = ref<sizeEnum>(sizeEnum.XL);
   const realWidthRef = ref(window.innerWidth);

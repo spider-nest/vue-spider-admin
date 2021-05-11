@@ -54,21 +54,18 @@ export default defineComponent({
               type: menuType,
               mode: menuMode,
               collapsed: menuCollapsed,
-              split: menuSplit,
             },
-          } = appStore.getConfig;
-          appStore.setConfig({
+          } = appStore.getAppConfig;
+          appStore.setAppConfig({
             menuSetting: {
               type: MenuTypeEnum.SIDEBAR,
               mode: MenuModeEnum.INLINE,
-              split: false,
             },
           });
           appStore.setBeforeRestoreInfo({
             menuMode,
             menuCollapsed,
             menuType,
-            menuSplit,
           });
         }
       } else {
@@ -78,14 +75,12 @@ export default defineComponent({
             menuMode,
             menuCollapsed,
             menuType,
-            menuSplit,
           } = appStore.getBeforeRestoreInfo;
-          appStore.setConfig({
+          appStore.setAppConfig({
             menuSetting: {
               type: menuType,
               mode: menuMode,
               collapsed: menuCollapsed,
-              split: menuSplit,
             },
           });
         }

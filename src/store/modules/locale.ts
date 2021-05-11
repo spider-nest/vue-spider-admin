@@ -1,3 +1,5 @@
+import type { LocaleType, LocaleSetting } from "/#/config";
+
 import { defineStore } from "pinia";
 
 import { store } from "/@/store";

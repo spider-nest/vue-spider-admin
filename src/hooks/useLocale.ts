@@ -1,3 +1,5 @@
+import type { LocaleType } from "/#/config";
+
 import { computed, unref } from "vue";
 import moment from "moment";
 

@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts">
+import type { LocaleType } from "/#/config";
 import type { DropdownMenu } from "/@/components/dropdown/types";
 
 import { defineComponent, ref, watchEffect, unref, computed } from "vue";

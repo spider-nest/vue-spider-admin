@@ -50,7 +50,7 @@ export default defineComponent({
 
 .@{spider-footer-prefix-cls} {
   padding: @padding-lg;
-  color: rgba(0, 0, 0, 0.45);
+  color: @text-color-secondary;
   text-align: center;
 
   &-github {
