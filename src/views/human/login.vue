@@ -5,6 +5,13 @@
     </div>
     <div :class="`${prefixCls}-content`">
       <Nameplate />
+      <div :class="`${prefixCls}-form`">
+        <PasswordLoginForm />
+        <PhoneLoginForm />
+        <QrCodeLoginForm />
+        <RegisterForm />
+        <ResetPasswordForm />
+      </div>
     </div>
     <CommonFooter />
   </div>
@@ -16,11 +23,27 @@ import { defineComponent } from "vue";
 import LocalePicker from "/@/components/locale-picker";
 import Nameplate from "/@/components/nameplate";
 import CommonFooter from "/@/components/common-footer";
+import {
+  PasswordLoginForm,
+  PhoneLoginForm,
+  QrCodeLoginForm,
+  RegisterForm,
+  ResetPasswordForm,
+} from "./form";
 import { useStyles } from "/@/hooks/useStyles";
 
 export default defineComponent({
   name: "HumanLogin",
-  components: { LocalePicker, Nameplate, CommonFooter },
+  components: {
+    LocalePicker,
+    Nameplate,
+    PasswordLoginForm,
+    PhoneLoginForm,
+    QrCodeLoginForm,
+    RegisterForm,
+    ResetPasswordForm,
+    CommonFooter,
+  },
   setup() {
     const { prefixCls } = useStyles("human-login");
 
@@ -44,7 +67,13 @@ export default defineComponent({
   }
 
   &-content {
+    padding: 0 @padding-lg;
     margin: auto;
+  }
+
+  &-form {
+    min-width: 300px;
+    margin-top: @margin-lg * 2;
   }
 }
 </style>

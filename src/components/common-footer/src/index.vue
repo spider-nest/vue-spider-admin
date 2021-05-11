@@ -1,7 +1,7 @@
 <template>
   <div :class="prefixCls">
     <CopyrightOutlined
-      :title="`${t('system.lastBuildTime')}: ${lastBuildTime}`"
+      :title="`${t('overall.lastBuildTime')}: ${lastBuildTime}`"
     />
     &nbsp;2021&nbsp;{{ copyright }}&nbsp;
     <a

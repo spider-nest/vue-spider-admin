@@ -36,21 +36,19 @@ export default defineComponent({
 @spider-nameplate-prefix-cls: ~"@{spider-prefix}-nameplate";
 
 .@{spider-nameplate-prefix-cls} {
-  height: 44px;
-  line-height: 44px;
   text-align: center;
 
   &-logo {
+    max-height: 48px;
     vertical-align: top;
   }
 
   &-title {
-    margin-left: @margin-xs;
-    font-size: 24px;
+    padding: 0 @padding-sm;
+    font-size: 28px;
     font-weight: 600;
     color: @text-color;
     transition: all 0.5s;
-    .truncate();
   }
 }
 </style>

@@ -40,6 +40,7 @@
     "postinstall": "yarn install:husky"
   },
   "dependencies": {
+    "@ant-design-vue/use": "^0.0.1-alpha.9",
     "@iconify/iconify": "^2.0.0-rc.6",
     "@vueuse/core": "^4.8.2",
     "ant-design-vue": "^2.1.2",

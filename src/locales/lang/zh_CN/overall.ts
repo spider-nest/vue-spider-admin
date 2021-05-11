@@ -1,4 +1,10 @@
 export default {
+  lastBuildTime: "版本更新时间",
+  login: "登入",
+  phoneLogin: "手机登入",
+  qrCodeLogin: "二维码登入",
+  register: "注册",
+  resetPassword: "重置密码",
   ok: "确认",
   close: "关闭",
   cancel: "取消",

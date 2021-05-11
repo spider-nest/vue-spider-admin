@@ -1,4 +1,10 @@
 export default {
+  lastBuildTime: "Last build time",
+  login: "Sign in",
+  phoneLogin: "Phone Sign in",
+  qrCodeLogin: "QR code sign in",
+  register: "Sign up",
+  resetPassword: "Reset password",
   ok: "OK",
   close: "Close",
   cancel: "Cancel",
