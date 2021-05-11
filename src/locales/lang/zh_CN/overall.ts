@@ -5,6 +5,7 @@ export default {
   qrCodeLogin: "二维码登入",
   register: "注册",
   resetPassword: "重置密码",
+  rememberMe: "记住我",
   ok: "确认",
   close: "关闭",
   cancel: "取消",

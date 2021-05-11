@@ -5,6 +5,7 @@ export default {
   qrCodeLogin: "QR code sign in",
   register: "Sign up",
   resetPassword: "Reset password",
+  rememberMe: "Remember me",
   ok: "OK",
   close: "Close",
   cancel: "Cancel",

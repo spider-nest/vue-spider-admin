@@ -25,7 +25,21 @@
       </InputPassword>
     </FormItem>
     <Row>
-      <Col><!--//todo--></Col>
+      <Col :span="12">
+        <FormItem v-bind="validateInfos.rememberMe">
+          <Checkbox v-model:checked="formModel.rememberMe" :size="size">
+            {{ t("overall.rememberMe") }}
+          </Checkbox>
+        </FormItem>
+      </Col>
+      <Col :span="12">
+        <FormItem :style="{ textAlign: 'right' }">
+          <SButton type="link" size="small">
+            <!--//todo-->
+            {{ t("overall.resetPassword") }}
+          </SButton>
+        </FormItem>
+      </Col>
     </Row>
     <FormItem>
       <SButton
@@ -45,7 +59,7 @@
 import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, unref, ref } from "vue";
-import { Row, Col, Form, Input } from "ant-design-vue";
+import { Row, Col, Form, Input, Checkbox } from "ant-design-vue";
 import { useForm } from "@ant-design-vue/use";
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 
@@ -56,6 +70,7 @@ import { FormStateEnum, useState } from "./useForm";
 interface FormModel {
   account: string | undefined;
   password: string | undefined;
+  rememberMe: boolean;
 }
 
 export default defineComponent({
@@ -66,6 +81,7 @@ export default defineComponent({
     FormItem: Form.Item,
     Input,
     InputPassword: Input.Password,
+    Checkbox,
     SButton,
     UserOutlined,
     LockOutlined,
@@ -80,6 +96,7 @@ export default defineComponent({
     const formModel: UnwrapRef<FormModel> = reactive({
       account: undefined,
       password: undefined,
+      rememberMe: false,
     });
 
     const { t } = useI18n();
