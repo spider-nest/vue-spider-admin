@@ -45,14 +45,17 @@ export default defineComponent({
     });
 
     const { currentRoute } = useRouter();
-    const toggleLocale = async (locale: LocaleType) => {
-      await changeLocale(locale, unref(currentRoute)?.meta?.title as string);
+    const toggleLocale = async (locale: LocaleType | string) => {
+      await changeLocale(
+        locale as LocaleType,
+        unref(currentRoute)?.meta?.title as string
+      );
       selectedKeys.value = [locale];
       props.reload && window.location.reload();
     };
     const onClickMenu = (menuItem: DropdownMenu) => {
       if (unref(getLocale) === menuItem.event) return;
-      toggleLocale(menuItem.event);
+      toggleLocale(menuItem.event as string);
     };
 
     return { localeList, selectedKeys, title, onClickMenu };

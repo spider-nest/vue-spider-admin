@@ -1,47 +1,50 @@
 <template>
-  <Form v-show="show" layout="vertical">
-    <FormItem v-bind="validateInfos.account">
-      <Input
+  <AForm v-show="show" layout="vertical">
+    <AFormItem v-bind="validateInfos.account">
+      <AInput
         v-model:value="formModel.account"
         :size="size"
         :placeholder="t('overall.input')"
         allowClear
       >
         <template #prefix>
-          <UserOutlined />
+          <AUserOutlined />
         </template>
-      </Input>
-    </FormItem>
-    <FormItem v-bind="validateInfos.password">
-      <InputPassword
+      </AInput>
+    </AFormItem>
+    <AFormItem v-bind="validateInfos.password">
+      <AInputPassword
         v-model:value="formModel.password"
         :size="size"
         :placeholder="t('overall.input')"
         visibilityToggle
       >
         <template #prefix>
-          <LockOutlined />
+          <ALockOutlined />
         </template>
-      </InputPassword>
-    </FormItem>
-    <Row>
-      <Col :span="12">
-        <FormItem v-bind="validateInfos.rememberMe">
-          <Checkbox v-model:checked="formModel.rememberMe" :size="size">
+      </AInputPassword>
+    </AFormItem>
+    <ARow>
+      <ACol :span="12">
+        <AFormItem v-bind="validateInfos.rememberMe">
+          <ACheckbox v-model:checked="formModel.rememberMe" :size="size">
             {{ t("overall.rememberMe") }}
-          </Checkbox>
-        </FormItem>
-      </Col>
-      <Col :span="12">
-        <FormItem :style="{ textAlign: 'right' }">
-          <SButton type="link" size="small">
-            <!--//todo-->
+          </ACheckbox>
+        </AFormItem>
+      </ACol>
+      <ACol :span="12">
+        <AFormItem :style="{ textAlign: 'right' }">
+          <SButton
+            type="link"
+            size="small"
+            @click="setState(FormStateEnum.RESET_PASSWORD)"
+          >
             {{ t("overall.resetPassword") }}
           </SButton>
-        </FormItem>
-      </Col>
-    </Row>
-    <FormItem>
+        </AFormItem>
+      </ACol>
+    </ARow>
+    <AFormItem>
       <SButton
         type="primary"
         :loading="loginLoading"
@@ -51,17 +54,29 @@
       >
         {{ t("overall.login") }}
       </SButton>
-    </FormItem>
-  </Form>
+    </AFormItem>
+    <AFormItem>
+      <!--//todo-->
+    </AFormItem>
+  </AForm>
 </template>
 
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, unref, ref } from "vue";
-import { Row, Col, Form, Input, Checkbox } from "ant-design-vue";
+import {
+  Row as ARow,
+  Col as ACol,
+  Form as AForm,
+  Input as AInput,
+  Checkbox as ACheckbox,
+} from "ant-design-vue";
+import {
+  UserOutlined as AUserOutlined,
+  LockOutlined as ALockOutlined,
+} from "@ant-design/icons-vue";
 import { useForm } from "@ant-design-vue/use";
-import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 
 import { SButton } from "/@/components/button";
 import { useI18n } from "/@/hooks/useLocale";
@@ -75,20 +90,20 @@ interface FormModel {
 
 export default defineComponent({
   components: {
-    Row,
-    Col,
-    Form,
-    FormItem: Form.Item,
-    Input,
-    InputPassword: Input.Password,
-    Checkbox,
+    ARow,
+    ACol,
+    AForm,
+    AFormItem: AForm.Item,
+    AInput,
+    AInputPassword: AInput.Password,
+    ACheckbox,
+    AUserOutlined,
+    ALockOutlined,
     SButton,
-    UserOutlined,
-    LockOutlined,
   },
   inheritAttrs: false,
   setup() {
-    const { getState } = useState();
+    const { getState, setState } = useState();
     const show = computed(
       () => unref(getState) === FormStateEnum.PASSWORD_LOGIN
     );
@@ -134,6 +149,8 @@ export default defineComponent({
       onSubmit,
       size: "large",
       loginLoading,
+      setState,
+      FormStateEnum,
     };
   },
 });

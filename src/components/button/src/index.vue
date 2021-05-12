@@ -1,20 +1,20 @@
 <template>
-  <Button v-bind="binds" :class="classes">
+  <AButton v-bind="binds" :class="classes">
     <slot name="icon" />
     <slot />
-  </Button>
+  </AButton>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import { Button } from "ant-design-vue";
+import { Button as AButton } from "ant-design-vue";
 
 import { useStyles } from "/@/hooks/useStyles";
 import PropTypes, { withUndefined } from "/@/utils/vue-types";
 
 export default defineComponent({
   name: "SButton",
-  components: { Button },
+  components: { AButton },
   inheritAttrs: false,
   props: {
     disabled: PropTypes.looseBool,

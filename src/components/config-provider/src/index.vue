@@ -1,12 +1,12 @@
 <template>
-  <ConfigProvider :locale="getAntdLocale">
+  <AConfigProvider :locale="getAntdLocale">
     <RouterView />
-  </ConfigProvider>
+  </AConfigProvider>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, unref } from "vue";
-import { ConfigProvider } from "ant-design-vue";
+import { ConfigProvider as AConfigProvider } from "ant-design-vue";
 
 import { MenuModeEnum, MenuTypeEnum } from "/@/enums/menu";
 import { useTitle } from "/@/hooks/useTitle";
@@ -19,7 +19,7 @@ import { prefixCls } from "/@/settings/style";
 
 export default defineComponent({
   name: "SConfigProvider",
-  components: { ConfigProvider },
+  components: { AConfigProvider },
   inheritAttrs: false,
   props: {
     prefixCls: PropTypes.string.def(prefixCls),
@@ -51,36 +51,33 @@ export default defineComponent({
           isSetState.value = true;
           const {
             menuSetting: {
-              type: menuType,
-              mode: menuMode,
               collapsed: menuCollapsed,
+              mode: menuMode,
+              type: menuType,
             },
           } = appStore.getAppConfig;
           appStore.setAppConfig({
             menuSetting: {
-              type: MenuTypeEnum.SIDEBAR,
               mode: MenuModeEnum.INLINE,
+              type: MenuTypeEnum.SIDEBAR,
             },
           });
           appStore.setBeforeRestoreInfo({
-            menuMode,
             menuCollapsed,
+            menuMode,
             menuType,
           });
         }
       } else {
         if (unref(isSetState)) {
           isSetState.value = false;
-          const {
-            menuMode,
-            menuCollapsed,
-            menuType,
-          } = appStore.getBeforeRestoreInfo;
+          const { menuCollapsed, menuMode, menuType } =
+            appStore.getBeforeRestoreInfo;
           appStore.setAppConfig({
             menuSetting: {
-              type: menuType,
-              mode: menuMode,
               collapsed: menuCollapsed,
+              mode: menuMode,
+              type: menuType,
             },
           });
         }

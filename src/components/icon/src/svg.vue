@@ -30,15 +30,13 @@ export default defineComponent({
 
     const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 
-    const styles = computed(
-      (): CSSProperties => {
-        const { pixel } = props;
-        return {
-          width: `${pixel}px`,
-          height: `${pixel}px`,
-        };
-      }
-    );
+    const styles = computed((): CSSProperties => {
+      const { pixel } = props;
+      return {
+        width: `${pixel}px`,
+        height: `${pixel}px`,
+      };
+    });
 
     return { prefixCls, symbolId, styles };
   },

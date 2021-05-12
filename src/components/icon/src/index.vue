@@ -72,16 +72,14 @@ export default defineComponent({
       }
     };
 
-    const styles = computed(
-      (): CSSProperties => {
-        const { pixel, color } = props;
-        return {
-          display: "inline-flex",
-          fontSize: `${pixel}px`,
-          color,
-        };
-      }
-    );
+    const styles = computed((): CSSProperties => {
+      const { pixel, color } = props;
+      return {
+        display: "inline-flex",
+        fontSize: `${pixel}px`,
+        color,
+      };
+    });
 
     watch(() => props.icon, update, { flush: "post" });
 

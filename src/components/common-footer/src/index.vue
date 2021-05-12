@@ -1,6 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <CopyrightOutlined
+    <ACopyrightOutlined
       :title="`${t('overall.lastBuildTime')}: ${lastBuildTime}`"
     />
     &nbsp;2021&nbsp;{{ copyright }}&nbsp;
@@ -11,14 +11,17 @@
       target="_blank"
       title="github"
     >
-      <GithubOutlined />
+      <AGithubOutlined />
     </a>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { GithubOutlined, CopyrightOutlined } from "@ant-design/icons-vue";
+import {
+  GithubOutlined as AGithubOutlined,
+  CopyrightOutlined as ACopyrightOutlined,
+} from "@ant-design/icons-vue";
 
 import { useStyles } from "/@/hooks/useStyles";
 import { useSetting } from "/@/hooks/useSetting";
@@ -26,7 +29,7 @@ import { useI18n } from "/@/hooks/useLocale";
 
 export default defineComponent({
   name: "CommonFooter",
-  components: { GithubOutlined, CopyrightOutlined },
+  components: { AGithubOutlined, ACopyrightOutlined },
   inheritAttrs: false,
   setup() {
     const { t } = useI18n();
