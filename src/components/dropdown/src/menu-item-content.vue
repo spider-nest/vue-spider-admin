@@ -10,6 +10,7 @@ import { SIcon } from "/@/components/icon";
 import PropTypes from "/@/utils/vue-types";
 
 export default defineComponent({
+  name: "SDropdownMenuItemContent",
   components: { SIcon },
   inheritAttrs: false,
   props: {

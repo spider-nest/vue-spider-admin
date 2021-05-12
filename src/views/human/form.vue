@@ -19,6 +19,7 @@ import {
 import { FormStateEnum, useState } from "./form/useForm";
 
 export default defineComponent({
+  name: "HumanLoginForm",
   components: {
     PasswordLoginForm,
     PhoneLoginForm,

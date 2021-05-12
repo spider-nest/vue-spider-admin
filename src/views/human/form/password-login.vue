@@ -101,6 +101,7 @@ interface FormModel {
 }
 
 export default defineComponent({
+  name: "HumanLoginPasswordLogin",
   components: {
     ARow,
     ACol,
