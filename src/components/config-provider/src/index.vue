@@ -54,12 +54,17 @@ export default defineComponent({
               collapsed: menuCollapsed,
               mode: menuMode,
               type: menuType,
+            } = {
+              collapsed: true,
+              mode: MenuModeEnum.INLINE,
+              type: MenuTypeEnum.SIDEBAR,
             },
           } = appStore.getAppConfig;
           appStore.setAppConfig({
             menuSetting: {
-              mode: MenuModeEnum.INLINE,
-              type: MenuTypeEnum.SIDEBAR,
+              collapsed: menuCollapsed,
+              mode: menuMode,
+              type: menuType,
             },
           });
           appStore.setBeforeRestoreInfo({

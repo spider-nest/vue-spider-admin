@@ -55,9 +55,23 @@
         {{ t("overall.login") }}
       </SButton>
     </AFormItem>
-    <AFormItem>
-      <!--//todo-->
-    </AFormItem>
+    <ARow :gutter="[16, 8]">
+      <ACol :xs="24" :md="8">
+        <SButton block @click="setState(FormStateEnum.PHONE_LOGIN)">
+          {{ t("overall.phoneLogin") }}
+        </SButton>
+      </ACol>
+      <ACol :xs="24" :md="8">
+        <SButton block @click="setState(FormStateEnum.QR_CODE_LOGIN)">
+          {{ t("overall.qrCodeLogin") }}
+        </SButton>
+      </ACol>
+      <ACol :xs="24" :md="8">
+        <SButton block @click="setState(FormStateEnum.RESET_PASSWORD)">
+          {{ t("overall.register") }}
+        </SButton>
+      </ACol>
+    </ARow>
   </AForm>
 </template>
 

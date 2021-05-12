@@ -72,8 +72,16 @@ export default defineComponent({
   }
 
   &-form {
-    min-width: 300px;
+    min-width: 420px;
     margin-top: @margin-lg * 2;
+
+    @media (max-width: @screen-md) {
+      min-width: 300px;
+    }
+
+    @media (max-width: @screen-sm) {
+      min-width: 240px;
+    }
   }
 }
 </style>
