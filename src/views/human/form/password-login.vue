@@ -1,28 +1,26 @@
 <template>
-  <AForm v-show="show" layout="vertical">
+  <AForm layout="vertical">
     <AFormItem v-bind="validateInfos.account">
-      <AInput
+      <SInput
         v-model:value="formModel.account"
         :size="size"
         :placeholder="t('overall.input')"
-        allowClear
       >
         <template #prefix>
           <AUserOutlined />
         </template>
-      </AInput>
+      </SInput>
     </AFormItem>
     <AFormItem v-bind="validateInfos.password">
-      <AInputPassword
+      <SInputPassword
         v-model:value="formModel.password"
         :size="size"
         :placeholder="t('overall.input')"
-        visibilityToggle
       >
         <template #prefix>
           <ALockOutlined />
         </template>
-      </AInputPassword>
+      </SInputPassword>
     </AFormItem>
     <ARow>
       <ACol :span="12">
@@ -78,12 +76,11 @@
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
-import { computed, defineComponent, reactive, unref, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 import {
   Row as ARow,
   Col as ACol,
   Form as AForm,
-  Input as AInput,
   Checkbox as ACheckbox,
 } from "ant-design-vue";
 import {
@@ -93,6 +90,7 @@ import {
 import { useForm } from "@ant-design-vue/use";
 
 import { SButton } from "/@/components/button";
+import { SInput, SInputPassword } from "/@/components/input";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -108,19 +106,16 @@ export default defineComponent({
     ACol,
     AForm,
     AFormItem: AForm.Item,
-    AInput,
-    AInputPassword: AInput.Password,
     ACheckbox,
     AUserOutlined,
     ALockOutlined,
     SButton,
+    SInput,
+    SInputPassword,
   },
   inheritAttrs: false,
   setup() {
-    const { getState, setState } = useState();
-    const show = computed(
-      () => unref(getState) === FormStateEnum.PASSWORD_LOGIN
-    );
+    const { setState } = useState();
 
     const formModel: UnwrapRef<FormModel> = reactive({
       account: undefined,
@@ -157,7 +152,6 @@ export default defineComponent({
 
     return {
       t,
-      show,
       formModel,
       validateInfos,
       onSubmit,

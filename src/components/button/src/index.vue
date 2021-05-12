@@ -10,19 +10,17 @@ import { defineComponent, computed } from "vue";
 import { Button as AButton } from "ant-design-vue";
 
 import { useStyles } from "/@/hooks/useStyles";
-import PropTypes, { withUndefined } from "/@/utils/vue-types";
+import PropTypes from "/@/utils/vue-types";
 
 export default defineComponent({
   name: "SButton",
   components: { AButton },
   inheritAttrs: false,
   props: {
-    disabled: PropTypes.looseBool,
-    ghost: PropTypes.looseBool,
+    disabled: PropTypes.bool.def(false),
+    ghost: PropTypes.bool.def(false),
     htmlType: PropTypes.oneOf(["submit", "button", "reset"]).def("button"),
-    loading: withUndefined(
-      PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
-    ),
+    loading: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).def(false),
     shape: PropTypes.oneOf(["circle", "circle-outline", "round"]),
     size: PropTypes.oneOf(["large", "default", "small"]).def("default"),
     type: PropTypes.oneOf([
@@ -32,8 +30,8 @@ export default defineComponent({
       "dashed",
       "danger",
       "link",
-    ]),
-    block: PropTypes.looseBool,
+    ]).def("default"),
+    block: PropTypes.bool.def(false),
 
     linkType: PropTypes.oneOf([
       "info",

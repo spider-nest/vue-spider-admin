@@ -25,12 +25,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
   const viteEnv = wrapperEnv(env);
-  const {
-    VITE_PORT,
-    VITE_PUBLIC_PATH,
-    VITE_PROXY,
-    VITE_DROP_CONSOLE,
-  } = viteEnv;
+  const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } =
+    viteEnv;
   const isBuild = command === "build";
 
   return {
@@ -53,7 +49,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       proxy: createProxy(VITE_PROXY),
     },
     build: {
-      minify: "esbuild",
       target: "es2015",
       outDir: OUTPUT_DIR,
       terserOptions: {
