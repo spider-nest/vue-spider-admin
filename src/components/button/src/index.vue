@@ -36,6 +36,7 @@ export default defineComponent({
     linkType: PropTypes.oneOf([
       "info",
       "default",
+      "minor",
       "success",
       "warning",
       "danger",
@@ -245,6 +246,10 @@ a.@{ant-btn-prefix-cls} {
   &-link {
     &-default {
       .button-variant-link(@text-color);
+    }
+
+    &-minor {
+      .button-variant-link(@text-color-secondary);
     }
 
     &-success {

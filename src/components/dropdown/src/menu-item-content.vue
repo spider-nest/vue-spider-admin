@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SIcon } from "/@/components/icon";
+import { SIcon } from "/@/components";
 import PropTypes from "/@/utils/vue-types";
 
 export default defineComponent({

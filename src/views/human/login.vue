@@ -16,9 +16,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import LocalePicker from "/@/components/locale-picker";
-import Nameplate from "/@/components/nameplate";
-import CommonFooter from "/@/components/common-footer";
+import { LocalePicker, Nameplate, CommonFooter } from "/@/components";
 import Form from "./form.vue";
 import { useStyles } from "/@/hooks/useStyles";
 

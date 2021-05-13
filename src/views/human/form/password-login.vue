@@ -22,26 +22,27 @@
         </template>
       </SInputPassword>
     </AFormItem>
-    <ARow>
-      <ACol :span="12">
+    <SRow>
+      <SCol :span="12">
         <AFormItem v-bind="validateInfos.rememberMe">
           <SCheckbox v-model:checked="formModel.rememberMe" :size="size">
             {{ t("overall.rememberMe") }}
           </SCheckbox>
         </AFormItem>
-      </ACol>
-      <ACol :span="12">
+      </SCol>
+      <SCol :span="12">
         <AFormItem :style="{ textAlign: 'right' }">
           <SButton
             type="link"
+            linkType="minor"
             size="small"
             @click="setState(FormStateEnum.RESET_PASSWORD)"
           >
             {{ t("overall.resetPassword") }}
           </SButton>
         </AFormItem>
-      </ACol>
-    </ARow>
+      </SCol>
+    </SRow>
     <AFormItem>
       <SButton
         type="primary"
@@ -53,23 +54,23 @@
         {{ t("overall.login") }}
       </SButton>
     </AFormItem>
-    <ARow :gutter="[16, 8]">
-      <ACol :xs="24" :md="8">
+    <SRow :gutter="[16, 8]">
+      <SCol :xs="24" :md="8">
         <SButton block @click="setState(FormStateEnum.PHONE_LOGIN)">
           {{ t("overall.phoneLogin") }}
         </SButton>
-      </ACol>
-      <ACol :xs="24" :md="8">
+      </SCol>
+      <SCol :xs="24" :md="8">
         <SButton block @click="setState(FormStateEnum.QR_CODE_LOGIN)">
           {{ t("overall.qrCodeLogin") }}
         </SButton>
-      </ACol>
-      <ACol :xs="24" :md="8">
+      </SCol>
+      <SCol :xs="24" :md="8">
         <SButton block @click="setState(FormStateEnum.RESET_PASSWORD)">
           {{ t("overall.register") }}
         </SButton>
-      </ACol>
-    </ARow>
+      </SCol>
+    </SRow>
   </AForm>
 </template>
 
@@ -77,16 +78,21 @@
 import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
-import { Row as ARow, Col as ACol, Form as AForm } from "ant-design-vue";
+import { Form as AForm } from "ant-design-vue";
 import {
   UserOutlined as AUserOutlined,
   LockOutlined as ALockOutlined,
 } from "@ant-design/icons-vue";
 import { useForm } from "@ant-design-vue/use";
 
-import { SButton } from "/@/components/button";
-import { SInput, SInputPassword } from "/@/components/input";
-import { SCheckbox } from "/@/components/checkbox";
+import {
+  SButton,
+  SInput,
+  SInputPassword,
+  SCheckbox,
+  SRow,
+  SCol,
+} from "/@/components";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -99,8 +105,6 @@ interface FormModel {
 export default defineComponent({
   name: "HumanLoginPasswordLogin",
   components: {
-    ARow,
-    ACol,
     AForm,
     AFormItem: AForm.Item,
     AUserOutlined,
@@ -109,6 +113,8 @@ export default defineComponent({
     SInput,
     SInputPassword,
     SCheckbox,
+    SRow,
+    SCol,
   },
   inheritAttrs: false,
   setup() {
