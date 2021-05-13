@@ -79,20 +79,8 @@ import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { Form as AForm } from "ant-design-vue";
-import {
-  UserOutlined as AUserOutlined,
-  LockOutlined as ALockOutlined,
-} from "@ant-design/icons-vue";
 import { useForm } from "@ant-design-vue/use";
 
-import {
-  SButton,
-  SInput,
-  SInputPassword,
-  SCheckbox,
-  SRow,
-  SCol,
-} from "/@/components";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -107,14 +95,6 @@ export default defineComponent({
   components: {
     AForm,
     AFormItem: AForm.Item,
-    AUserOutlined,
-    ALockOutlined,
-    SButton,
-    SInput,
-    SInputPassword,
-    SCheckbox,
-    SRow,
-    SCol,
   },
   inheritAttrs: false,
   setup() {

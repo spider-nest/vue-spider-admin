@@ -18,10 +18,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import {
-  GithubOutlined as AGithubOutlined,
-  CopyrightOutlined as ACopyrightOutlined,
-} from "@ant-design/icons-vue";
 
 import { useStyles } from "/@/hooks/useStyles";
 import { useSetting } from "/@/hooks/useSetting";
@@ -29,7 +25,6 @@ import { useI18n } from "/@/hooks/useLocale";
 
 export default defineComponent({
   name: "CommonFooter",
-  components: { AGithubOutlined, ACopyrightOutlined },
   inheritAttrs: false,
   setup() {
     const { t } = useI18n();

@@ -17,14 +17,12 @@ import type { DropdownMenu } from "/@/components/dropdown/types";
 import { defineComponent, ref, watchEffect, unref, computed } from "vue";
 import { useRouter } from "vue-router";
 
-import { SDropdown, SIcon } from "/@/components";
 import { localeList } from "/@/settings/locale";
 import PropTypes from "/@/utils/vue-types";
 import { useLocale } from "/@/hooks/useLocale";
 
 export default defineComponent({
   name: "LocalePicker",
-  components: { SDropdown, SIcon },
   inheritAttrs: false,
   props: {
     showTitle: PropTypes.bool.def(true),

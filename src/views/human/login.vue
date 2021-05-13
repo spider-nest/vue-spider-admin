@@ -16,16 +16,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { LocalePicker, Nameplate, CommonFooter } from "/@/components";
 import Form from "./form.vue";
 import { useStyles } from "/@/hooks/useStyles";
 
 export default defineComponent({
   name: "HumanLogin",
   components: {
-    LocalePicker,
-    Nameplate,
-    CommonFooter,
     Form,
   },
   setup() {

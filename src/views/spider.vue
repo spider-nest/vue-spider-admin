@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SConfigProvider } from "/@/components";
+import SConfigProvider from "/@/components/config-provider";
 
 export default defineComponent({
   name: "Spider",
