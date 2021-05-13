@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts">
+import type { ColProps } from "/@/components/col/types";
+
 import { computed, defineComponent } from "vue";
 import { Col as ACol } from "ant-design-vue";
 
@@ -23,7 +25,7 @@ const PropTypes2 = PropTypes.oneOfType([
   }).loose,
 ]);
 
-export default defineComponent({
+export default defineComponent<ColProps>({
   name: "SCol",
   components: { ACol },
   inheritAttrs: false,

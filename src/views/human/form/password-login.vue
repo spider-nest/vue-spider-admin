@@ -1,6 +1,6 @@
 <template>
-  <AForm layout="vertical">
-    <AFormItem v-bind="validateInfos.account">
+  <SForm>
+    <SFormItem v-bind="validateInfos.account">
       <SInput
         v-model:value="formModel.account"
         :size="size"
@@ -10,8 +10,8 @@
           <AUserOutlined />
         </template>
       </SInput>
-    </AFormItem>
-    <AFormItem v-bind="validateInfos.password">
+    </SFormItem>
+    <SFormItem v-bind="validateInfos.password">
       <SInputPassword
         v-model:value="formModel.password"
         :size="size"
@@ -21,17 +21,17 @@
           <ALockOutlined />
         </template>
       </SInputPassword>
-    </AFormItem>
+    </SFormItem>
     <SRow>
       <SCol :span="12">
-        <AFormItem v-bind="validateInfos.rememberMe">
+        <SFormItem v-bind="validateInfos.rememberMe">
           <SCheckbox v-model:checked="formModel.rememberMe" :size="size">
             {{ t("overall.rememberMe") }}
           </SCheckbox>
-        </AFormItem>
+        </SFormItem>
       </SCol>
       <SCol :span="12">
-        <AFormItem :style="{ textAlign: 'right' }">
+        <SFormItem :style="{ textAlign: 'right' }">
           <SButton
             type="link"
             linkType="minor"
@@ -40,10 +40,10 @@
           >
             {{ t("overall.resetPassword") }}
           </SButton>
-        </AFormItem>
+        </SFormItem>
       </SCol>
     </SRow>
-    <AFormItem>
+    <SFormItem>
       <SButton
         type="primary"
         :loading="loginLoading"
@@ -53,7 +53,7 @@
       >
         {{ t("overall.login") }}
       </SButton>
-    </AFormItem>
+    </SFormItem>
     <SRow :gutter="[16, 8]">
       <SCol :xs="24" :md="8">
         <SButton block @click="setState(FormStateEnum.PHONE_LOGIN)">
@@ -71,14 +71,13 @@
         </SButton>
       </SCol>
     </SRow>
-  </AForm>
+  </SForm>
 </template>
 
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
-import { Form as AForm } from "ant-design-vue";
 import { useForm } from "@ant-design-vue/use";
 
 import SRow from "/@/components/row";
@@ -86,6 +85,7 @@ import SCol from "/@/components/col";
 import SButton from "/@/components/button";
 import { SInput, SInputPassword } from "/@/components/input";
 import SCheckbox from "/@/components/checkbox";
+import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -98,14 +98,14 @@ interface FormModel {
 export default defineComponent({
   name: "HumanLoginPasswordLogin",
   components: {
-    AForm,
-    AFormItem: AForm.Item,
     SRow,
     SCol,
     SButton,
     SInput,
     SInputPassword,
     SCheckbox,
+    SForm,
+    SFormItem,
   },
   inheritAttrs: false,
   setup() {
