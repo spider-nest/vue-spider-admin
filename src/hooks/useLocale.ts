@@ -24,7 +24,11 @@ interface LangModule {
 
 type I18nTranslationRestParameters = [string, any];
 
-const loadLocalePool: LocaleType[] = [];
+const loadPool: LocaleType[] = [];
+
+export function setLoadPool(cb: (loadPool: LocaleType[]) => void) {
+  cb(loadPool);
+}
 
 function setI18nLanguage(locale: LocaleType, routeTitle: string) {
   const localeStore = useLocaleStoreWithout();
@@ -56,7 +60,7 @@ export function useLocale() {
     if (currentLocale === locale) {
       return locale;
     }
-    if (loadLocalePool.includes(locale)) {
+    if (loadPool.includes(locale)) {
       setI18nLanguage(locale, routeTitle);
       return locale;
     }
@@ -68,7 +72,7 @@ export function useLocale() {
     const { message, momentLocale, momentLocaleName } = langModule;
     globalI18n.setLocaleMessage(locale, message);
     moment.updateLocale(momentLocaleName, momentLocale);
-    loadLocalePool.push(locale);
+    loadPool.push(locale);
     setI18nLanguage(locale, routeTitle);
     return locale;
   }
