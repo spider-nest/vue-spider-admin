@@ -25,9 +25,9 @@
     <ARow>
       <ACol :span="12">
         <AFormItem v-bind="validateInfos.rememberMe">
-          <ACheckbox v-model:checked="formModel.rememberMe" :size="size">
+          <SCheckbox v-model:checked="formModel.rememberMe" :size="size">
             {{ t("overall.rememberMe") }}
-          </ACheckbox>
+          </SCheckbox>
         </AFormItem>
       </ACol>
       <ACol :span="12">
@@ -77,12 +77,7 @@
 import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
-import {
-  Row as ARow,
-  Col as ACol,
-  Form as AForm,
-  Checkbox as ACheckbox,
-} from "ant-design-vue";
+import { Row as ARow, Col as ACol, Form as AForm } from "ant-design-vue";
 import {
   UserOutlined as AUserOutlined,
   LockOutlined as ALockOutlined,
@@ -91,6 +86,7 @@ import { useForm } from "@ant-design-vue/use";
 
 import { SButton } from "/@/components/button";
 import { SInput, SInputPassword } from "/@/components/input";
+import { SCheckbox } from "/@/components/checkbox";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -107,12 +103,12 @@ export default defineComponent({
     ACol,
     AForm,
     AFormItem: AForm.Item,
-    ACheckbox,
     AUserOutlined,
     ALockOutlined,
     SButton,
     SInput,
     SInputPassword,
+    SCheckbox,
   },
   inheritAttrs: false,
   setup() {
