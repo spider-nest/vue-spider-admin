@@ -16,14 +16,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import LocalePicker from "/@/components/locale-picker";
+import Nameplate from "/@/components/nameplate";
+import CommonFooter from "/@/components/common-footer";
 import Form from "./form.vue";
 import { useStyles } from "/@/hooks/useStyles";
 
 export default defineComponent({
   name: "HumanLogin",
-  components: {
-    Form,
-  },
+  components: { LocalePicker, Nameplate, CommonFooter, Form },
   setup() {
     const { prefixCls } = useStyles("human-login");
 

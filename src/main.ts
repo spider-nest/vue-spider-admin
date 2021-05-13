@@ -5,7 +5,8 @@ import App from "/@/views/spider.vue";
 
 import { setupStore } from "/@/store";
 
-import { iconGlobalization, componentGlobalization } from "/@/components";
+// import { iconGlobalization, componentGlobalization } from "/@/components";
+import { iconGlobalization } from "/@/components";
 
 import { setupLocale } from "/@/locales";
 
@@ -22,7 +23,7 @@ if (import.meta.env.DEV) {
   setupStore(app);
 
   iconGlobalization(app);
-  componentGlobalization(app);
+  // componentGlobalization(app);
 
   await setupLocale(app);
 

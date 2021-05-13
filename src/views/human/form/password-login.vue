@@ -81,6 +81,11 @@ import { computed, defineComponent, reactive, ref } from "vue";
 import { Form as AForm } from "ant-design-vue";
 import { useForm } from "@ant-design-vue/use";
 
+import SRow from "/@/components/row";
+import SCol from "/@/components/col";
+import SButton from "/@/components/button";
+import { SInput, SInputPassword } from "/@/components/input";
+import SCheckbox from "/@/components/checkbox";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
@@ -95,6 +100,12 @@ export default defineComponent({
   components: {
     AForm,
     AFormItem: AForm.Item,
+    SRow,
+    SCol,
+    SButton,
+    SInput,
+    SInputPassword,
+    SCheckbox,
   },
   inheritAttrs: false,
   setup() {
