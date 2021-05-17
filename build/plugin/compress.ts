@@ -4,6 +4,7 @@ import compressionPlugin from "vite-plugin-compression";
 
 export default function compressPlugin(
   compress: "gzip" | "brotli" | "none",
+  filter = /\.(js|json|css|html|ttf)$/i,
   deleteOriginFile = false
 ): Plugin | Plugin[] {
   const compressList = compress.split(",");
@@ -13,6 +14,7 @@ export default function compressPlugin(
     plugins.push(
       compressionPlugin({
         ext: ".gz",
+        filter,
         deleteOriginFile,
       })
     );
@@ -22,6 +24,7 @@ export default function compressPlugin(
       compressionPlugin({
         ext: ".br",
         algorithm: "brotliCompress",
+        filter,
         deleteOriginFile,
       })
     );
