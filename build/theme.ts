@@ -1,6 +1,7 @@
 import { generate } from "@ant-design/colors";
 
 type Fn = (...arg: any) => any;
+type Theme = "default" | "dark";
 
 export interface GenerateColorsParams {
   mixLighten: Fn;
@@ -14,19 +15,19 @@ export const successColor = "#356859";
 export const errorColor = "#e30425";
 export const warningColor = "#f9aa33";
 
-export function generateAntColors(color: string) {
+export function generateAntColors(color: string, theme: Theme = "default") {
   return generate(color, {
-    theme: "default",
+    theme,
   });
 }
 
 export function getThemeColors(color?: string) {
   const tc = color || primaryColor;
-  const colors = generateAntColors(tc);
-  const primary = colors[5];
-  const modeColors = generateAntColors(primary);
+  const lightColors = generateAntColors(tc);
+  const primary = lightColors[5];
+  const modeColors = generateAntColors(primary, "dark");
 
-  return [...colors, ...modeColors];
+  return [...lightColors, ...modeColors];
 }
 
 export function generateColors({
