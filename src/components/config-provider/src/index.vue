@@ -29,8 +29,8 @@ export default defineComponent({
 
     const { getAntdLocale } = useLocale();
 
-    const isMobile = ref(false);
-    const isSetState = ref(false);
+    const isMobile = ref<boolean>(false);
+    const isSetState = ref<boolean>(false);
 
     const appStore = useAppStore();
 

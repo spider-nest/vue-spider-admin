@@ -5,10 +5,17 @@ import {
   CopyrightOutlined,
   UserOutlined,
   LockOutlined,
+  PhoneOutlined,
 } from "@ant-design/icons-vue";
 // import { Modal } from "ant-design-vue";
 
-const icons = [GithubOutlined, CopyrightOutlined, UserOutlined, LockOutlined];
+const icons = [
+  GithubOutlined,
+  CopyrightOutlined,
+  UserOutlined,
+  LockOutlined,
+  PhoneOutlined,
+];
 export function iconGlobalization(app: App) {
   icons.map((icon) => {
     app.component(`A${icon.displayName || icon.name}`, icon);

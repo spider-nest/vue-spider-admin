@@ -28,8 +28,8 @@ export const useRedo = (router = useRouter()) => {
       .then((...args) => {
         resolve(...args);
       })
-      .catch((e: Error) => {
-        reject(e);
+      .catch((error: Error) => {
+        reject(error);
       });
   });
 };

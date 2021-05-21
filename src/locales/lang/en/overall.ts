@@ -6,6 +6,7 @@ export default {
   register: "Sign up",
   resetPassword: "Reset password",
   rememberMe: "Remember me",
+  acquireCaptcha: "Acquire captcha",
   ok: "OK",
   close: "Close",
   cancel: "Cancel",

@@ -6,6 +6,7 @@ export default {
   register: "注册",
   resetPassword: "重置密码",
   rememberMe: "记住我",
+  acquireCaptcha: "获取验证码",
   ok: "确认",
   close: "关闭",
   cancel: "取消",

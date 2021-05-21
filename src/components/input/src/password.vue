@@ -1,5 +1,8 @@
 <template>
-  <AInputPassword v-bind="binds">
+  <AInputPassword
+    v-bind="binds"
+    :placeholder="placeholder in binds ? binds.placeholder : t('overall.input')"
+  >
     <template #addonAfter>
       <slot name="addonAfter" />
     </template>
@@ -19,6 +22,7 @@
 import { computed, defineComponent } from "vue";
 import { Input as AInput } from "ant-design-vue";
 
+import { useI18n } from "/@/hooks/useLocale";
 import PropTypes from "/@/utils/vue-types";
 import inputProps from "./props";
 
@@ -28,11 +32,13 @@ export default defineComponent({
   inheritAttrs: false,
   props: { ...inputProps, visibilityToggle: PropTypes.bool.def(true) },
   setup(props, { attrs }) {
+    const { t } = useI18n();
+
     const binds = computed(() => {
       return { ...attrs, ...props };
     });
 
-    return { binds };
+    return { t, binds };
   },
 });
 </script>

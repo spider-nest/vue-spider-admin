@@ -1,4 +1,4 @@
-import { PropType } from "vue";
+import type { PropType } from "vue";
 
 import PropTypes from "/@/utils/vue-types";
 

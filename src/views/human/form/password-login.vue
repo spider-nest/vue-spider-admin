@@ -1,22 +1,14 @@
 <template>
-  <SForm>
+  <SForm @keypress.enter="onSubmit">
     <SFormItem v-bind="validateInfos.account">
-      <SInput
-        v-model:value="formModel.account"
-        :size="size"
-        :placeholder="t('overall.input')"
-      >
+      <SInput v-model:value.trim="formModel.account" :size="size">
         <template #prefix>
           <AUserOutlined />
         </template>
       </SInput>
     </SFormItem>
     <SFormItem v-bind="validateInfos.password">
-      <SInputPassword
-        v-model:value="formModel.password"
-        :size="size"
-        :placeholder="t('overall.input')"
-      >
+      <SInputPassword v-model:value.trim="formModel.password" :size="size">
         <template #prefix>
           <ALockOutlined />
         </template>
@@ -79,6 +71,7 @@ import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
+import { onKeyStroke, useDebounceFn } from "@vueuse/core";
 
 import SRow from "/@/components/row";
 import SCol from "/@/components/col";
@@ -90,8 +83,8 @@ import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
 
 interface FormModel {
-  account: string | undefined;
-  password: string | undefined;
+  account: string;
+  password: string;
   rememberMe: boolean;
 }
 
@@ -112,8 +105,8 @@ export default defineComponent({
     const { setState } = useState();
 
     const formModel: UnwrapRef<FormModel> = reactive({
-      account: undefined,
-      password: undefined,
+      account: "",
+      password: "",
       rememberMe: false,
     });
 
@@ -129,20 +122,22 @@ export default defineComponent({
     const { validate, validateInfos } = useForm(formModel, formRules);
 
     const loginLoading = ref<boolean>(false);
-    const onSubmit = () => {
+    const onSubmit = useDebounceFn(() => {
       loginLoading.value = true;
       validate()
         .then((formData) => {
           console.log(formData);
           //todo login
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error: Error) => {
+          console.error(error);
         })
         .finally(() => {
           loginLoading.value = false;
         });
-    };
+    }, 150);
+
+    onKeyStroke("Enter", onSubmit);
 
     return {
       t,

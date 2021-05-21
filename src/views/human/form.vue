@@ -1,9 +1,21 @@
 <template>
-  <PasswordLoginForm v-show="getState === FormStateEnum.PASSWORD_LOGIN" />
-  <PhoneLoginForm v-show="getState === FormStateEnum.PHONE_LOGIN" />
-  <QrCodeLoginForm v-show="getState === FormStateEnum.QR_CODE_LOGIN" />
-  <RegisterForm v-show="getState === FormStateEnum.REGISTER" />
-  <ResetPasswordForm v-show="getState === FormStateEnum.RESET_PASSWORD" />
+  <transition name="fade-slide" mode="out-in">
+    <component
+      :is="
+        getState === FormStateEnum.PASSWORD_LOGIN
+          ? 'PasswordLoginForm'
+          : getState === FormStateEnum.PHONE_LOGIN
+          ? 'PhoneLoginForm'
+          : getState === FormStateEnum.QR_CODE_LOGIN
+          ? 'QrCodeLoginForm'
+          : getState === FormStateEnum.REGISTER
+          ? 'RegisterForm'
+          : getState === FormStateEnum.RESET_PASSWORD
+          ? 'ResetPasswordForm'
+          : null
+      "
+    />
+  </transition>
 </template>
 
 <script lang="ts">
