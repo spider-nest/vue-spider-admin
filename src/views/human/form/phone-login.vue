@@ -95,7 +95,7 @@ export default defineComponent({
 
     onKeyStroke("Enter", onSubmit);
 
-    const fetchCaptcha = useDebounceFn(async () => {
+    const fetchCaptcha = async () => {
       return await validate("phone")
         .then((formData) => {
           console.log(formData);
@@ -106,7 +106,7 @@ export default defineComponent({
           console.error(error);
           return false;
         });
-    }, 150);
+    };
 
     return {
       t,

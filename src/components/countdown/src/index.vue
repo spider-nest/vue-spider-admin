@@ -48,11 +48,9 @@ export default defineComponent({
         loading.value = true;
         try {
           const preStart = await preStartFn();
-          //todo 处理异步
-          console.log(preStart);
           preStart && start();
         } finally {
-          loading.value = false;
+          setTimeout(() => (loading.value = false), 150);
         }
       } else {
         start();
