@@ -14,27 +14,6 @@
         </template>
       </SInputPassword>
     </SFormItem>
-    <SRow>
-      <SCol :span="12">
-        <SFormItem v-bind="validateInfos.rememberMe">
-          <SCheckbox v-model:checked="formModel.rememberMe" :size="size">
-            {{ t("overall.rememberMe") }}
-          </SCheckbox>
-        </SFormItem>
-      </SCol>
-      <SCol :span="12">
-        <SFormItem :style="{ textAlign: 'right' }">
-          <SButton
-            type="link"
-            linkType="minor"
-            size="small"
-            @click="setState(FormStateEnum.RESET_PASSWORD)"
-          >
-            {{ t("overall.resetPassword") }}
-          </SButton>
-        </SFormItem>
-      </SCol>
-    </SRow>
     <SFormItem>
       <SButton
         type="primary"
@@ -47,19 +26,14 @@
       </SButton>
     </SFormItem>
     <SRow :gutter="[16, 8]">
-      <SCol :xs="24" :md="8">
+      <SCol :xs="24" :md="12">
         <SButton block @click="setState(FormStateEnum.PHONE_LOGIN)">
           {{ t("overall.phoneLogin") }}
         </SButton>
       </SCol>
-      <SCol :xs="24" :md="8">
+      <SCol :xs="24" :md="12">
         <SButton block @click="setState(FormStateEnum.QR_CODE_LOGIN)">
           {{ t("overall.qrCodeLogin") }}
-        </SButton>
-      </SCol>
-      <SCol :xs="24" :md="8">
-        <SButton block @click="setState(FormStateEnum.RESET_PASSWORD)">
-          {{ t("overall.register") }}
         </SButton>
       </SCol>
     </SRow>
@@ -77,7 +51,6 @@ import SRow from "/@/components/row";
 import SCol from "/@/components/col";
 import SButton from "/@/components/button";
 import { SInput, SInputPassword } from "/@/components/input";
-import SCheckbox from "/@/components/checkbox";
 import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
 import { FormStateEnum, useState } from "./useForm";
@@ -85,7 +58,6 @@ import { FormStateEnum, useState } from "./useForm";
 interface FormModel {
   account: string;
   password: string;
-  rememberMe: boolean;
 }
 
 export default defineComponent({
@@ -96,7 +68,6 @@ export default defineComponent({
     SButton,
     SInput,
     SInputPassword,
-    SCheckbox,
     SForm,
     SFormItem,
   },
@@ -107,7 +78,6 @@ export default defineComponent({
     const formModel: UnwrapRef<FormModel> = reactive({
       account: "",
       password: "",
-      rememberMe: false,
     });
 
     const { t } = useI18n();

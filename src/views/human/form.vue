@@ -8,10 +8,6 @@
           ? 'PhoneLoginForm'
           : getState === FormStateEnum.QR_CODE_LOGIN
           ? 'QrcodeLoginForm'
-          : getState === FormStateEnum.REGISTER
-          ? 'RegisterForm'
-          : getState === FormStateEnum.RESET_PASSWORD
-          ? 'ResetPasswordForm'
           : null
       "
     />
@@ -21,13 +17,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import {
-  PasswordLoginForm,
-  PhoneLoginForm,
-  QrcodeLoginForm,
-  RegisterForm,
-  ResetPasswordForm,
-} from "./form";
+import { PasswordLoginForm, PhoneLoginForm, QrcodeLoginForm } from "./form";
 import { FormStateEnum, useState } from "./form/useForm";
 
 export default defineComponent({
@@ -36,8 +26,6 @@ export default defineComponent({
     PasswordLoginForm,
     PhoneLoginForm,
     QrcodeLoginForm,
-    RegisterForm,
-    ResetPasswordForm,
   },
   inheritAttrs: false,
   setup() {

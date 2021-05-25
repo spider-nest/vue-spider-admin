@@ -4,8 +4,6 @@ export enum FormStateEnum {
   PASSWORD_LOGIN,
   PHONE_LOGIN,
   QR_CODE_LOGIN,
-  REGISTER,
-  RESET_PASSWORD,
 }
 
 const defaultState = FormStateEnum.PASSWORD_LOGIN;
