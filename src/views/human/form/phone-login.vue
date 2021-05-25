@@ -42,7 +42,7 @@ import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
-import { onKeyStroke, useDebounceFn } from "@vueuse/core";
+import { onKeyDown, useDebounceFn } from "@vueuse/core";
 
 import { SForm, SFormItem } from "/@/components/form";
 import SInput from "/@/components/input";
@@ -93,7 +93,7 @@ export default defineComponent({
         });
     }, 150);
 
-    onKeyStroke("Enter", onSubmit);
+    onKeyDown("Enter", onSubmit);
 
     const fetchCaptcha = async () => {
       return await validate("phone")

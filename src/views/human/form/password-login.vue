@@ -45,7 +45,7 @@ import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
-import { onKeyStroke, useDebounceFn } from "@vueuse/core";
+import { onKeyDown, useDebounceFn } from "@vueuse/core";
 
 import SRow from "/@/components/row";
 import SCol from "/@/components/col";
@@ -107,7 +107,7 @@ export default defineComponent({
         });
     }, 150);
 
-    onKeyStroke("Enter", onSubmit);
+    onKeyDown("Enter", onSubmit);
 
     return {
       t,
