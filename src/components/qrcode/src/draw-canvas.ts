@@ -1,6 +1,6 @@
 import type { QRCodeRenderersOptions } from "qrcode";
 
-import type { RenderQrCodeParams, ContentType } from "../types";
+import type { RenderQrcodeParams, ContentType } from "../types";
 
 import { toCanvas } from "qrcode";
 
@@ -19,17 +19,24 @@ function getErrorCorrectionLevel(content: ContentType) {
   }
 }
 
-export const renderQrCode = ({
+const defaultOptions = {
+  margin: 0,
+};
+
+export const renderQrcode = ({
   canvas,
   content,
   width = 0,
   options = {},
-}: RenderQrCodeParams) => {
-  options.errorCorrectionLevel =
-    options.errorCorrectionLevel || getErrorCorrectionLevel(content);
+}: RenderQrcodeParams) => {
+  const sOptions = { ...options, ...defaultOptions };
+  sOptions.errorCorrectionLevel =
+    sOptions.errorCorrectionLevel || getErrorCorrectionLevel(content);
 
-  return getOriginWidth(content, options).then((_width: number) => {
-    options.scale = width === 0 ? undefined : (width / _width) * 4;
-    return toCanvas(canvas, content, options);
+  return getOriginWidth(content, sOptions).then((_width: number) => {
+    if (width > 0) {
+      sOptions.scale = (width / _width) * 4;
+    }
+    return toCanvas(canvas, content, sOptions);
   });
 };

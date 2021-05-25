@@ -1,5 +1,5 @@
-import QrCode from "./src/index.vue";
+import Qrcode from "./src/index.vue";
 
-export { QrCode };
+export { Qrcode };
 
-export default QrCode;
+export default Qrcode;

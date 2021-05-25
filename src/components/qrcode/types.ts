@@ -15,7 +15,7 @@ export type LogoType = {
   logoRadius: number;
 };
 
-export interface RenderQrCodeParams {
+export interface RenderQrcodeParams {
   canvas: any;
   content: ContentType;
   width?: number;
@@ -24,7 +24,7 @@ export interface RenderQrCodeParams {
   image?: HTMLImageElement;
 }
 
-export type ToCanvasFn = (options: RenderQrCodeParams) => Promise<unknown>;
+export type ToCanvasFn = (options: RenderQrcodeParams) => Promise<unknown>;
 
 export interface QrcodeDoneEventParams {
   url: string;

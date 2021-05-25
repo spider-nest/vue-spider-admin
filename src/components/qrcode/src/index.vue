@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="binds">
+  <div :class="prefixCls">
     <component :is="tag" ref="qrCodeRef" />
   </div>
 </template>
@@ -13,21 +13,22 @@ import type {
   QrcodeDoneEventParams,
 } from "../types";
 
-import { computed, defineComponent, ref, unref, watchEffect } from "vue";
+import { defineComponent, ref, unref, watchEffect } from "vue";
 import { toDataURL } from "qrcode";
 
-import toCanvas from "./toCanvas";
+import toCanvas from "./to-canvas";
+import { useStyles } from "/@/hooks/useStyles";
 import PropTypes from "/@/utils/vue-types";
 
 export default defineComponent({
-  name: "QrCode",
+  name: "Qrcode",
   inheritAttrs: false,
   props: {
     value: PropTypes.string.def(""),
     width: PropTypes.number.def(180),
     options: {
       type: Object as PropType<QRCodeRenderersOptions>,
-      default: null,
+      default: () => ({}),
     },
     logo: {
       type: [String, Object] as PropType<string | Partial<LogoType>>,
@@ -43,16 +44,14 @@ export default defineComponent({
     done: (data: QrcodeDoneEventParams) => !!data,
     error: (error: Error) => !!error,
   },
-  setup(props, { attrs, emit }) {
-    const binds = computed(() => {
-      return { ...attrs, ...props };
-    });
+  setup(props, { emit }) {
+    const { prefixCls } = useStyles("qrcode");
 
     const qrCodeRef = ref<HTMLCanvasElement | HTMLImageElement | null>(null);
 
     async function createQrcode() {
       try {
-        const { tag, value, options = {}, width, logo } = props;
+        const { tag, value, options, width, logo } = props;
 
         if (!unref(qrCodeRef)) return;
 
@@ -60,15 +59,14 @@ export default defineComponent({
           const url: string = await toCanvas({
             canvas: unref(qrCodeRef),
             width,
-            logo: logo as any,
+            logo,
             content: value,
-            options: options || {},
+            options,
           });
           emit("done", {
             url,
             ctx: (unref(qrCodeRef) as HTMLCanvasElement).getContext("2d"),
           });
-          return;
         } else if (tag === "img") {
           const url = await toDataURL(value, {
             errorCorrectionLevel: "H",
@@ -84,10 +82,20 @@ export default defineComponent({
     }
 
     watchEffect(() => {
-      createQrcode();
+      setTimeout(() => createQrcode());
     });
 
-    return { binds, qrCodeRef };
+    return { prefixCls, qrCodeRef };
   },
 });
 </script>
+
+<style lang="less">
+@spider-qrcode-prefix-cls: ~"@{spider-prefix}-qrcode";
+
+.@{spider-qrcode-prefix-cls} {
+  & > canvas {
+    margin: auto;
+  }
+}
+</style>

@@ -37,7 +37,7 @@ export default defineComponent({
       prefixCls,
       lastBuildTime,
       copyright: title,
-      homepage: pkg?.homepage,
+      homepage: pkg.homepage,
     };
   },
 });

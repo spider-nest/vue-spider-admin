@@ -61,7 +61,7 @@ export default defineComponent({
   components: { SForm, SFormItem, SInput, Countdown, SButton },
   inheritAttrs: false,
   setup() {
-    const { setState, resetState } = useState();
+    const { resetState } = useState();
 
     const formModel: UnwrapRef<FormModel> = reactive({
       phone: "",
@@ -110,7 +110,6 @@ export default defineComponent({
 
     return {
       t,
-      setState,
       formModel,
       validateInfos,
       size: "large",

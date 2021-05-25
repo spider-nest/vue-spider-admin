@@ -1,4 +1,4 @@
-import type { RenderQrCodeParams, LogoType } from "../types";
+import type { RenderQrcodeParams, LogoType } from "../types";
 
 import { isString } from "/@/utils/is";
 
@@ -19,7 +19,7 @@ function canvasRoundRect(ctx: CanvasRenderingContext2D) {
   };
 }
 
-export const drawLogo = ({ canvas, logo }: RenderQrCodeParams) => {
+export const drawLogo = ({ canvas, logo }: RenderQrcodeParams) => {
   if (!logo) {
     return new Promise((resolve) => {
       resolve((canvas as HTMLCanvasElement).toDataURL());

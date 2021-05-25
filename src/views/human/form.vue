@@ -7,7 +7,7 @@
           : getState === FormStateEnum.PHONE_LOGIN
           ? 'PhoneLoginForm'
           : getState === FormStateEnum.QR_CODE_LOGIN
-          ? 'QrCodeLoginForm'
+          ? 'QrcodeLoginForm'
           : getState === FormStateEnum.REGISTER
           ? 'RegisterForm'
           : getState === FormStateEnum.RESET_PASSWORD
@@ -24,7 +24,7 @@ import { defineComponent } from "vue";
 import {
   PasswordLoginForm,
   PhoneLoginForm,
-  QrCodeLoginForm,
+  QrcodeLoginForm,
   RegisterForm,
   ResetPasswordForm,
 } from "./form";
@@ -35,7 +35,7 @@ export default defineComponent({
   components: {
     PasswordLoginForm,
     PhoneLoginForm,
-    QrCodeLoginForm,
+    QrcodeLoginForm,
     RegisterForm,
     ResetPasswordForm,
   },
