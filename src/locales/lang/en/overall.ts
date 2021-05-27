@@ -4,6 +4,8 @@ export default {
   phoneLogin: "Phone Sign in",
   qrCodeLogin: "QR code sign in",
   acquireCaptcha: "Acquire captcha",
+  operationSuccess: "Operation success",
+  operationFailure: "Operation failure",
   ok: "OK",
   close: "Close",
   cancel: "Cancel",

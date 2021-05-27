@@ -3,8 +3,8 @@ import type { BeforeRestoreInfo } from "/#/store";
 import type { ThemeEnum } from "/@/enums/app";
 
 import { defineStore } from "pinia";
-import { store } from "/@/store";
 
+import { store } from "/@/store";
 import { darkMode } from "/@/settings/style";
 import { resetRouter } from "/@/router";
 import { deepMerge } from "/@/utils";

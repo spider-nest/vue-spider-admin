@@ -1,7 +1,7 @@
 import { isObject } from "/@/utils/is";
 
 /**
- * 将对象作为参数添加到 URL 中
+ * Adding an object as a parameter to a URL
  * @param baseUrl
  * @param obj
  * @returns {string}

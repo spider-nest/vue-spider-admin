@@ -53,6 +53,7 @@ import SButton from "/@/components/button";
 import { SInput, SInputPassword } from "/@/components/input";
 import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
+import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
 import { FormStateEnum, useState } from "./useForm";
 
 interface FormModel {
@@ -92,12 +93,13 @@ export default defineComponent({
     const { validate, validateInfos } = useForm(formModel, formRules);
 
     const loginLoading = ref<boolean>(false);
+    const { SMessage } = useInfoFeedback();
     const onSubmit = useDebounceFn(() => {
       loginLoading.value = true;
       validate()
         .then((formData) => {
           console.log(formData);
-          //todo login
+          SMessage.success(t("overall.operationSuccess"));
         })
         .catch((error: Error) => {
           console.error(error);
