@@ -33,6 +33,7 @@ declare interface ViteEnv {
   VITE_BUILD_COMPRESS: "gzip" | "brotli" | "none";
   VITE_LEGACY: boolean;
   VITE_IMAGEMIN: boolean;
+  VITE_USE_MOCK: boolean;
 }
 
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>;

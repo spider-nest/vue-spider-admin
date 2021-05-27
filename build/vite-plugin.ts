@@ -14,10 +14,12 @@ import {
   themePlugin,
   imageminPlugin,
   compressPlugin,
+  mockPlugin,
 } from "./plugin";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  const { VITE_LEGACY, VITE_IMAGEMIN, VITE_BUILD_COMPRESS } = viteEnv;
+  const { VITE_LEGACY, VITE_IMAGEMIN, VITE_BUILD_COMPRESS, VITE_USE_MOCK } =
+    viteEnv;
   const vitePlugins: (Plugin | Plugin[])[] = [vue(), vueJsx()];
 
   vitePlugins.push(htmlPlugin(viteEnv, isBuild));
@@ -25,6 +27,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(purgeIconsPlugin());
   vitePlugins.push(visualizerRollupPlugin());
   vitePlugins.push(themePlugin(isBuild));
+  VITE_USE_MOCK && vitePlugins.push(mockPlugin(isBuild));
 
   if (isBuild) {
     VITE_LEGACY && vitePlugins.push(legacy());

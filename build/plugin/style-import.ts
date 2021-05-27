@@ -2,7 +2,7 @@ import type { Plugin } from "vite";
 
 import styleImport from "vite-plugin-style-import";
 
-export default function configStyleImportPlugin(): Plugin {
+export default function (): Plugin {
   return styleImport({
     libs: [
       {

@@ -2,7 +2,7 @@ import type { Plugin } from "vite";
 
 import viteImagemin from "vite-plugin-imagemin";
 
-export default function configImageminPlugin(): Plugin {
+export default function (): Plugin {
   return viteImagemin({
     gifsicle: {
       optimizationLevel: 7,

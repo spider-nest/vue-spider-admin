@@ -6,6 +6,7 @@ import visualizerRollupPlugin from "./rollup-visualizer";
 import themePlugin from "./theme";
 import imageminPlugin from "./imagemin";
 import compressPlugin from "./compress";
+import mockPlugin from "./mock";
 
 export {
   hmrPlugin,
@@ -16,4 +17,5 @@ export {
   themePlugin,
   imageminPlugin,
   compressPlugin,
+  mockPlugin,
 };

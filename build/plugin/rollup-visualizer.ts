@@ -4,7 +4,7 @@ import visualizer from "rollup-plugin-visualizer";
 
 import { isReportMode } from "../utils";
 
-export default function visualizerRollupPlugin(): Plugin | [] {
+export default function (): Plugin | [] {
   if (isReportMode()) {
     return visualizer({
       filename: "./node_modules/.cache/visualizer/stats.html",

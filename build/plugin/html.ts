@@ -5,7 +5,7 @@ import html from "vite-plugin-html";
 import pkg from "../../package.json";
 import { GLOB_CONFIG_FILE_NAME } from "../config";
 
-export default function htmlPlugin(env: ViteEnv, isBuild: boolean): Plugin[] {
+export default function (env: ViteEnv, isBuild: boolean): Plugin[] {
   const { VITE_APP_NAME, VITE_PUBLIC_PATH } = env;
 
   const path = VITE_PUBLIC_PATH.endsWith("/")

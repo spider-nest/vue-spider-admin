@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import "vite-plugin-svg-icons/register";
+import "virtual:svg-icons-register";
 
 import App from "/@/views/spider.vue";
 

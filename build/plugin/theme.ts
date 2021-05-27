@@ -12,7 +12,7 @@ import {
 import { getThemeColors, generateColors } from "../theme";
 import { generateModifyVars } from "../generate";
 
-export default function themePlugin(isBuild: boolean): Plugin[] {
+export default function (isBuild: boolean): Plugin[] {
   const colors = generateColors({
     mixDarken,
     mixLighten,

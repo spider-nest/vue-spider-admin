@@ -2,7 +2,7 @@ import type { Plugin } from "vite";
 
 import compressionPlugin from "vite-plugin-compression";
 
-export default function compressPlugin(
+export default function (
   compress: "gzip" | "brotli" | "none",
   filter = /\.(js|json|css|html|ttf)$/i,
   deleteOriginFile = false

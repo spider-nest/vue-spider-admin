@@ -1,6 +1,6 @@
 import type { Plugin } from "vite";
 
-export default function hmrPlugin(): Plugin {
+export default function (): Plugin {
   return {
     name: "singleHMR",
     handleHotUpdate({ modules, file }) {
