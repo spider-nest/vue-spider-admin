@@ -43,6 +43,8 @@
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
+import type { UserPasswordFormModel } from "/@/store/types/user";
+
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { onKeyDown, useDebounceFn } from "@vueuse/core";
@@ -55,11 +57,6 @@ import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
 import { FormStateEnum, useState } from "./useForm";
-
-interface FormModel {
-  account: string;
-  password: string;
-}
 
 export default defineComponent({
   name: "HumanLoginPasswordLogin",
@@ -76,7 +73,7 @@ export default defineComponent({
   setup() {
     const { setState } = useState();
 
-    const formModel: UnwrapRef<FormModel> = reactive({
+    const formModel: UnwrapRef<UserPasswordFormModel> = reactive({
       account: "",
       password: "",
     });

@@ -15,6 +15,6 @@ export interface MenuSetting {
   type: MenuTypeEnum;
 }
 
-export interface AppConfig {
+export type AppConfig = {
   menuSetting: MenuSetting;
-}
+} | null;

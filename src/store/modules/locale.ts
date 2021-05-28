@@ -1,13 +1,10 @@
 import type { LocaleType, LocaleSetting } from "/#/config";
+import type { LocaleState } from "/@/store/types/locale";
 
 import { defineStore } from "pinia";
 
 import { store } from "/@/store";
 import { localeSetting } from "/@/settings/locale";
-
-interface LocaleState {
-  localInfo: LocaleSetting;
-}
 
 export const useLocaleStore = defineStore({
   id: "app-locale",

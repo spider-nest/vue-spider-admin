@@ -7,4 +7,6 @@
 //   AxiosRequestOption,
 // } from "./types";
 //
-// import SAxios from "./module";
+// import AxiosModule from "./module";
+
+export default () => {};

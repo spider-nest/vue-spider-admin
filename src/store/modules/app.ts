@@ -1,5 +1,5 @@
 import type { AppConfig } from "/#/config";
-import type { BeforeRestoreInfo } from "/#/store";
+import type { BeforeRestoreInfo, AppState } from "/@/store/types/app";
 import type { ThemeEnum } from "/@/enums/app";
 
 import { defineStore } from "pinia";
@@ -8,13 +8,6 @@ import { store } from "/@/store";
 import { darkMode } from "/@/settings/style";
 import { resetRouter } from "/@/router";
 import { deepMerge } from "/@/utils";
-
-interface AppState {
-  darkMode?: ThemeEnum;
-  pageLoading: boolean;
-  config: AppConfig | null;
-  beforeRestoreInfo: BeforeRestoreInfo;
-}
 
 let timeId: TimeoutHandle;
 
@@ -37,7 +30,7 @@ export const useAppStore = defineStore({
       return this.beforeRestoreInfo;
     },
     getAppConfig(): AppConfig {
-      return this.config || ({} as AppConfig);
+      return this.config;
     },
   },
   actions: {
