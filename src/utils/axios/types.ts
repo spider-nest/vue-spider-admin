@@ -5,7 +5,7 @@ export type InfoFeedbackMode = "none" | "modal" | "message" | undefined;
 export interface Result<T = any> {
   code: number;
   message: string;
-  result: T;
+  data: T;
 }
 
 export interface UploadFileParams {
@@ -17,9 +17,8 @@ export interface UploadFileParams {
 }
 
 export interface RequestOptions {
-  apiProxy?: string;
-  httpBuildPrefix?: boolean; // url with prefix
-  httpBuildQuery?: boolean; // parameters to url
+  withPrefix?: boolean; // url with prefix
+  withQuery?: boolean; // parameters to url
   withTimestamp?: boolean; // add timestamp
   withFullResult?: boolean; // return full result
   widthNativeResponse?: boolean; // return native response headers
@@ -40,7 +39,7 @@ export abstract class AxiosTransform {
    * Processing results after a successful request
    */
   requestSuccessfulHook?: (
-    res: AxiosResponse<Result>,
+    result: AxiosResponse<Result>,
     options: RequestOptions
   ) => any;
 
@@ -57,7 +56,7 @@ export abstract class AxiosTransform {
   /**
    * Rear-request interceptor
    */
-  responseInterceptors?: (res: AxiosResponse<any>) => AxiosResponse<any>;
+  responseInterceptors?: (result: AxiosResponse<any>) => AxiosResponse<any>;
 
   /**
    * Pre-request interceptor error handling
@@ -71,7 +70,6 @@ export abstract class AxiosTransform {
 }
 
 export interface AxiosRequestOption extends AxiosRequestConfig {
-  urlPrefix?: string;
   transform?: AxiosTransform;
   requestOptions?: RequestOptions;
 }

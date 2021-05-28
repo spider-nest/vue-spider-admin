@@ -9,15 +9,14 @@ import type { InfoFeedbackMode } from "/@/utils/axios/types";
 import SAxios from "/@/utils/axios";
 
 enum Api {
-  Login = "/login",
-  Info = "/info",
+  Login = "/system/user/login",
+  Info = "/system/user/info",
 }
 
 export function requestUserLogin(
   params: UserPasswordFormModel,
   infoFeedbackMode: InfoFeedbackMode = "message"
 ) {
-  // @ts-ignore
   return SAxios.post<UserLoginResult>(
     {
       url: Api.Login,
@@ -30,7 +29,6 @@ export function requestUserLogin(
 }
 
 export function requestUserInfo(params: UserInfoFormModel) {
-  // @ts-ignore
   return SAxios.get<UserInfo>({
     url: Api.Info,
     params,

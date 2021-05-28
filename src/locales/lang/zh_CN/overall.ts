@@ -4,8 +4,6 @@ export default {
   phoneLogin: "手机登入",
   qrCodeLogin: "二维码登入",
   acquireCaptcha: "获取验证码",
-  operationSuccess: "操作成功",
-  operationFailure: "操作失败",
   ok: "确认",
   close: "关闭",
   cancel: "取消",

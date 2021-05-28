@@ -30,10 +30,10 @@ export const useUserStore = defineStore({
     getToken(): Token {
       return this.token || getAuthCache<string>(TOKEN_KEY);
     },
-    getRoleList(): string[] {
+    getRoleList(): number[] {
       return this.roles.length > 0
         ? this.roles
-        : getAuthCache<string[]>(ROLES_KEY);
+        : getAuthCache<number[]>(ROLES_KEY);
     },
   },
   actions: {
@@ -41,7 +41,7 @@ export const useUserStore = defineStore({
       this.token = token;
       setAuthCache(TOKEN_KEY, token);
     },
-    setRoleList(roles: string[]) {
+    setRoleList(roles: number[]) {
       this.roles = roles;
       setAuthCache(ROLES_KEY, roles);
     },
@@ -73,14 +73,14 @@ export const useUserStore = defineStore({
 
         const userInfo = await this.getUserInfo({ userId });
         routeToHome && (await router.replace(PageEnum.BASE_HOME_PATH));
-        return userInfo;
+        return Promise.resolve(userInfo);
       } catch (error) {
         return Promise.reject(error);
       }
     },
     async getUserInfo({ userId }: UserInfoFormModel) {
       const userInfo = await requestUserInfo({ userId });
-      const { roles } = userInfo;
+      const roles = userInfo?.roles || [];
       const roleList = roles.map((item) => item.value);
 
       this.setUserInfo(userInfo);

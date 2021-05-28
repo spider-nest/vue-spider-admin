@@ -8,6 +8,8 @@ import { store } from "/@/store";
 import { darkMode } from "/@/settings/style";
 import { resetRouter } from "/@/router";
 import { deepMerge } from "/@/utils";
+import { Persistent } from "/@/utils/cache/persistent";
+import { APP_CONFIG_KEY, APP_DARK_MODE_KEY } from "/@/enums/cache";
 
 let timeId: TimeoutHandle;
 
@@ -16,7 +18,7 @@ export const useAppStore = defineStore({
   state: (): AppState => ({
     darkMode: undefined,
     pageLoading: false,
-    config: null,
+    config: Persistent.getLocal(APP_CONFIG_KEY),
     beforeRestoreInfo: {},
   }),
   getters: {
@@ -24,7 +26,9 @@ export const useAppStore = defineStore({
       return this.pageLoading;
     },
     getDarkMode(): string {
-      return this.darkMode || darkMode;
+      return (
+        this.darkMode || localStorage.getItem(APP_DARK_MODE_KEY) || darkMode
+      );
     },
     getBeforeRestoreInfo(): BeforeRestoreInfo {
       return this.beforeRestoreInfo;
@@ -39,15 +43,18 @@ export const useAppStore = defineStore({
     },
     setDarkMode(mode: ThemeEnum): void {
       this.darkMode = mode;
+      Persistent.setLocal(APP_DARK_MODE_KEY, mode);
     },
     setBeforeRestoreInfo(state: BeforeRestoreInfo): void {
       this.beforeRestoreInfo = state;
     },
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.config = deepMerge(this.config || {}, config);
+      Persistent.setLocal(APP_CONFIG_KEY, this.config);
     },
     async resetAllState() {
       resetRouter();
+      Persistent.clearAll();
     },
     async setPageLoadingAction(loading: boolean): Promise<void> {
       if (loading) {

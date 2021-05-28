@@ -5,9 +5,9 @@ export function getEnvConfig() {
   const ENV_NAME = getConfigFileName(import.meta.env);
   const ENV = (isDevMode() ? import.meta.env : window[ENV_NAME]) as ViteEnv;
 
-  const { VITE_APP_NAME, VITE_APP_SHORTNAME } = ENV;
+  const { VITE_APP_NAME, VITE_APP_SHORTNAME, VITE_API_PREFIX } = ENV;
 
-  return { VITE_APP_NAME, VITE_APP_SHORTNAME };
+  return { VITE_APP_NAME, VITE_APP_SHORTNAME, VITE_API_PREFIX };
 }
 
 export function isDevMode(): boolean {

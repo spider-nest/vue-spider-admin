@@ -1,5 +1,6 @@
 import type { AppConfig } from "/#/config";
 import type { UserInfo } from "/@/store/types/user";
+import type { ThemeEnum } from "/@/enums/app";
 
 import { toRaw } from "vue";
 
@@ -11,6 +12,7 @@ import {
   APP_CONFIG_KEY,
   APP_LOCAL_CACHE_KEY,
   APP_SESSION_CACHE_KEY,
+  APP_DARK_MODE_KEY,
 } from "/@/enums/cache";
 import { createLocalStorage, createSessionStorage } from "/@/utils/cache";
 import { EXPIRE_TIME } from "/@/settings/encryption";
@@ -20,6 +22,7 @@ interface BasicStore {
   [USER_INFO_KEY]: UserInfo;
   [ROLES_KEY]: string[];
   [APP_CONFIG_KEY]: AppConfig;
+  [APP_DARK_MODE_KEY]: ThemeEnum;
 }
 
 export type BasicKeys = keyof BasicStore;

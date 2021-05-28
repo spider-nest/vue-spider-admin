@@ -1,4 +1,4 @@
-import { RoleInfo, UserId } from "/@/store/types/user";
+import type { RoleInfo, UserId } from "/@/store/types/user";
 
 export interface UserPasswordFormModel {
   account: string;
@@ -12,5 +12,5 @@ export interface UserInfoFormModel {
 export interface UserLoginResult {
   userId: UserId;
   token: string;
-  role: RoleInfo;
+  roles: RoleInfo[];
 }

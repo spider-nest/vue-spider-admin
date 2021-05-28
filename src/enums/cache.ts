@@ -8,7 +8,7 @@ export const ROLES_KEY = "ROLES__";
 
 export const APP_CONFIG_KEY = "APP__CONFIG__";
 
-export const APP_DARK_MODE_KEY_ = "__APP__DARK__MODE__";
+export const APP_DARK_MODE_KEY = "__APP__DARK__MODE__";
 
 export const APP_LOCAL_CACHE_KEY = "COMMON__LOCAL__CACHE__";
 

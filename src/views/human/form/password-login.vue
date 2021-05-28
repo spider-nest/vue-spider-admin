@@ -43,11 +43,11 @@
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
-import type { UserPasswordFormModel } from "/@/store/types/user";
+import type { UserPasswordFormModel } from "/@/services/system/types/user";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
-import { onKeyDown, useDebounceFn } from "@vueuse/core";
+import { onKeyDown } from "@vueuse/core";
 
 import SRow from "/@/components/row";
 import SCol from "/@/components/col";
@@ -56,6 +56,7 @@ import { SInput, SInputPassword } from "/@/components/input";
 import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
+import { useUserStore } from "/@/store/modules/user";
 import { FormStateEnum, useState } from "./useForm";
 
 export default defineComponent({
@@ -74,8 +75,8 @@ export default defineComponent({
     const { setState } = useState();
 
     const formModel: UnwrapRef<UserPasswordFormModel> = reactive({
-      account: "",
-      password: "",
+      account: "spider",
+      password: "123456",
     });
 
     const { t } = useI18n();
@@ -91,12 +92,14 @@ export default defineComponent({
 
     const loginLoading = ref<boolean>(false);
     const { SMessage } = useInfoFeedback();
-    const onSubmit = useDebounceFn(() => {
+    const onSubmit = () => {
       loginLoading.value = true;
       validate()
         .then((formData) => {
-          console.log(formData);
-          SMessage.success(t("overall.operationSuccess"));
+          const userStore = useUserStore();
+          userStore.passwordLogin(formData).then(() => {
+            SMessage.success(t("feedback.operationSuccess"));
+          });
         })
         .catch((error: Error) => {
           console.error(error);
@@ -104,7 +107,7 @@ export default defineComponent({
         .finally(() => {
           loginLoading.value = false;
         });
-    }, 150);
+    };
 
     onKeyDown("Enter", onSubmit);
 

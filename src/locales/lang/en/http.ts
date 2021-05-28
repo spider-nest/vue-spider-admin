@@ -5,4 +5,6 @@ export default {
   [HttpCodeEnum.NOT_FOUND]: "Not found",
   [HttpCodeEnum.REQUEST_TIMEOUT]: "Request timeout",
   [HttpCodeEnum.GATEWAY_TIMEOUT]: "Gateway timeout",
+
+  systemFailure: "System failure",
 };

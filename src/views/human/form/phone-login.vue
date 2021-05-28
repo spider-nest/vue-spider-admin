@@ -42,7 +42,7 @@ import type { UnwrapRef } from "vue";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
-import { onKeyDown, useDebounceFn } from "@vueuse/core";
+import { onKeyDown } from "@vueuse/core";
 
 import { SForm, SFormItem } from "/@/components/form";
 import SInput from "/@/components/input";
@@ -78,7 +78,7 @@ export default defineComponent({
     const { validate, validateInfos } = useForm(formModel, formRules);
 
     const loginLoading = ref<boolean>(false);
-    const onSubmit = useDebounceFn(() => {
+    const onSubmit = () => {
       loginLoading.value = true;
       validate()
         .then((formData) => {
@@ -91,7 +91,7 @@ export default defineComponent({
         .finally(() => {
           loginLoading.value = false;
         });
-    }, 150);
+    };
 
     onKeyDown("Enter", onSubmit);
 

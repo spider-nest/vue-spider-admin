@@ -76,7 +76,9 @@ export default [
     method: "get",
     response: ({ query }) => {
       const { userId } = query;
-      const user = createUserList().find((item) => item.userId === userId);
+      const user = createUserList().find(
+        (item) => item.userId === Number(userId)
+      );
       if (!user) {
         return failureResult("Get failure");
       }

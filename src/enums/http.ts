@@ -8,6 +8,7 @@ export enum HttpCodeEnum {
 export enum CodeEnum {
   ERROR = -1,
   SUCCESS = 0,
+  TIMEOUT = 50004,
 }
 
 export enum MethodEnum {

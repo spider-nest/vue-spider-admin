@@ -93,13 +93,16 @@ export default class {
         requestInterceptorsCatch
       );
 
-    this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
-      res && axiosCanceler.removePending(res.config);
-      if (responseInterceptors && isFunction(responseInterceptors)) {
-        res = responseInterceptors(res);
-      }
-      return res;
-    }, undefined);
+    this.axiosInstance.interceptors.response.use(
+      (result: AxiosResponse<any>) => {
+        result && axiosCanceler.removePending(result.config);
+        if (responseInterceptors && isFunction(responseInterceptors)) {
+          result = responseInterceptors(result);
+        }
+        return result;
+      },
+      undefined
+    );
 
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&
@@ -195,12 +198,12 @@ export default class {
 
     const { requestOptions } = this.options;
 
-    const opt: RequestOptions = Object.assign({}, requestOptions, options);
+    const opts: RequestOptions = Object.assign({}, requestOptions, options);
 
     const { preRequestHook, requestFailureHook, requestSuccessfulHook } =
       transform || {};
     if (preRequestHook && isFunction(preRequestHook)) {
-      conf = preRequestHook(conf, opt);
+      conf = preRequestHook(conf, opts);
     }
 
     conf = this.supportFormData(conf);
@@ -208,15 +211,15 @@ export default class {
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request<any, AxiosResponse<Result>>(conf)
-        .then((res: AxiosResponse<Result>) => {
+        .then((result: AxiosResponse<Result>) => {
           if (requestSuccessfulHook && isFunction(requestSuccessfulHook)) {
-            const ret = requestSuccessfulHook(res, opt);
+            const ret = requestSuccessfulHook(result, opts);
             ret !== errorResult
               ? resolve(ret)
               : reject(new Error("request error"));
             return;
           }
-          resolve(res as unknown as Promise<T>);
+          resolve(result as unknown as Promise<T>);
         })
         .catch((e: Error) => {
           if (requestFailureHook && isFunction(requestFailureHook)) {

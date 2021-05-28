@@ -1,18 +1,18 @@
-export function successfulResult<T = any>(result: T, { message = "ok" } = {}) {
+export function successfulResult<T = any>(data: T, { message = "ok" } = {}) {
   return {
     code: 0,
-    result,
+    data,
     message,
   };
 }
 
 export function failureResult(
   message = "Failure",
-  { code = -1, result = null } = {}
+  { code = -1, data = null } = {}
 ) {
   return {
     code,
-    result,
+    data,
     message,
   };
 }
