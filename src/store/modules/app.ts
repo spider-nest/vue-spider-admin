@@ -29,7 +29,7 @@ export const useAppStore = defineStore({
     getBeforeRestoreInfo(): BeforeRestoreInfo {
       return this.beforeRestoreInfo;
     },
-    getAppConfig(): AppConfig {
+    getAppConfig(): AppConfig | null {
       return this.config;
     },
   },

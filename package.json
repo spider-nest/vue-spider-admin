@@ -45,6 +45,7 @@
     "@vueuse/core": "^4.11.1",
     "ant-design-vue": "^2.1.6",
     "axios": "^0.21.1",
+    "crypto-js": "^4.0.0",
     "lodash-es": "^4.17.21",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^1.1.349",
+    "@types/crypto-js": "^4.0.1",
     "@types/fs-extra": "^9.0.11",
     "@types/mockjs": "^1.0.3",
     "@types/node": "^14.17.1",

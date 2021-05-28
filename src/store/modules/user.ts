@@ -11,6 +11,8 @@ import { store } from "/@/store";
 import router from "/@/router";
 import { requestUserLogin, requestUserInfo } from "/@/services/system/user";
 import { PageEnum } from "/@/enums/page";
+import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from "/@/enums/cache";
+import { getAuthCache, setAuthCache } from "/@/utils/auth";
 
 const defaultState = {
   userInfo: null,
@@ -23,24 +25,29 @@ export const useUserStore = defineStore({
   state: (): UserState => defaultState,
   getters: {
     getUserInfo(): UserInfo {
-      return this.userInfo;
+      return this.userInfo || getAuthCache<UserInfo>(USER_INFO_KEY);
     },
     getToken(): Token {
-      return this.token;
+      return this.token || getAuthCache<string>(TOKEN_KEY);
     },
     getRoleList(): string[] {
-      return this.roles;
+      return this.roles.length > 0
+        ? this.roles
+        : getAuthCache<string[]>(ROLES_KEY);
     },
   },
   actions: {
     setToken(token: Token) {
       this.token = token;
+      setAuthCache(TOKEN_KEY, token);
     },
     setRoleList(roles: string[]) {
       this.roles = roles;
+      setAuthCache(ROLES_KEY, roles);
     },
     setUserInfo(info: UserInfo) {
       this.userInfo = info;
+      setAuthCache(USER_INFO_KEY, info);
     },
     resetState() {
       Object.keys(defaultState).map((key) => (this[key] = defaultState[key]));

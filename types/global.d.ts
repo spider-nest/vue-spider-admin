@@ -28,7 +28,7 @@ declare type IntervalHandle = ReturnType<typeof setInterval>;
 declare interface ViteEnv {
   VITE_PORT: number;
   VITE_APP_NAME: string;
-  VITE_APP_SHORT_NAME: string;
+  VITE_APP_SHORTNAME: string;
   VITE_PUBLIC_PATH: string;
   VITE_PROXY: [string, string][];
   VITE_DROP_CONSOLE: boolean;

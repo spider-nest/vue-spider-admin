@@ -1,4 +1,5 @@
 import { MenuTypeEnum, MenuModeEnum } from "/@/enums/menu";
+import { CacheTypeEnum } from "/@/enums/cache";
 
 export type LocaleType = "zh_CN" | "en";
 
@@ -15,6 +16,10 @@ export interface MenuSetting {
   type: MenuTypeEnum;
 }
 
-export type AppConfig = {
+export interface AppConfig {
+  permissionCacheType: CacheTypeEnum;
+  themeColor: string;
+  grayMode: boolean;
+  colorWeak: boolean;
   menuSetting: MenuSetting;
-} | null;
+}
