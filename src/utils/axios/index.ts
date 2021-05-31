@@ -21,6 +21,7 @@ import { getToken } from "/@/utils/auth";
 import { useSetting } from "/@/hooks/useSetting";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
+import { sError, sLog } from "/@/utils/console";
 
 const { apiPrefix } = useSetting();
 const { SMessage, SModalError } = useInfoFeedback();
@@ -80,7 +81,7 @@ const transform: AxiosTransform = {
     }
 
     if (!responseData) {
-      throw new Error(t("http.systemFailure"));
+      sError(t("http.systemFailure"), true);
     }
 
     const { code, data, message } = responseData;
@@ -101,7 +102,7 @@ const transform: AxiosTransform = {
           SMessage.error(message);
         }
       }
-      throw new Error(message);
+      sError(message, true);
     }
 
     if (code === CodeEnum.SUCCESS) {
@@ -109,11 +110,11 @@ const transform: AxiosTransform = {
     } else if (code === CodeEnum.ERROR) {
       if (message) {
         SMessage.error(responseData.message);
-        throw new Error(message);
+        sError(message, true);
       } else {
         const msg = t("feedback.operationFailure");
         SMessage.error(msg);
-        throw new Error(msg);
+        sError(msg, true);
       }
     } else if (code === CodeEnum.TIMEOUT) {
       const timeoutMsg = t("http.systemFailure");
@@ -121,9 +122,9 @@ const transform: AxiosTransform = {
         title: t("feedback.operationFailed"),
         content: timeoutMsg,
       });
-      throw new Error(timeoutMsg);
+      sError(timeoutMsg, true);
     }
-    throw new Error(t("http.systemFailure"));
+    sError(t("http.systemFailure"), true);
   },
   requestInterceptors: (config) => {
     const token = getToken();
@@ -144,9 +145,9 @@ const transform: AxiosTransform = {
         SMessage.error(t(`http.${HttpCodeEnum.REQUEST_TIMEOUT}`));
       }
     } catch (error) {
-      throw new Error(error);
+      sError(error, true);
     }
-    console.log(msg);
+    sLog(msg);
     handleStatus(error?.response?.status || 0, msg);
     return Promise.reject(error);
   },

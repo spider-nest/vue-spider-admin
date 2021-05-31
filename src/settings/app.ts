@@ -18,6 +18,8 @@ const appSetting: AppConfig = {
     page: true,
     progress: true,
   },
+  removeAllPending: true,
+  removeAllFeedbackInfo: true,
 };
 
 export default appSetting;

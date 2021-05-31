@@ -7,6 +7,7 @@ import appSetting from "/@/settings/app";
 import { Persistent } from "/@/utils/cache/persistent";
 import { APP_CONFIG_KEY } from "/@/enums/cache";
 import { primaryColor } from "/@/../build/theme";
+import { sError } from "/@/utils/console";
 import { changeTheme } from "/@/utils/theme";
 import updateGrayMode from "./updateGrayMode";
 import updateColorWeak from "./updateColorWeak";
@@ -28,7 +29,7 @@ export default () => {
     grayMode && updateGrayMode(grayMode);
     colorWeak && updateColorWeak(colorWeak);
   } catch (error) {
-    console.log(error);
+    sError(error);
   }
   appStore.setAppConfig(appConfig);
   updateDarkTheme(darkMode);

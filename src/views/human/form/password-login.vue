@@ -57,6 +57,7 @@ import { SForm, SFormItem } from "/@/components/form";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
 import { useUserStore } from "/@/store/modules/user";
+import { sError } from "/@/utils/console";
 import { FormStateEnum, useState } from "./useForm";
 
 export default defineComponent({
@@ -102,7 +103,7 @@ export default defineComponent({
           });
         })
         .catch((error: Error) => {
-          console.error(error);
+          sError(error);
         })
         .finally(() => {
           loginLoading.value = false;

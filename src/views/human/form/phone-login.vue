@@ -49,6 +49,7 @@ import SInput from "/@/components/input";
 import Countdown from "/@/components/countdown";
 import SButton from "/@/components/button";
 import { useI18n } from "/@/hooks/useLocale";
+import { sError, sLog } from "/@/utils/console";
 import { FormStateEnum, useState } from "./useForm";
 
 interface FormModel {
@@ -82,11 +83,11 @@ export default defineComponent({
       loginLoading.value = true;
       validate()
         .then((formData) => {
-          console.log(formData);
+          sLog(formData);
           //todo login
         })
         .catch((error: Error) => {
-          console.error(error);
+          sError(error);
         })
         .finally(() => {
           loginLoading.value = false;
@@ -98,12 +99,12 @@ export default defineComponent({
     const fetchCaptcha = async () => {
       return await validate("phone")
         .then((formData) => {
-          console.log(formData);
+          sLog(formData);
           //todo fetch captcha
           return true;
         })
         .catch((error: Error) => {
-          console.error(error);
+          sError(error);
           return false;
         });
     };

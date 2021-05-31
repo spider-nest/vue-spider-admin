@@ -28,4 +28,6 @@ export interface AppConfig {
   colorWeak: boolean;
   menuSetting: MenuSetting;
   transitionSetting: TransitionSetting;
+  removeAllPending: boolean;
+  removeAllFeedbackInfo: boolean;
 }
