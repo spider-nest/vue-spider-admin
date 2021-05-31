@@ -18,6 +18,7 @@ export interface MenuSetting {
 
 export interface TransitionSetting {
   page: boolean;
+  pageLoading: boolean;
   progress: boolean;
 }
 

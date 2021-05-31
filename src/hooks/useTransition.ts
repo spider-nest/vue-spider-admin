@@ -10,6 +10,9 @@ export function useTransition() {
   const enablePageTransition = computed(
     () => appStore.getTransitionSetting.page
   );
+  const enablePageLoadingTransition = computed(
+    () => appStore.getTransitionSetting.pageLoading
+  );
   const enableProgressTransition = computed(
     () => appStore.getTransitionSetting.progress
   );
@@ -19,6 +22,7 @@ export function useTransition() {
 
   return {
     enablePageTransition,
+    enablePageLoadingTransition,
     enableProgressTransition,
     setTransitionSetting,
   };
