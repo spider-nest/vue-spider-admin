@@ -14,8 +14,9 @@ import { setupLocale } from "/@/locales";
 
 import router, { setupRouter } from "/@/router";
 
+import { isDevMode } from "/@/utils/env";
 import "/@/styles/index.less";
-if (import.meta.env.DEV) {
+if (isDevMode()) {
   import("ant-design-vue/dist/antd.less");
 }
 
@@ -37,7 +38,7 @@ if (import.meta.env.DEV) {
 
   app.mount("#spider", true);
 
-  if (import.meta.env.DEV) {
+  if (isDevMode()) {
     window.__APP__ = app;
   }
 })();
