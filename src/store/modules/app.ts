@@ -27,7 +27,7 @@ export const useAppStore = defineStore({
     },
     getDarkMode(): string {
       return (
-        this.darkMode || localStorage.getItem(APP_DARK_MODE_KEY) || darkMode
+        this.darkMode || Persistent.getLocal(APP_DARK_MODE_KEY) || darkMode
       );
     },
     getBeforeRestoreInfo(): BeforeRestoreInfo {

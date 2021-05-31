@@ -21,6 +21,11 @@ export function httpBuildQuery(baseUrl: string, obj: Object): string {
     : baseUrl.replace(/\/?$/, "?") + parameters;
 }
 
+/**
+ * Object.assign deep
+ * @param src
+ * @param target
+ */
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
   for (key in target) {

@@ -5,6 +5,8 @@ import App from "/@/views/spider.vue";
 
 import { setupStore } from "/@/store";
 
+import { launchAppConfig } from "/@/utils/theme";
+
 // import { iconGlobalization, componentGlobalization } from "/@/components";
 import { iconGlobalization } from "/@/components";
 
@@ -21,6 +23,8 @@ if (import.meta.env.DEV) {
   const app = createApp(App);
 
   setupStore(app);
+
+  launchAppConfig();
 
   iconGlobalization(app);
   // componentGlobalization(app);

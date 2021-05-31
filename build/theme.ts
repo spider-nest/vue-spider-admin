@@ -1,3 +1,5 @@
+import { replaceStyleVariables } from "vite-plugin-theme/es/client";
+import { mixLighten, mixDarken, tinycolor } from "vite-plugin-theme";
 import { generate } from "@ant-design/colors";
 
 type Fn = (...arg: any) => any;
@@ -78,4 +80,17 @@ export function generateColors({
     ...tinycolorDarkens,
     ...tinycolorLightens,
   ].filter((item) => !item.includes("-"));
+}
+
+export async function changeTheme(color: string) {
+  const colors = generateColors({
+    color,
+    mixLighten,
+    mixDarken,
+    tinycolor,
+  });
+
+  return await replaceStyleVariables({
+    colorVariables: [...getThemeColors(color), ...colors],
+  });
 }
