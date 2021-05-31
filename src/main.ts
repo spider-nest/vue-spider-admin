@@ -5,7 +5,7 @@ import App from "/@/views/spider.vue";
 
 import { setupStore } from "/@/store";
 
-import { launchAppConfig } from "/@/utils/theme";
+import launchAppConfig from "/@/utils/theme/launch";
 
 // import { iconGlobalization, componentGlobalization } from "/@/components";
 import { iconGlobalization } from "/@/components";
