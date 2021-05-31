@@ -1,4 +1,4 @@
-import type { AppConfig } from "/#/config";
+import type { AppConfig, TransitionSetting } from "/#/config";
 import type { BeforeRestoreInfo, AppState } from "/@/store/types/app";
 import type { ThemeEnum } from "/@/enums/app";
 
@@ -18,7 +18,7 @@ export const useAppStore = defineStore({
   state: (): AppState => ({
     darkMode: undefined,
     pageLoading: false,
-    config: Persistent.getLocal(APP_CONFIG_KEY),
+    config: Persistent.getLocal(APP_CONFIG_KEY) || ({} as AppConfig),
     beforeRestoreInfo: {},
   }),
   getters: {
@@ -33,8 +33,11 @@ export const useAppStore = defineStore({
     getBeforeRestoreInfo(): BeforeRestoreInfo {
       return this.beforeRestoreInfo;
     },
-    getAppConfig(): AppConfig | null {
-      return this.config;
+    getAppConfig(): AppConfig {
+      return this.config || ({} as AppConfig);
+    },
+    getTransitionSetting(): TransitionSetting {
+      return this.getAppConfig.transitionSetting;
     },
   },
   actions: {
@@ -51,6 +54,9 @@ export const useAppStore = defineStore({
     setAppConfig(config: DeepPartial<AppConfig>): void {
       this.config = deepMerge(this.config || {}, config);
       Persistent.setLocal(APP_CONFIG_KEY, this.config);
+    },
+    setTransitionSetting(transitionSetting: TransitionSetting) {
+      this.setAppConfig({ transitionSetting });
     },
     async resetAllState() {
       resetRouter();

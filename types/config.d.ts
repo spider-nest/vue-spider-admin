@@ -16,10 +16,16 @@ export interface MenuSetting {
   type: MenuTypeEnum;
 }
 
+export interface TransitionSetting {
+  page: boolean;
+  progress: boolean;
+}
+
 export interface AppConfig {
   permissionCacheType: CacheTypeEnum;
   themeColor: string;
   grayMode: boolean;
   colorWeak: boolean;
   menuSetting: MenuSetting;
+  transitionSetting: TransitionSetting;
 }

@@ -11,6 +11,6 @@ export interface BeforeRestoreInfo {
 export interface AppState {
   darkMode?: ThemeEnum;
   pageLoading: boolean;
-  config: AppConfig | null;
+  config: AppConfig;
   beforeRestoreInfo: BeforeRestoreInfo;
 }

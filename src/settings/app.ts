@@ -14,6 +14,10 @@ const appSetting: AppConfig = {
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.SIDEBAR,
   },
+  transitionSetting: {
+    page: true,
+    progress: true,
+  },
 };
 
 export default appSetting;
