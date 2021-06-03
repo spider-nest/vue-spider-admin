@@ -11,6 +11,7 @@ import SAxios from "/@/utils/axios";
 enum Api {
   Login = "/system/user/login",
   Info = "/system/user/info",
+  PermissionCodeList = "/system/user/codeList",
 }
 
 export function requestUserLogin(
@@ -31,6 +32,13 @@ export function requestUserLogin(
 export function requestUserInfo(params: UserInfoFormModel) {
   return SAxios.get<UserInfo>({
     url: Api.Info,
+    params,
+  });
+}
+
+export function requestPermissionCodeList(params: UserInfoFormModel) {
+  return SAxios.get<string[]>({
+    url: Api.PermissionCodeList,
     params,
   });
 }

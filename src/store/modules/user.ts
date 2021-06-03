@@ -71,14 +71,14 @@ export const useUserStore = defineStore({
         const { token, userId } = userLogin;
         this.setToken(token);
 
-        const userInfo = await this.getUserInfo({ userId });
+        const userInfo = await this.getUserInfoAction({ userId });
         routeToHome && (await router.replace(PageEnum.BASE_HOME_PATH));
         return Promise.resolve(userInfo);
       } catch (error) {
         return Promise.reject(error);
       }
     },
-    async getUserInfo({ userId }: UserInfoFormModel) {
+    async getUserInfoAction({ userId }: UserInfoFormModel) {
       const userInfo = await requestUserInfo({ userId });
       const roles = userInfo?.roles || [];
       const roleList = roles.map((item) => item.value);

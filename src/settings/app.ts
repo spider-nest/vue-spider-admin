@@ -16,6 +16,7 @@ const appSetting: AppConfig = {
   },
   transitionSetting: {
     page: true,
+    pageLoading: true,
     progress: true,
   },
   removeAllPending: true,

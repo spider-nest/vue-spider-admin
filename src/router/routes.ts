@@ -1,9 +1,17 @@
-import type { Menu } from "./types";
+import type { AppRouteRecordRaw } from "./types";
 
 import { PageEnum } from "/@/enums/page";
-import { qt } from "/@/hooks/useLocale";
 
-const BasicLayout = () => import("/@/layouts/basic.vue");
+export const BasicLayout = () => import("/@/layouts/basic.vue");
+
+export const getGroupLayout = () => {
+  return () =>
+    new Promise((resolve) => {
+      resolve({
+        name: "GroupLayout",
+      });
+    });
+};
 
 const components = {
   Exception401: () => import("/@/views/exception/401.vue"),
@@ -15,12 +23,21 @@ const components = {
   Home: () => import("/@/views/home.vue"),
 };
 
+export const Exception404Menu = {
+  path: "/exception-404",
+  name: "Exception404",
+  component: components.Exception404,
+  meta: {
+    title: "routes.exception404",
+  },
+};
+
 export const RedirectMenu = {
   path: "/redirect/:path(.*)",
   name: "Redirect",
   component: components.Redirect,
   meta: {
-    title: qt("routes.redirect"),
+    title: "routes.redirect",
   },
 };
 
@@ -29,17 +46,17 @@ export const HumanLoginMenu = {
   name: "HumanLogin",
   component: components.HumanLogin,
   meta: {
-    title: qt("routes.login"),
+    title: "routes.login",
   },
 };
 
-export const basicRoutes: Menu[] = [
+export const basicRoutes: AppRouteRecordRaw[] = [
   {
     path: "/exception-401",
     name: "Exception401",
     component: components.Exception401,
     meta: {
-      title: qt("routes.exception401"),
+      title: "routes.exception401",
     },
   },
   {
@@ -47,23 +64,16 @@ export const basicRoutes: Menu[] = [
     name: "Exception403",
     component: components.Exception403,
     meta: {
-      title: qt("routes.exception403"),
+      title: "routes.exception403",
     },
   },
-  {
-    path: "/exception-404",
-    name: "Exception404",
-    component: components.Exception404,
-    meta: {
-      title: qt("routes.exception404"),
-    },
-  },
+  Exception404Menu,
   {
     path: "/exception-500",
     name: "Exception500",
     component: components.Exception500,
     meta: {
-      title: qt("routes.exception500"),
+      title: "routes.exception500",
     },
   },
   RedirectMenu,
@@ -76,18 +86,18 @@ export const basicRoutes: Menu[] = [
   },
 ];
 
-export const asyncRoutes: Menu[] = [
+export const asyncRoutes: AppRouteRecordRaw[] = [
   {
     path: PageEnum.BASE_HOME_PATH,
     name: "Home",
     component: components.Home,
     meta: {
-      title: qt("routes.home"),
+      title: "routes.home",
     },
   },
 ];
 
-export const rearRoutes: Menu[] = [
+export const rearRoutes: AppRouteRecordRaw[] = [
   {
     path: "/:path(.*)*",
     redirect: "/exception-404",

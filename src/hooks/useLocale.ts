@@ -120,6 +120,3 @@ export function useI18n(namespace?: string): {
     t: tFn,
   };
 }
-
-// This function is only used for routing and menus
-export const qt = (key: string) => key;
