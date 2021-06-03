@@ -15,7 +15,7 @@ import { sError } from "/@/utils/console";
 import { transformComponent, flatRoutes } from "/@/router/utils/route";
 import { transformMenu } from "/@/router/utils/menu";
 
-export const userPermissionStore = defineStore({
+export const usePermissionStore = defineStore({
   id: "app-permission",
   state: (): PermissionState => ({
     permissionCodeLists: [],
@@ -77,6 +77,6 @@ export const userPermissionStore = defineStore({
 });
 
 // Use outside of setup
-export function userPermissionStoreWithout() {
-  return userPermissionStore(store);
+export function usePermissionStoreWithout() {
+  return usePermissionStore(store);
 }

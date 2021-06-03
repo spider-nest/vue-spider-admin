@@ -14,6 +14,10 @@ import { setupLocale } from "/@/locales";
 
 import router, { setupRouter } from "/@/router";
 
+import setupRouterGuard from "/@/router/guard";
+
+import setupDirective from "/@/directives";
+
 import { isDevMode } from "/@/utils/env";
 import "/@/styles/index.less";
 if (isDevMode()) {
@@ -33,6 +37,10 @@ if (isDevMode()) {
   await setupLocale(app);
 
   setupRouter(app);
+
+  setupRouterGuard();
+
+  setupDirective(app);
 
   await router.isReady();
 
