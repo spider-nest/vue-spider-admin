@@ -6,6 +6,7 @@ import axiosGuard from "./axios";
 import feedbackInfoGuard from "./feedback-info";
 import pageLoadingGuard from "./page-loading";
 import permissionGuard from "./permission";
+import storeGuard from "./store";
 
 export default () => {
   scrollGuard(router);
@@ -14,4 +15,5 @@ export default () => {
   feedbackInfoGuard(router);
   pageLoadingGuard(router);
   permissionGuard(router);
+  storeGuard(router);
 };
