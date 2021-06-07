@@ -86,28 +86,14 @@ const transform: AxiosTransform = {
 
     const { code, data, message } = responseData;
     if (
-      !(
-        responseData &&
-        Reflect.has(responseData, "code") &&
-        code === CodeEnum.SUCCESS
-      )
+      responseData &&
+      Reflect.has(responseData, "code") &&
+      code === CodeEnum.SUCCESS
     ) {
-      if (message) {
-        if (options.infoFeedbackMode === "modal") {
-          SModalError({
-            title: t("feedback.failureTip"),
-            content: message,
-          });
-        } else if (options.infoFeedbackMode === "message") {
-          SMessage.error(message);
-        }
-      }
-      sError(message, true);
+      return data;
     }
 
-    if (code === CodeEnum.SUCCESS) {
-      return data;
-    } else if (code === CodeEnum.ERROR) {
+    if (code === CodeEnum.ERROR) {
       if (message) {
         SMessage.error(responseData.message);
         sError(message, true);

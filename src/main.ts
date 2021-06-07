@@ -24,7 +24,7 @@ if (isDevMode()) {
   import("ant-design-vue/dist/antd.less");
 }
 
-(async () => {
+async function bootstrap() {
   const app = createApp(App);
 
   setupStore(app);
@@ -49,4 +49,6 @@ if (isDevMode()) {
   if (isDevMode()) {
     window.__APP__ = app;
   }
-})();
+}
+
+void bootstrap();

@@ -45,6 +45,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       ],
     },
     server: {
+      host: true,
       port: VITE_PORT,
       proxy: createProxy(VITE_PROXY),
     },

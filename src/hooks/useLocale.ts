@@ -24,6 +24,10 @@ interface LangModule {
 
 type I18nTranslationRestParameters = [string, any];
 
+export function setHtmlLang(locale: LocaleType) {
+  document.querySelector("html")?.setAttribute("lang", locale);
+}
+
 const loadPool: LocaleType[] = [];
 
 export function setLoadPool(cb: (loadPool: LocaleType[]) => void) {
@@ -40,7 +44,7 @@ function setI18nLanguage(locale: LocaleType, routeTitle: string) {
   }
   localeStore.setLocaleInfo({ locale });
   setTitle(routeTitle);
-  document.querySelector("html")?.setAttribute("lang", locale);
+  setHtmlLang(locale);
 }
 
 export function useLocale() {
