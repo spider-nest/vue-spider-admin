@@ -19,7 +19,8 @@ const generateRoutes = () => {
 };
 
 const { VITE_PUBLIC_PATH } = getEnvConfig();
-const router = createRouter({
+
+export const router = createRouter({
   history: createWebHashHistory(VITE_PUBLIC_PATH),
   routes: generateRoutes() as RouteRecordRaw[],
   strict: true,
@@ -38,5 +39,3 @@ export function resetRouter() {
     }
   });
 }
-
-export default router;

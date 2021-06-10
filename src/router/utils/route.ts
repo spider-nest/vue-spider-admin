@@ -3,17 +3,14 @@ import type { Router, RouteRecordNormalized } from "vue-router";
 import type { AppRouteModule, AppRouteRecordRaw } from "/@/router/types";
 
 import { createRouter, createWebHashHistory } from "vue-router";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep, omit } from "lodash-es";
 
 import { BasicLayout, getGroupLayout } from "/@/router/routes";
 import { sWarn } from "/@/utils/console";
 
 type LayoutMapKey = "LAYOUT";
 
-const LayoutMap = new Map<
-  LayoutMapKey,
-  () => Promise<typeof import("*.vue")>
->();
+const LayoutMap = new Map();
 
 let dynamicViewsModules: Record<string, () => Promise<Recordable>>;
 
@@ -46,7 +43,7 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
   routes.map((route) => {
     const { component, name, children } = route;
     if (component) {
-      route.component = dynamicImport(dynamicViewsModules, component);
+      route.component = dynamicImport(dynamicViewsModules, component as string);
     } else if (name) {
       route.component = getGroupLayout();
     }
@@ -61,9 +58,9 @@ export function transformComponent<T = AppRouteModule>(
 
   routes.map((route) => {
     if (route.component) {
-      if (route.component.toUpperCase() === "LAYOUT") {
+      if ((route.component as string).toUpperCase() === "LAYOUT") {
         route.component = LayoutMap.get(
-          route.component.toUpperCase() as LayoutMapKey
+          (route.component as string).toUpperCase() as LayoutMapKey
         );
       } else {
         route.children = [cloneDeep(route)];
@@ -109,8 +106,8 @@ function promoteRouteLevel(routeModule: AppRouteModule) {
   addToChildren(routes, routeModule.children || [], routeModule);
   router = null;
 
-  routeModule.children = routeModule.children?.filter(
-    (item) => !item.children?.length
+  routeModule.children = routeModule.children?.map((item) =>
+    omit(item, "children")
   );
 }
 

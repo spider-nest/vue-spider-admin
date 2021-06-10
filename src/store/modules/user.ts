@@ -8,7 +8,7 @@ import type { InfoFeedbackMode } from "/@/utils/axios/types";
 import { defineStore } from "pinia";
 
 import { store } from "/@/store";
-import router from "/@/router";
+import { router } from "/@/router";
 import { requestUserLogin, requestUserInfo } from "/@/services/system/user";
 import { PageEnum } from "/@/enums/page";
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from "/@/enums/cache";

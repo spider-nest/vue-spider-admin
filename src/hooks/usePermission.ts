@@ -2,8 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 import { intersection } from "lodash-es";
 
-import router from "/@/router";
-import { resetRouter } from "/@/router";
+import { router, resetRouter } from "/@/router";
 import { usePermissionStore } from "/@/store/modules/permission";
 import { isArray } from "/@/utils/is";
 

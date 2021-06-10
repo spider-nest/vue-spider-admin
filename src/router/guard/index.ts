@@ -1,4 +1,4 @@
-import router from "/@/router";
+import { router } from "/@/router";
 
 import scrollGuard from "./scroll";
 import progressGuard from "./progress";

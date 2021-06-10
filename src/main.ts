@@ -12,7 +12,7 @@ import { iconGlobalization } from "/@/components";
 
 import { setupLocale } from "/@/locales";
 
-import router, { setupRouter } from "/@/router";
+import { router, setupRouter } from "/@/router";
 
 import setupRouterGuard from "/@/router/guard";
 
