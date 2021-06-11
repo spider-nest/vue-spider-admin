@@ -10,7 +10,9 @@ import { sWarn } from "/@/utils/console";
 
 type LayoutMapKey = "LAYOUT";
 
-const LayoutMap = new Map();
+const LayoutMap = new Map<String, () => Promise<typeof import("*.vue")>>();
+
+LayoutMap.set("LAYOUT", BasicLayout);
 
 let dynamicViewsModules: Record<string, () => Promise<Recordable>>;
 
@@ -43,7 +45,9 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
   routes.map((route) => {
     const { component, name, children } = route;
     if (component) {
-      route.component = dynamicImport(dynamicViewsModules, component as string);
+      route.component =
+        LayoutMap.get(component as string) ??
+        dynamicImport(dynamicViewsModules, component as string);
     } else if (name) {
       route.component = getGroupLayout();
     }
@@ -54,8 +58,6 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
 export function transformComponent<T = AppRouteModule>(
   routes: AppRouteModule[]
 ): T[] {
-  LayoutMap.set("LAYOUT", BasicLayout);
-
   routes.map((route) => {
     if (route.component) {
       if ((route.component as string).toUpperCase() === "LAYOUT") {
