@@ -3,39 +3,29 @@ import type { RouteRecordRaw } from "vue-router";
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
+import { REDIRECT_NAME } from "./constant";
+import { basicRoutes, LoginRoute } from "./routes";
 import { getEnvConfig } from "/@/utils/env";
-import {
-  basicRoutes,
-  asyncRoutes,
-  rearRoutes,
-  RedirectMenu,
-  HumanLoginMenu,
-} from "./routes";
 
-const WHITE_NAME_LIST = [HumanLoginMenu.name, RedirectMenu.name];
-
-const generateRoutes = () => {
-  return [...basicRoutes, ...asyncRoutes, ...rearRoutes];
-};
-
+const WHITE_NAME_LIST = [LoginRoute.name, REDIRECT_NAME];
 const { VITE_PUBLIC_PATH } = getEnvConfig();
 
 export const router = createRouter({
   history: createWebHashHistory(VITE_PUBLIC_PATH),
-  routes: generateRoutes() as RouteRecordRaw[],
+  routes: basicRoutes as unknown as RouteRecordRaw[],
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
-export function setupRouter(app: App<Element>) {
-  app.use(router);
-}
-
 export function resetRouter() {
-  router.getRoutes().forEach((route) => {
+  router.getRoutes().map((route) => {
     const { name } = route;
     if (name && !WHITE_NAME_LIST.includes(name as string)) {
       router.hasRoute(name) && router.removeRoute(name);
     }
   });
+}
+
+export function setupRouter(app: App<Element>) {
+  app.use(router);
 }
