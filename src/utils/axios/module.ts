@@ -12,7 +12,7 @@ import qs from "qs";
 import { cloneDeep } from "lodash-es";
 
 import AxiosCanceler from "./canceler";
-import { errorResult } from "./const";
+import { errorResult } from "./constant";
 import { ContentTypeEnum, MethodEnum } from "/@/enums/http";
 import { isFunction } from "/@/utils/is";
 

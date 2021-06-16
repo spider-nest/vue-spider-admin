@@ -8,12 +8,12 @@ import { store } from "/@/store";
 import { useUserStore } from "/@/store/modules/user";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
-import { basicRoutes, rearRoutes } from "/@/router/routes";
 import { requestPermissionCodeList } from "/@/services/system/user";
 import { requestMenuList } from "/@/services/system/menu";
 import { sError } from "/@/utils/console";
 import { transformComponent, flatRoutes } from "/@/router/utils/route";
 import { transformMenu } from "/@/router/utils/menu";
+import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/basic";
 
 export const usePermissionStore = defineStore({
   id: "app-permission",
@@ -55,7 +55,7 @@ export const usePermissionStore = defineStore({
         content: t("overall.loading"),
       });
 
-      const routes: AppRouteRecordRaw[] = [...basicRoutes];
+      const routes: AppRouteRecordRaw[] = [];
       let routeList: AppRouteRecordRaw[] = [];
       try {
         this.changePermissionCode();
@@ -70,7 +70,7 @@ export const usePermissionStore = defineStore({
       this.setMenuList(menuList);
 
       routeList = flatRoutes(routeList);
-      routes.push(...routeList, ...rearRoutes);
+      routes.push(PAGE_NOT_FOUND_ROUTE, ...routeList);
       return routes;
     },
   },

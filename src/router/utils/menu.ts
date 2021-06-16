@@ -1,5 +1,7 @@
 import type { AppRouteModule, AppRouteRecordRaw, Menu } from "/@/router/types";
 
+import { cloneDeep } from "lodash-es";
+
 import { treeMap } from "/@/utils/tree";
 import { isUrl } from "/@/utils/is";
 
@@ -15,21 +17,34 @@ function joinParentPath(menus: Menu[], parentPath = "") {
   }
 }
 
-export function transformMenu(routeList: AppRouteModule[]) {
+export function transformMenu(routeModuleList: AppRouteModule[]) {
+  const routeModuleLists = cloneDeep(routeModuleList);
+  const routeList: AppRouteRecordRaw[] = [];
+
+  routeModuleLists.map((item) => {
+    if (item.meta?.single) {
+      const realItem = item?.children?.[0];
+      realItem && routeList.push(realItem);
+    } else {
+      routeList.push(item);
+    }
+  });
+
   const list = treeMap(routeList, {
     conversion: (route: AppRouteRecordRaw) => {
-      const { meta: { title } = {}, visible = true } = route;
+      const { meta: { title, hideMenu = false } = {} } = route;
 
       return {
-        path: route.path,
-        name: title,
+        ...(route.meta || {}),
         meta: route.meta,
-        visible,
+        name: title,
+        hideMenu,
+        path: route.path,
       };
     },
-  }) as Menu[];
+  });
 
-  joinParentPath(list);
+  joinParentPath(list as Menu[]);
 
-  return list;
+  return cloneDeep(list);
 }

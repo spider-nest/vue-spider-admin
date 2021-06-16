@@ -8,35 +8,39 @@ export type Component<T extends any = any> =
   | (() => Promise<T>);
 
 export interface RouteMeta {
-  icon?: string;
   title: string;
-  keepAlive?: boolean;
-  link?: string;
-  target?: string;
-  permissions?: string[] | string;
-  roles?: string[] | string | number[] | number;
+  ignoreAuth?: boolean;
+  icon?: string;
+  isLink?: boolean;
+  roles?: string[] | number[];
+  hideChildrenInMenu?: boolean;
+  hideMenu?: boolean;
+  frameSrc?: string;
+  transitionName?: string;
+  hideBreadcrumb?: boolean;
+  single?: boolean;
 }
 
 export interface Menu {
-  path: string;
-  name?: string;
-  redirect?: string;
-  component?: Component | string;
+  name: string;
   icon?: string;
-  meta?: Partial<RouteMeta>;
-  children?: Menu[];
-  childrenVisible?: boolean;
+  path: string;
   disabled?: boolean;
-  visible?: boolean;
+  children?: Menu[];
+  roles?: string[] | number[];
+  redirect?: string;
+  meta?: Partial<RouteMeta>;
+  hideMenu?: boolean;
 }
 
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta"> {
-  name?: string;
-  meta?: RouteMeta;
+  name: string;
+  meta: RouteMeta;
   component?: Component | string;
+  components?: Component;
   children?: AppRouteRecordRaw[];
-  visible?: boolean;
+  props?: Recordable;
 }
 
 export type AppRouteModule = AppRouteRecordRaw;

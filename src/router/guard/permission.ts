@@ -3,7 +3,7 @@ import type { Router, RouteRecordRaw } from "vue-router";
 import { PageEnum } from "/@/enums/page";
 import { useUserStoreWithout } from "/@/store/modules/user";
 import { usePermissionStoreWithout } from "/@/store/modules/permission";
-import { Exception404Menu } from "/@/router/routes";
+import { PAGE_NOT_FOUND_ROUTE } from "/@/router/routes/basic";
 
 const WHITE_PATH_LIST: PageEnum[] = [PageEnum.BASE_LOGIN_PATH];
 
@@ -13,7 +13,7 @@ export default (router: Router) => {
   router.beforeEach(async (to, from, next) => {
     if (
       from.path === PageEnum.BASE_LOGIN_PATH &&
-      to.name === Exception404Menu.name
+      to.name === PAGE_NOT_FOUND_ROUTE.name
     ) {
       next(PageEnum.BASE_HOME_PATH);
       return;
@@ -26,7 +26,7 @@ export default (router: Router) => {
 
     const token = userStore.getToken;
     if (!token) {
-      if (!to.meta.permissions) {
+      if (to.meta.ignoreAuth) {
         next();
         return;
       }

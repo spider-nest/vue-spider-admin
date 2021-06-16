@@ -4,7 +4,7 @@ import { useTitle as vueUseTitle } from "@vueuse/core";
 
 import { useSetting } from "/@/hooks/useSetting";
 import { useI18n } from "/@/hooks/useLocale";
-import { RedirectMenu } from "/@/router/routes";
+import { REDIRECT_NAME } from "/@/router/constant";
 
 export function setTitle(routeTitle: string) {
   const newTitle = vueUseTitle();
@@ -22,7 +22,7 @@ export function useTitle() {
     () => currentRoute.value.path,
     () => {
       const route = unref(currentRoute);
-      if (route.name === RedirectMenu.name) {
+      if (route.name === REDIRECT_NAME) {
         return;
       }
       setTitle(route?.meta?.title as string);

@@ -5,14 +5,14 @@ import type { AppRouteModule, AppRouteRecordRaw } from "/@/router/types";
 import { createRouter, createWebHashHistory } from "vue-router";
 import { cloneDeep, omit } from "lodash-es";
 
-import { BasicLayout, getGroupLayout } from "/@/router/routes";
+import { getParentLayout, LAYOUT } from "/@/router/constant";
 import { sWarn } from "/@/utils/console";
 
 type LayoutMapKey = "LAYOUT";
 
 const LayoutMap = new Map<String, () => Promise<typeof import("*.vue")>>();
 
-LayoutMap.set("LAYOUT", BasicLayout);
+LayoutMap.set("LAYOUT", LAYOUT);
 
 let dynamicViewsModules: Record<string, () => Promise<Recordable>>;
 
@@ -49,7 +49,7 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
         LayoutMap.get(component as string) ??
         dynamicImport(dynamicViewsModules, component as string);
     } else if (name) {
-      route.component = getGroupLayout();
+      route.component = getParentLayout();
     }
     children && asyncImportRoute(children);
   });
@@ -66,9 +66,12 @@ export function transformComponent<T = AppRouteModule>(
         );
       } else {
         route.children = [cloneDeep(route)];
-        route.component = BasicLayout;
-        route.name = `${route.name}Group`;
+        route.component = LAYOUT;
+        route.name = `${route.name}Parent`;
         route.path = "";
+        const meta = route.meta || {};
+        meta.single = true;
+        route.meta = meta;
       }
     }
     route.children && asyncImportRoute(route.children);
