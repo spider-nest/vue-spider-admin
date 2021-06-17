@@ -3,7 +3,7 @@ import type { I18nOptions, I18n } from "vue-i18n";
 
 import { createI18n } from "vue-i18n";
 
-import { setHtmlLang, setLoadPool } from "/@/hooks/useLocale";
+import { setHtmlLang } from "/@/hooks/useLocale";
 import { useLocaleStoreWithout } from "/@/store/modules/locale";
 import { localeSetting } from "/@/settings/locale";
 
@@ -18,9 +18,6 @@ async function createI18nOptions(): Promise<I18nOptions> {
   const message = defaultLocal.default?.message ?? {};
 
   setHtmlLang(locale);
-  setLoadPool((loadPool) => {
-    loadPool.push(locale);
-  });
 
   return {
     legacy: false,

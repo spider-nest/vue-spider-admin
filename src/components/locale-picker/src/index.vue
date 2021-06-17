@@ -15,7 +15,6 @@ import type { LocaleType } from "/#/config";
 import type { DropdownMenu } from "/@/components/dropdown/types";
 
 import { defineComponent, ref, watchEffect, unref, computed } from "vue";
-import { useRouter } from "vue-router";
 
 import SDropdown from "/@/components/dropdown";
 import SIcon from "/@/components/icon";
@@ -43,13 +42,8 @@ export default defineComponent({
       return localeList.find((locale) => locale.event === key)?.title;
     });
 
-    const { currentRoute } = useRouter();
-    const toggleLocale = async (locale: LocaleType | string) => {
-      await changeLocale(
-        locale as LocaleType,
-        unref(currentRoute)?.meta?.title as string
-      );
-      selectedKeys.value = [locale];
+    const toggleLocale = (locale: LocaleType | string) => {
+      changeLocale(locale as LocaleType);
       window.location.reload();
     };
     const onClickMenu = (menuItem: DropdownMenu) => {

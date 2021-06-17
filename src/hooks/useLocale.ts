@@ -1,11 +1,9 @@
 import type { LocaleType } from "/#/config";
 
 import { computed, unref } from "vue";
-import moment from "moment";
 
 import { i18n } from "/@/locales";
 import { useLocaleStoreWithout } from "/@/store/modules/locale";
-import { setTitle } from "/@/hooks/useTitle";
 
 type I18nGlobalTranslation = {
   (key: string): string;
@@ -16,35 +14,15 @@ type I18nGlobalTranslation = {
   (key: string, named: Record<string, unknown>): string;
 };
 
-interface LangModule {
-  message: Recordable;
-  momentLocale: Recordable;
-  momentLocaleName: string;
-}
-
 type I18nTranslationRestParameters = [string, any];
 
 export function setHtmlLang(locale: LocaleType) {
   document.querySelector("html")?.setAttribute("lang", locale);
 }
 
-const loadPool: LocaleType[] = [];
-
-export function setLoadPool(cb: (loadPool: LocaleType[]) => void) {
-  cb(loadPool);
-}
-
-function setI18nLanguage(locale: LocaleType, routeTitle: string) {
+function setI18nLanguage(locale: LocaleType) {
   const localeStore = useLocaleStoreWithout();
-
-  if (i18n.mode === "legacy") {
-    i18n.global.locale = locale;
-  } else {
-    (i18n.global.locale as any).value = locale;
-  }
   localeStore.setLocaleInfo({ locale });
-  setTitle(routeTitle);
-  setHtmlLang(locale);
 }
 
 export function useLocale() {
@@ -58,26 +36,8 @@ export function useLocale() {
     );
   });
 
-  async function changeLocale(locale: LocaleType, routeTitle: string) {
-    const globalI18n = i18n.global;
-    const currentLocale = unref(globalI18n.locale);
-    if (currentLocale === locale) {
-      return locale;
-    }
-    if (loadPool.includes(locale)) {
-      setI18nLanguage(locale, routeTitle);
-      return locale;
-    }
-
-    const langModule = (await import(`../locales/lang/${locale}.ts`))
-      .default as LangModule;
-    if (!langModule) return;
-
-    const { message, momentLocale, momentLocaleName } = langModule;
-    globalI18n.setLocaleMessage(locale, message);
-    moment.updateLocale(momentLocaleName, momentLocale);
-    loadPool.push(locale);
-    setI18nLanguage(locale, routeTitle);
+  function changeLocale(locale: LocaleType) {
+    setI18nLanguage(locale);
     return locale;
   }
 
