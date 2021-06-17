@@ -43,7 +43,7 @@
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
-import type { UserPasswordFormModel } from "/@/services/system/types/user";
+import type { UserPasswordFormModel } from "/@/services/types/system/user";
 
 import { computed, defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";

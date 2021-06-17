@@ -11,9 +11,12 @@ export default (router: Router) => {
   const userStore = useUserStoreWithout();
   const permissionStore = usePermissionStoreWithout();
   router.beforeEach(async (to, from, next) => {
+    const token = userStore.getToken;
+
     if (
-      from.path === PageEnum.BASE_LOGIN_PATH &&
-      to.name === PAGE_NOT_FOUND_ROUTE.name
+      (from.path === PageEnum.BASE_LOGIN_PATH &&
+        to.name === PAGE_NOT_FOUND_ROUTE.name) ||
+      (token && to.path === PageEnum.BASE_LOGIN_PATH)
     ) {
       next(PageEnum.BASE_HOME_PATH);
       return;
@@ -24,7 +27,6 @@ export default (router: Router) => {
       return;
     }
 
-    const token = userStore.getToken;
     if (!token) {
       if (to.meta.ignoreAuth) {
         next();
@@ -49,16 +51,20 @@ export default (router: Router) => {
       return;
     }
 
-    const routes = await permissionStore.generateRoutes();
+    if (permissionStore.getRouteAddedDynamically) {
+      next();
+      return;
+    }
 
+    const routes = await permissionStore.generateRoutes();
     routes.map((route) => {
       router.addRoute(route as unknown as RouteRecordRaw);
     });
-
     const redirectPath = (from.query.redirect || to.path) as string;
     const redirect = decodeURIComponent(redirectPath);
     const nextData =
       to.path === redirect ? { ...to, replace: true } : { path: redirect };
+    permissionStore.setRouteAddedDynamically(true);
 
     next(nextData);
   });

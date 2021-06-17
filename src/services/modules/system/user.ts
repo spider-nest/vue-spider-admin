@@ -2,17 +2,12 @@ import type {
   UserPasswordFormModel,
   UserLoginResult,
   UserInfoFormModel,
-} from "./types/user";
+} from "/@/services/types/system/user";
 import type { UserInfo } from "/@/store/types/user";
 import type { InfoFeedbackMode } from "/@/utils/axios/types";
 
 import SAxios from "/@/utils/axios";
-
-export enum Api {
-  Login = "/system/user/login",
-  Info = "/system/user/info",
-  PermissionCodeList = "/system/user/codeList",
-}
+import { SystemUserApi } from "/@/services/enums/system/user";
 
 export function requestUserLogin(
   params: UserPasswordFormModel,
@@ -20,7 +15,7 @@ export function requestUserLogin(
 ) {
   return SAxios.post<UserLoginResult>(
     {
-      url: Api.Login,
+      url: SystemUserApi.Login,
       params,
     },
     {
@@ -31,14 +26,14 @@ export function requestUserLogin(
 
 export function requestUserInfo(params: UserInfoFormModel) {
   return SAxios.get<UserInfo>({
-    url: Api.Info,
+    url: SystemUserApi.Info,
     params,
   });
 }
 
 export function requestPermissionCodeList(params: UserInfoFormModel) {
   return SAxios.get<string[]>({
-    url: Api.PermissionCodeList,
+    url: SystemUserApi.CodeList,
     params,
   });
 }

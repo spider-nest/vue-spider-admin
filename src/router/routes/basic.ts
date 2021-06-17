@@ -7,7 +7,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   name: "ErrorPage",
   component: LAYOUT,
   meta: {
-    title: "ErrorPage",
+    title: "routes.errorPage",
   },
   children: [
     {
@@ -15,7 +15,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
       name: "ErrorPage",
       component: EXCEPTION_COMPONENT,
       meta: {
-        title: "ErrorPage",
+        title: "routes.errorPage",
       },
     },
   ],

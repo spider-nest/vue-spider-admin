@@ -2,9 +2,13 @@ import type { requestParams } from "../_util";
 
 import { MockMethod } from "vite-plugin-mock";
 
-import { getEnvConfig } from "/@/utils/env";
-import { Api } from "/@/services/system/user";
-import { failureResult, successfulResult, getRequestToken } from "../_util";
+import { SystemUserApi } from "../../src/services/enums/system/user";
+import {
+  getEnvConfig,
+  failureResult,
+  successfulResult,
+  getRequestToken,
+} from "../_util";
 
 const { VITE_API_PREFIX } = getEnvConfig();
 
@@ -55,7 +59,7 @@ function createCodeList(userId) {
 
 export default [
   {
-    url: `${VITE_API_PREFIX}${Api.Login}`,
+    url: `${VITE_API_PREFIX}${SystemUserApi.Login}`,
     timeout: 200,
     method: "post",
     response: ({ body }: requestParams) => {
@@ -87,7 +91,7 @@ export default [
     },
   },
   {
-    url: `${VITE_API_PREFIX}${Api.Info}`,
+    url: `${VITE_API_PREFIX}${SystemUserApi.Info}`,
     timeout: 200,
     method: "get",
     response: (request: requestParams) => {
@@ -105,7 +109,7 @@ export default [
     },
   },
   {
-    url: `${VITE_API_PREFIX}${Api.PermissionCodeList}`,
+    url: `${VITE_API_PREFIX}${SystemUserApi.CodeList}`,
     timeout: 200,
     method: "get",
     response: (request: requestParams) => {
@@ -119,7 +123,7 @@ export default [
         return failureResult("Invalid user");
       }
 
-      const codeList = createCodeList[user.userId];
+      const codeList = createCodeList(user.userId);
 
       return successfulResult(codeList);
     },

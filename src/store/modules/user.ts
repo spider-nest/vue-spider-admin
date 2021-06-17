@@ -2,14 +2,17 @@ import type { UserInfo, UserState, Token } from "/@/store/types/user";
 import type {
   UserPasswordFormModel,
   UserInfoFormModel,
-} from "/@/services/system/types/user";
+} from "/@/services/types/system/user";
 import type { InfoFeedbackMode } from "/@/utils/axios/types";
 
 import { defineStore } from "pinia";
 
 import { store } from "/@/store";
 import { router } from "/@/router";
-import { requestUserLogin, requestUserInfo } from "/@/services/system/user";
+import {
+  requestUserLogin,
+  requestUserInfo,
+} from "/@/services/modules/system/user";
 import { PageEnum } from "/@/enums/page";
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from "/@/enums/cache";
 import { getAuthCache, setAuthCache } from "/@/utils/auth";

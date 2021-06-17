@@ -8,8 +8,8 @@ import { store } from "/@/store";
 import { useUserStore } from "/@/store/modules/user";
 import { useI18n } from "/@/hooks/useLocale";
 import { useInfoFeedback } from "/@/hooks/useInfoFeedback";
-import { requestPermissionCodeList } from "/@/services/system/user";
-import { requestMenuList } from "/@/services/system/menu";
+import { requestPermissionCodeList } from "/@/services/modules/system/user";
+import { requestMenuList } from "/@/services/modules/system/menu";
 import { sError } from "/@/utils/console";
 import { transformComponent, flatRoutes } from "/@/router/utils/route";
 import { transformMenu } from "/@/router/utils/menu";
@@ -20,6 +20,7 @@ export const usePermissionStore = defineStore({
   state: (): PermissionState => ({
     permissionCodeLists: [],
     menuLists: [],
+    routeAddedDynamically: false,
   }),
   getters: {
     getPermissionCodeList(): string[] {
@@ -27,6 +28,9 @@ export const usePermissionStore = defineStore({
     },
     getMenuList(): Menu[] {
       return this.menuLists;
+    },
+    getRouteAddedDynamically(): boolean {
+      return this.routeAddedDynamically;
     },
   },
   actions: {
@@ -36,9 +40,13 @@ export const usePermissionStore = defineStore({
     setMenuList(list: Menu[]) {
       this.menuLists = list;
     },
+    setRouteAddedDynamically(added: boolean) {
+      this.routeAddedDynamically = added;
+    },
     resetState() {
       this.setPermissionCodeList([]);
       this.setMenuList([]);
+      this.setRouteAddedDynamically(false);
     },
     async changePermissionCode() {
       const userStore = useUserStore();

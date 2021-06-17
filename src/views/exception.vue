@@ -69,7 +69,9 @@ export default defineComponent({
       return Number(statusCode) || props.status;
     });
     const getStatus = computed((): StatusMapValue => {
-      return unref(statusMap).get(unref(getStatusCode)) as StatusMapValue;
+      return unref(statusMap).get(
+        String(unref(getStatusCode))
+      ) as StatusMapValue;
     });
 
     const btnText = props.logout ? "重新登入" : "返回主页";
@@ -79,7 +81,6 @@ export default defineComponent({
       unref(statusMap).set(key, {
         status: String(key),
         title: String(key),
-        subTitle: String(key),
         btnText,
         handler,
       });

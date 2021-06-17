@@ -5,6 +5,10 @@ export interface requestParams {
   query: any;
 }
 
+export function getEnvConfig() {
+  return { VITE_API_PREFIX: "/api" };
+}
+
 export function successfulResult<T = any>(data: T, { message = "ok" } = {}) {
   return {
     code: 0,

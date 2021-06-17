@@ -39,9 +39,11 @@ function dynamicImport(
 }
 
 function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
+  if (!routes) return;
+
   dynamicViewsModules =
     dynamicViewsModules || import.meta.glob("../../views/**/*.{vue,tsx}");
-  if (!routes) return;
+
   routes.map((route) => {
     const { component, name, children } = route;
     if (component) {

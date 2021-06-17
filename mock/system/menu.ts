@@ -2,9 +2,13 @@ import type { requestParams } from "../_util";
 
 import { MockMethod } from "vite-plugin-mock";
 
-import { getEnvConfig } from "/@/utils/env";
-import { Api } from "/@/services/system/menu";
-import { failureResult, successfulResult, getRequestToken } from "../_util";
+import { SystemMenuApi } from "../../src/services/enums/system/menu";
+import {
+  getEnvConfig,
+  failureResult,
+  successfulResult,
+  getRequestToken,
+} from "../_util";
 import { createUserList } from "./user";
 
 const { VITE_API_PREFIX } = getEnvConfig();
@@ -12,11 +16,29 @@ const { VITE_API_PREFIX } = getEnvConfig();
 const dashboardRoute = {
   path: "/dashboard",
   name: "Dashboard",
-  component: "/dashboard/analysis/index.vue",
+  component: "LAYOUT",
+  redirect: "/dashboard/analysis",
   meta: {
-    title: "routes.analysis",
     icon: "bx:bx-home",
   },
+  children: [
+    {
+      path: "analysis",
+      name: "DashboardAnalysis",
+      component: "/dashboard/analysis/index",
+      meta: {
+        title: "routes.analysis",
+      },
+    },
+    {
+      path: "workbench",
+      name: "DashboardWorkbench",
+      component: "/dashboard/workbench/index",
+      meta: {
+        title: "routes.workbench",
+      },
+    },
+  ],
 };
 
 const systemRoute = {
@@ -30,30 +52,30 @@ const systemRoute = {
   children: [
     {
       path: "account",
-      name: "AccountManagement",
-      component: "/system/account/index.vue",
+      name: "SystemAccount",
+      component: "/system/account/index",
     },
     {
       path: "role",
-      name: "RoleManagement",
-      component: "/system/role/index.vue",
+      name: "SystemRole",
+      component: "/system/role/index",
     },
     {
       path: "menu",
-      name: "MenuManagement",
-      component: "/system/menu/index.vue",
+      name: "SystemMenu",
+      component: "/system/menu/index",
     },
     {
       path: "department",
-      name: "DepartmentManagement",
-      component: "/system/dept/index.vue",
+      name: "SystemDepartment",
+      component: "/system/department/index",
     },
   ],
 };
 
 export default [
   {
-    url: `${VITE_API_PREFIX}${Api.List}`,
+    url: `${VITE_API_PREFIX}${SystemMenuApi.List}`,
     timeout: 200,
     method: "get",
     response: (request: requestParams) => {
