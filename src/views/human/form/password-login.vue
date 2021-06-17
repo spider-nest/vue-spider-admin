@@ -45,7 +45,7 @@ import type { UnwrapRef } from "vue";
 
 import type { UserPasswordFormModel } from "/@/services/types/system/user";
 
-import { computed, defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { onKeyDown } from "@vueuse/core";
 
@@ -82,12 +82,8 @@ export default defineComponent({
 
     const { t } = useI18n();
     const formRules = reactive({
-      account: [
-        { required: true, message: computed(() => t("overall.input")) },
-      ],
-      password: [
-        { required: true, message: computed(() => t("overall.input")) },
-      ],
+      account: [{ required: true, message: t("overall.input") }],
+      password: [{ required: true, message: t("overall.input") }],
     });
     const { validate, validateInfos } = useForm(formModel, formRules);
 

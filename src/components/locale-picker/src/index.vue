@@ -29,9 +29,8 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     showTitle: PropTypes.bool.def(true),
-    reload: PropTypes.bool.def(false),
   },
-  setup(props) {
+  setup() {
     const selectedKeys = ref<string[]>([]);
     const { changeLocale, getLocale } = useLocale();
     watchEffect(() => {
@@ -51,7 +50,7 @@ export default defineComponent({
         unref(currentRoute)?.meta?.title as string
       );
       selectedKeys.value = [locale];
-      props.reload && window.location.reload();
+      window.location.reload();
     };
     const onClickMenu = (menuItem: DropdownMenu) => {
       if (unref(getLocale) === menuItem.event) return;

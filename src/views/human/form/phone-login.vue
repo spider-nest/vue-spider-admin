@@ -40,7 +40,7 @@
 <script lang="ts">
 import type { UnwrapRef } from "vue";
 
-import { computed, defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { onKeyDown } from "@vueuse/core";
 
@@ -71,10 +71,8 @@ export default defineComponent({
 
     const { t } = useI18n();
     const formRules = reactive({
-      phone: [{ required: true, message: computed(() => t("overall.input")) }],
-      captcha: [
-        { required: true, message: computed(() => t("overall.input")) },
-      ],
+      phone: [{ required: true, message: t("overall.input") }],
+      captcha: [{ required: true, message: t("overall.input") }],
     });
     const { validate, validateInfos } = useForm(formModel, formRules);
 
