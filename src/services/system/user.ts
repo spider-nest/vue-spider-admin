@@ -8,7 +8,7 @@ import type { InfoFeedbackMode } from "/@/utils/axios/types";
 
 import SAxios from "/@/utils/axios";
 
-enum Api {
+export enum Api {
   Login = "/system/user/login",
   Info = "/system/user/info",
   PermissionCodeList = "/system/user/codeList",

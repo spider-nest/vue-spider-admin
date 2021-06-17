@@ -1,3 +1,10 @@
+export interface requestParams {
+  method: string;
+  body: any;
+  headers?: { authorization?: string };
+  query: any;
+}
+
 export function successfulResult<T = any>(data: T, { message = "ok" } = {}) {
   return {
     code: 0,
@@ -42,4 +49,10 @@ export function successfulList<T = any>(
     }),
     message,
   };
+}
+
+export function getRequestToken({
+  headers,
+}: requestParams): string | undefined {
+  return headers?.authorization;
 }

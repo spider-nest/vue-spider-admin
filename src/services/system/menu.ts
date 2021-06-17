@@ -2,7 +2,7 @@ import type { MenuListResult } from "./types/menu";
 
 import SAxios from "/@/utils/axios";
 
-enum Api {
+export enum Api {
   List = "/system/menu/list",
 }
 

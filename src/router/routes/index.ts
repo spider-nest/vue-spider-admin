@@ -1,18 +1,7 @@
-import type { AppRouteRecordRaw, AppRouteModule } from "/@/router/types";
+import type { AppRouteRecordRaw } from "/@/router/types";
 
-import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from "/@/router/routes/basic";
+import { REDIRECT_ROUTE } from "/@/router/routes/basic";
 import { PageEnum } from "/@/enums/page";
-import { isArray } from "/@/utils/is";
-
-const modules = import.meta.globEager("./modules/**/*.ts");
-const routeModules: AppRouteModule[] = [];
-
-Object.keys(modules).map((module) => {
-  const item = modules[module].default || {};
-  routeModules.push(...(isArray(item) ? [...item] : [item]));
-});
-
-export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModules];
 
 export const RootRoute: AppRouteRecordRaw = {
   path: "/",

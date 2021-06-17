@@ -1,8 +1,14 @@
+import type { requestParams } from "../_util";
+
 import { MockMethod } from "vite-plugin-mock";
 
-import { failureResult, successfulResult } from "../_util";
+import { getEnvConfig } from "/@/utils/env";
+import { Api } from "/@/services/system/user";
+import { failureResult, successfulResult, getRequestToken } from "../_util";
 
-function createUserList() {
+const { VITE_API_PREFIX } = getEnvConfig();
+
+export function createUserList() {
   return [
     {
       userId: 999,
@@ -39,12 +45,20 @@ function createUserList() {
   ];
 }
 
+function createCodeList(userId) {
+  const codeList = {
+    999: ["123", "456"],
+    1000: ["789"],
+  };
+  return codeList[userId];
+}
+
 export default [
   {
-    url: "/api/system/user/login",
+    url: `${VITE_API_PREFIX}${Api.Login}`,
     timeout: 200,
     method: "post",
-    response: ({ body }) => {
+    response: ({ body }: requestParams) => {
       const { account, password } = body;
       const user = createUserList().find(
         (item) => item.account === account && password === item.password
@@ -61,6 +75,7 @@ export default [
         desc,
         roles,
       } = user;
+
       return successfulResult({
         roles,
         userId,
@@ -72,17 +87,41 @@ export default [
     },
   },
   {
-    url: "/api/system/user/info",
+    url: `${VITE_API_PREFIX}${Api.Info}`,
+    timeout: 200,
     method: "get",
-    response: ({ query }) => {
-      const { userId } = query;
-      const user = createUserList().find(
-        (item) => item.userId === Number(userId)
-      );
-      if (!user) {
-        return failureResult("Get failure");
+    response: (request: requestParams) => {
+      const token = getRequestToken(request);
+      if (!token) {
+        return failureResult("Invalid token");
       }
+
+      const user = createUserList().find((item) => item.token === token);
+      if (!user) {
+        return failureResult("Invalid user");
+      }
+
       return successfulResult(user);
+    },
+  },
+  {
+    url: `${VITE_API_PREFIX}${Api.PermissionCodeList}`,
+    timeout: 200,
+    method: "get",
+    response: (request: requestParams) => {
+      const token = getRequestToken(request);
+      if (!token) {
+        return failureResult("Invalid token");
+      }
+
+      const user = createUserList().find((item) => item.token === token);
+      if (!user) {
+        return failureResult("Invalid user");
+      }
+
+      const codeList = createCodeList[user.userId];
+
+      return successfulResult(codeList);
     },
   },
 ] as MockMethod[];
