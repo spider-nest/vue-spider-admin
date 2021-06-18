@@ -1,10 +1,20 @@
 <template>
   <AResult v-bind="binds">
-    <slot name="title" />
-    <slot name="subTitle" />
-    <slot name="icon" />
-    <slot name="extra" />
-    <slot />
+    <template #title>
+      <slot name="title" />
+    </template>
+    <template #subTitle>
+      <slot name="subTitle" />
+    </template>
+    <template #icon>
+      <slot name="icon" />
+    </template>
+    <template #extra>
+      <slot name="extra" />
+    </template>
+    <template v-if="$slots.default" #default>
+      <slot />
+    </template>
   </AResult>
 </template>
 

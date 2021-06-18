@@ -32,7 +32,7 @@ import { PageEnum } from "/@/enums/page";
 interface StatusMapValue {
   status?: string;
   title: string;
-  subTitle: string;
+  subTitle?: string;
   btnText?: string;
   icon?: string;
   handler?: Fn;
