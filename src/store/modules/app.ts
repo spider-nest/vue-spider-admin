@@ -1,4 +1,4 @@
-import type { AppConfig, TransitionSetting } from "/#/config";
+import type { AppConfig, MenuSetting, TransitionSetting } from "/#/config";
 import type { BeforeRestoreInfo, AppState } from "/@/store/types/app";
 import type { ThemeEnum } from "/@/enums/app";
 
@@ -35,6 +35,9 @@ export const useAppStore = defineStore({
     },
     getAppConfig(): AppConfig {
       return this.config || ({} as AppConfig);
+    },
+    getMenuSetting(): MenuSetting {
+      return this.getAppConfig.menuSetting;
     },
     getTransitionSetting(): TransitionSetting {
       return this.getAppConfig.transitionSetting;

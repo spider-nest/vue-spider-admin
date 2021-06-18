@@ -11,3 +11,14 @@ export enum MenuTypeEnum {
   MIX = "mix",
   TOP_BAR = "top-bar",
 }
+
+export enum TriggerEnum {
+  NONE = "none",
+  FOOTER = "footer",
+  HEADER = "header",
+}
+
+export enum MixSidebarTriggerEnum {
+  HOVER = "hover",
+  CLICK = "click",
+}

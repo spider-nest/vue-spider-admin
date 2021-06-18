@@ -5,6 +5,8 @@ import nProgress from "nprogress";
 
 import { useTransition } from "/@/hooks/useTransition";
 
+nProgress.configure({ showSpinner: false });
+
 export default (router: Router) => {
   const { enableProgressTransition } = useTransition();
 
