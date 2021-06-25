@@ -12,6 +12,8 @@ import App from "@/pages/Spider.vue";
 //
 // import setupDirective from "@/directives";
 
+import "vfonts/Roboto.css";
+
 async function bootstrap() {
   const app = createApp(App);
 
