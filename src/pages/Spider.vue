@@ -1,13 +1,21 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NButton } from "naive-ui";
+import { NConfigProvider, zhCN, dateZhCN } from "naive-ui";
 
 export default defineComponent({
   name: "Spider",
-  components: { NButton },
+  components: { NConfigProvider },
+  setup() {
+    return {
+      zhCN,
+      dateZhCN,
+    };
+  },
 });
 </script>
 
 <template>
-  <NButton>123</NButton>
+  <NConfigProvider :locale="zhCN" :date-locale="dateZhCN">
+    <RouterView />
+  </NConfigProvider>
 </template>
