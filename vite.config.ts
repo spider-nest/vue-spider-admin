@@ -2,13 +2,17 @@ import type { UserConfig } from "vite";
 
 import { resolve } from "path";
 
-function pathResolve(dir: string) {
-  return resolve(process.cwd(), ".", dir);
-}
+const root = process.cwd();
+const base = "/";
+
+const pathResolve = (dir: string): string => {
+  return resolve(root, ".", dir);
+};
 
 export default (): UserConfig => {
   return {
-    base: "/",
+    root,
+    base,
     resolve: {
       alias: [
         {
