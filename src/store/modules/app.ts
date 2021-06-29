@@ -49,7 +49,7 @@ export const useAppStore = defineStore({
       this.appConfig = deepMerge(this.appConfig || {}, config);
       Persistent.setLocal(APP_CONFIG_KEY, this.appConfig);
     },
-    async resetAllState() {
+    resetAllState() {
       resetRouter();
       Persistent.clearAll();
     },
