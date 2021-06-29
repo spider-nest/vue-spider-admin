@@ -1,12 +1,12 @@
 import type { UserConfig, ConfigEnv } from "vite";
 
-import type { ViteEnv } from "@/types/env";
+import type { ViteEnv } from "./src/types/env";
 
 import { resolve } from "path";
 import { loadEnv } from "vite";
 import { format } from "date-fns";
 
-import createVitePlugins from "@/build";
+import createVitePlugins from "./src/build";
 import { version } from "./package.json";
 
 const root = process.cwd();
