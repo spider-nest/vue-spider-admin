@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import type { Recordable } from "@/types/common";
 import type { RoleEnum } from "@/enums/roleEnum";
 
 import { defineComponent } from "vue";

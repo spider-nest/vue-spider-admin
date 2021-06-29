@@ -6,7 +6,7 @@ export default function httpGuard(router: Router) {
   const axiosCanceler = new AxiosCanceler();
 
   router.beforeEach(() => {
-    // 跳转路由前清除所有正在请求
+    // 跳转路由前清除所有等待中的请求
     axiosCanceler?.removeAllPending();
 
     return true;

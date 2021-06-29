@@ -35,7 +35,7 @@ const handleViteEnv = (viteEnv): ViteEnv => {
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === "build";
   const viteEnv = handleViteEnv(loadEnv(mode, root));
-  const { VITE_SERVER_PORT, VITE_API_PREFIX } = viteEnv;
+  const { VITE_SERVER_PORT, VITE_API_PREFIX, VITE_APP_SHORTNAME } = viteEnv;
 
   return {
     root,
@@ -84,6 +84,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       __APP_INFO__: {
         version,
         buildTime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+      },
+      __VITE_ENV__: {
+        app_shortname: VITE_APP_SHORTNAME,
       },
     },
     plugins: createVitePlugins(viteEnv, isBuild),

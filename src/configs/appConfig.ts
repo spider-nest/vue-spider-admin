@@ -16,6 +16,9 @@ const appConfig: AppConfig = {
   menuConfig: {
     collapsed: false,
   },
+  transitionConfig: {
+    openLoadingBar: true,
+  },
   openKeepAlive: true,
 };
 
