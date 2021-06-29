@@ -5,8 +5,8 @@ export function getEnvMode(): string {
 }
 
 export function getStoragePrefix(): string {
-  const { app_shortname } = __VITE_ENV__;
-  return `${app_shortname}_${getEnvMode()}`.toUpperCase();
+  const { appShortname } = __VITE_ENV__;
+  return `${appShortname}_${getEnvMode()}`.toUpperCase();
 }
 
 export function getStorageShortname(): string {

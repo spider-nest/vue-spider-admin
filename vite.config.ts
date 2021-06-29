@@ -86,7 +86,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         buildTime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       },
       __VITE_ENV__: {
-        app_shortname: VITE_APP_SHORTNAME,
+        appShortname: VITE_APP_SHORTNAME,
       },
     },
     plugins: createVitePlugins(viteEnv, isBuild),

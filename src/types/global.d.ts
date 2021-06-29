@@ -7,7 +7,7 @@ declare global {
     buildTime: string;
   };
   const __VITE_ENV__: {
-    app_shortname: string;
+    appShortname: string;
   };
 
   declare type Recordable<T = any> = Record<string, T>;
