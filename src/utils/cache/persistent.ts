@@ -24,6 +24,8 @@ interface BasicStore {
   [ROLES_KEY]: string[];
 }
 
+export type BasicKeys = keyof BasicStore;
+
 type LocalStore = BasicStore;
 type SessionStore = BasicStore;
 

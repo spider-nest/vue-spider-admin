@@ -1,7 +1,7 @@
 // 应用配置 key
 export const APP_CONFIG_KEY = "__APP_CONFIG__";
 
-// 令牌 key
+// 用户令牌 key
 export const TOKEN_KEY = "__TOKEN__";
 
 // 用户信息 key

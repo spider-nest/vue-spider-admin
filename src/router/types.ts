@@ -9,6 +9,7 @@ export type Component<T extends any = any> =
   | (() => Promise<typeof import("*.vue")>)
   | (() => Promise<T>);
 
+// 路由自定义数据
 export interface RouteMeta {
   // 标题
   title: string;
@@ -45,4 +46,24 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta"> {
   children?: AppRouteRecordRaw[];
   props?: Recordable;
   fullPath?: string;
+}
+
+// 菜单
+export interface Menu {
+  // 名称
+  name: string;
+  // 图标
+  icon?: string;
+  // 路径
+  path: string;
+  // 是否不可点击
+  disabled?: boolean;
+  // 子菜单
+  children?: Menu[];
+  // 角色信息
+  roles?: RoleEnum[];
+  // 路由自定义数据
+  meta?: Partial<RouteMeta>;
+  // 是否隐藏菜单
+  hideMenu?: boolean;
 }
