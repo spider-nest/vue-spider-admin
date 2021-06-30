@@ -1,4 +1,4 @@
-import type { Router } from "vue-router";
+import type { Router, RouteRecordRaw } from "vue-router";
 
 import { useUserStoreWithout } from "@/store/modules/user";
 import { usePermissionStoreWithout } from "@/store/modules/permission";
@@ -61,6 +61,19 @@ export default function permissionGuard(router: Router) {
       return;
     }
 
-    //todo
+    // 动态添加路由
+    const routes = await permissionStore.buildRoutes();
+    routes.forEach((route) => {
+      router.addRoute(route as unknown as RouteRecordRaw);
+    });
+    permissionStore.setRouteDynamicallyAdded(true);
+
+    // 如果存在重定向，则重定向
+    const redirectPath = (from.query.redirect || to.path) as string;
+    const redirect = decodeURIComponent(redirectPath);
+    const nextData =
+      to.path === redirect ? { ...to, replace: true } : { path: redirect };
+
+    next(nextData);
   });
 }

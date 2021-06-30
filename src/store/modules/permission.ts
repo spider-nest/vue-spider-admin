@@ -4,6 +4,8 @@ import { defineStore } from "pinia";
 
 import { store } from "@/store";
 
+import { useLoadingMessage } from "@/hooks/web/useMessage";
+
 type PermissionCodeList = string[] | number[];
 
 interface PermissionState {
@@ -58,6 +60,37 @@ export const usePermissionStore = defineStore({
       this.permissionCodeList = [];
       this.menuList = [];
       this.buildMenuTime = 0;
+    },
+    async changePermissionCode() {
+      // const permissionCodeList = await getPermissionCode();
+      this.setPermissionCodeList([]);
+    },
+    async buildRoutes() {
+      useLoadingMessage("菜单加载中");
+
+      // let routes: AppRouteRecordRaw[] = [];
+      // let routeList: AppRouteRecordRaw[] = [];
+
+      try {
+        this.changePermissionCode();
+        // routeList = (await getMenuList()) as AppRouteRecordRaw[];
+      } catch (error) {
+        console.error(error);
+      }
+
+      // 动态引入组件
+      // routeList = transformObjToRoute(routeList);
+
+      // 路由转换为菜单结构
+      // const menuList = transformRouteToMenu(routeList);
+      // this.setMenuList(menuList);
+
+      // 将多级路由转换为二级路由
+      // routeList = flatMultipleLevelRoutes(routeList);
+
+      // routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
+
+      // return routes;
     },
   },
 });
