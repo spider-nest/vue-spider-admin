@@ -1,10 +1,21 @@
-import type { Menu } from "@/router/types";
+import type { AppRouteRecordRaw, Menu } from "@/router/types";
 
 import { defineStore } from "pinia";
 
 import { store } from "@/store";
 
+import { PAGE_NOT_FOUND_ROUTE } from "@/router/routes/basic";
+
 import { useLoadingMessage } from "@/hooks/web/useMessage";
+
+import { requestPermissionCodeList } from "@/services/modules/system/user";
+import { requestMenuList } from "@/services/modules/system/menu";
+
+import {
+  transformObjToRoute,
+  flatMultipleLevelRoutes,
+} from "@/router/helper/routeHelper";
+import { transformRouteToMenu } from "@/router/helper/menuHelper";
 
 type PermissionCodeList = string[] | number[];
 
@@ -62,35 +73,35 @@ export const usePermissionStore = defineStore({
       this.buildMenuTime = 0;
     },
     async changePermissionCode() {
-      // const permissionCodeList = await getPermissionCode();
-      this.setPermissionCodeList([]);
+      const permissionCodeList = await requestPermissionCodeList();
+      this.setPermissionCodeList(permissionCodeList);
     },
-    async buildRoutes() {
+    async buildRoutes(): Promise<AppRouteRecordRaw[]> {
       useLoadingMessage("菜单加载中");
 
-      // let routes: AppRouteRecordRaw[] = [];
-      // let routeList: AppRouteRecordRaw[] = [];
+      let routes: AppRouteRecordRaw[] = [];
+      let routeList: AppRouteRecordRaw[] = [];
 
       try {
         this.changePermissionCode();
-        // routeList = (await getMenuList()) as AppRouteRecordRaw[];
+        routeList = (await requestMenuList()) as AppRouteRecordRaw[];
       } catch (error) {
         console.error(error);
       }
 
       // 动态引入组件
-      // routeList = transformObjToRoute(routeList);
+      routeList = transformObjToRoute(routeList);
 
       // 路由转换为菜单结构
-      // const menuList = transformRouteToMenu(routeList);
-      // this.setMenuList(menuList);
+      const menuList = transformRouteToMenu(routeList);
+      this.setMenuList(menuList);
 
       // 将多级路由转换为二级路由
-      // routeList = flatMultipleLevelRoutes(routeList);
+      routeList = flatMultipleLevelRoutes(routeList);
 
-      // routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
+      routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
 
-      // return routes;
+      return routes;
     },
   },
 });

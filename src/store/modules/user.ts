@@ -4,8 +4,10 @@ import type { RoleEnum } from "@/enums/roleEnum";
 import { defineStore } from "pinia";
 
 import { store } from "@/store";
+import { router } from "@/router";
 
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from "@/enums/cacheEnum";
+import { PageEnum } from "@/enums/pageEnum";
 
 import { getAuthCache, setAuthCache } from "@/utils/auth";
 
@@ -65,6 +67,9 @@ export const useUserStore = defineStore({
       this.token = "";
       this.roleList = [];
       this.sessionTimeout = false;
+    },
+    logout(goLogin): void {
+      goLogin && router.push(PageEnum.BASE_LOGIN);
     },
   },
 });

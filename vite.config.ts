@@ -87,6 +87,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
       __VITE_ENV__: {
         appShortname: VITE_APP_SHORTNAME,
+        apiPrefix: VITE_API_PREFIX,
       },
     },
     plugins: createVitePlugins(viteEnv, isBuild),
