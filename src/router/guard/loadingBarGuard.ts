@@ -11,17 +11,12 @@ export default function loadingBarGuard(router: Router) {
 
   router.beforeEach((to) => {
     if (to.meta.loaded) {
-      return true;
+      return;
     }
-
     unref(getLoadingBar) && loadingBar?.start();
-
-    return true;
   });
 
   router.afterEach(() => {
     unref(getLoadingBar) && loadingBar?.finish();
-
-    return true;
   });
 }

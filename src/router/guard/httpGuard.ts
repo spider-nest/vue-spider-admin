@@ -8,7 +8,5 @@ export default function httpGuard(router: Router) {
   router.beforeEach(() => {
     // 跳转路由前清除所有等待中的请求
     axiosCanceler?.removeAllPending();
-
-    return true;
   });
 }

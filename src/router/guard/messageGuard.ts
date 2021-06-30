@@ -7,7 +7,5 @@ export default function messageGuard(router: Router) {
     } catch (error) {
       console.error("message guard error:" + error);
     }
-
-    return true;
   });
 }

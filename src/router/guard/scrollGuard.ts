@@ -6,6 +6,5 @@ export default function scrollGuard(router: Router) {
       // 回到页面顶部
       document.body.scrollTo(0, 0);
     }
-    return true;
   });
 }
