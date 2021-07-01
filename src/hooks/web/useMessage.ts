@@ -1,13 +1,11 @@
 import type { MessageOptions, MessageReactive } from "naive-ui";
 
-import { useMessage as useNaiveMessage } from "naive-ui";
+import { messageRef } from "@/router/guard/messageGuard";
 
 const defaultMessageOptions: MessageOptions = {
   closable: true,
   duration: 3300,
 };
-
-const message = useNaiveMessage();
 
 function createMessageOptions(options?: MessageOptions) {
   return {
@@ -21,7 +19,7 @@ export function useErrorMessage(
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
-  return message.error(content, messageOptions);
+  return messageRef?.value?.error(content, messageOptions);
 }
 
 export function useInfoMessage(
@@ -29,7 +27,7 @@ export function useInfoMessage(
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
-  return message.info(content, messageOptions);
+  return messageRef?.value?.info(content, messageOptions);
 }
 
 export function useLoadingMessage(
@@ -37,7 +35,7 @@ export function useLoadingMessage(
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
-  return message.loading(content, messageOptions);
+  return messageRef?.value?.loading(content, messageOptions);
 }
 
 export function useSuccessMessage(
@@ -45,7 +43,7 @@ export function useSuccessMessage(
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
-  return message.success(content, messageOptions);
+  return messageRef?.value?.success(content, messageOptions);
 }
 
 export function useWarningMessage(
@@ -53,5 +51,5 @@ export function useWarningMessage(
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
-  return message.warning(content, messageOptions);
+  return messageRef?.value?.warning(content, messageOptions);
 }
