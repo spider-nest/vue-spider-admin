@@ -1,10 +1,27 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NConfigProvider, zhCN, dateZhCN } from "naive-ui";
+import {
+  zhCN,
+  dateZhCN,
+  NConfigProvider,
+  NLoadingBarProvider,
+  NMessageProvider,
+  NNotificationProvider,
+  NDialogProvider,
+} from "naive-ui";
+
+import App from "@/pages/App.vue";
 
 export default defineComponent({
-  name: "Spider",
-  components: { NConfigProvider },
+  name: "Provider",
+  components: {
+    NConfigProvider,
+    NLoadingBarProvider,
+    NMessageProvider,
+    NNotificationProvider,
+    NDialogProvider,
+    App,
+  },
   setup() {
     return {
       zhCN,
@@ -16,6 +33,14 @@ export default defineComponent({
 
 <template>
   <NConfigProvider :locale="zhCN" :date-locale="dateZhCN">
-    <RouterView />
+    <NLoadingBarProvider>
+      <NMessageProvider>
+        <NNotificationProvider>
+          <NDialogProvider>
+            <App />
+          </NDialogProvider>
+        </NNotificationProvider>
+      </NMessageProvider>
+    </NLoadingBarProvider>
   </NConfigProvider>
 </template>

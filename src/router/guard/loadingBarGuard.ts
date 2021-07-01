@@ -1,22 +1,22 @@
 import type { Router } from "vue-router";
 
-import { unref } from "vue";
-import { useLoadingBar } from "naive-ui";
+import { unref, ref } from "vue";
 
 import { useTransitionConfig } from "@/hooks/config/useTransitionConfig";
 
+export const loadingBarRef = ref();
+
 export default function loadingBarGuard(router: Router) {
   const { getLoadingBar } = useTransitionConfig();
-  const loadingBar = useLoadingBar();
 
   router.beforeEach((to) => {
     if (to.meta.loaded) {
       return;
     }
-    unref(getLoadingBar) && loadingBar?.start();
+    unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.start();
   });
 
   router.afterEach(() => {
-    unref(getLoadingBar) && loadingBar?.finish();
+    unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.finish();
   });
 }

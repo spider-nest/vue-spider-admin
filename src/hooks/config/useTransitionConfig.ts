@@ -12,7 +12,7 @@ export function useTransitionConfig() {
   };
 
   const getLoadingBar = computed(
-    () => appStore.getTransitionConfig?.openLoadingBar
+    () => !!appStore.getTransitionConfig?.openLoadingBar
   );
 
   return {

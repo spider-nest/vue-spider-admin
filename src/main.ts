@@ -4,6 +4,8 @@ import App from "@/pages/Spider.vue";
 
 import { setupStore } from "@/store";
 
+import { initAppConfigStore } from "@/logics/initAppConfig";
+
 import { router, setupRouter } from "@/router";
 
 import setupRouterGuard from "@/router/guard";
@@ -16,6 +18,8 @@ async function bootstrap() {
   const app = createApp(App);
 
   setupStore(app);
+
+  initAppConfigStore();
 
   setupRouter(app);
 
