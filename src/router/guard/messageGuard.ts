@@ -1,11 +1,12 @@
 import type { Router } from "vue-router";
 
+import { ref } from "vue";
+
+export const messageRef = ref();
+
 export default function messageGuard(router: Router) {
   router.beforeEach(() => {
-    try {
-      //todo 封装并统一配置 message 等信息反馈组件
-    } catch (error) {
-      console.error("message guard error:" + error);
-    }
+    //todo
+    // messageRef.value && messageRef.value.destroyAll();
   });
 }

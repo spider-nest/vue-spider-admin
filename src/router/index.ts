@@ -5,6 +5,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 import { basicRoutes, LoginRoute } from "./routes";
 import { REDIRECT_NAME } from "./constant";
+import setupRouterGuard from "./guard";
 
 const WHITE_NAME_LIST = [LoginRoute.name, REDIRECT_NAME];
 
@@ -25,5 +26,6 @@ export function resetRouter() {
 }
 
 export function setupRouter(app: App<Element>) {
+  setupRouterGuard(router);
   app.use(router);
 }

@@ -29,7 +29,6 @@ export default function checkStatus(status: number, msg: string): void {
     case 403:
       errMessage = "禁止访问";
       break;
-    // 404请求不存在
     case 404:
       errMessage = "找不到资源";
       break;
