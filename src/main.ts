@@ -8,7 +8,7 @@ import { router, setupRouter } from "@/router";
 
 import setupRouterGuard from "@/router/guard";
 
-// import setupDirective from "@/directives";
+import setupDirective from "@/directives";
 
 import "vfonts/Roboto.css";
 
@@ -21,7 +21,7 @@ async function bootstrap() {
 
   setupRouterGuard(router);
 
-  // setupDirective(app);
+  setupDirective(app);
 
   await router.isReady();
 
