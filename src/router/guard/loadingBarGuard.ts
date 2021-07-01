@@ -17,6 +17,6 @@ export default function loadingBarGuard(router: Router) {
   });
 
   router.afterEach(() => {
-    // unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.finish();
+    unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.finish();
   });
 }
