@@ -26,4 +26,8 @@ export interface AppConfig {
   transitionConfig: TransitionConfig;
   // 是否开启 keep-alive
   openKeepAlive: boolean;
+  // 样式命名空间
+  styleNamespace: string;
+  // 样式前缀
+  stylePrefix: string;
 }

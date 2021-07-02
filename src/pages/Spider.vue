@@ -12,6 +12,14 @@ import {
 
 import App from "@/pages/App.vue";
 
+import appConfig from "@/configs/appConfig";
+
+import {
+  createHoverColor,
+  createPressedColor,
+  createSupplColor,
+} from "@/utils/color";
+
 export default defineComponent({
   name: "Provider",
   components: {
@@ -23,16 +31,32 @@ export default defineComponent({
     App,
   },
   setup() {
+    const { themeColor } = appConfig;
+
+    const themeOverrides = {
+      common: {
+        primaryColor: themeColor,
+        primaryColorHover: createHoverColor(themeColor),
+        primaryColorPressed: createPressedColor(themeColor),
+        primaryColorSuppl: createSupplColor(themeColor),
+      },
+    };
+
     return {
       zhCN,
       dateZhCN,
+      themeOverrides,
     };
   },
 });
 </script>
 
 <template>
-  <NConfigProvider :locale="zhCN" :date-locale="dateZhCN">
+  <NConfigProvider
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+    :theme-overrides="themeOverrides"
+  >
     <NLoadingBarProvider>
       <NMessageProvider>
         <NNotificationProvider>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import { useMessage, useLoadingBar } from "naive-ui";
 
 import { messageRef } from "@/router/guard/messageGuard";
@@ -8,13 +8,9 @@ import { loadingBarRef } from "@/router/guard/loadingBarGuard";
 export default defineComponent({
   name: "Spider",
   setup() {
-    const message = useMessage();
-    const loadingBar = useLoadingBar();
+    messageRef.value = useMessage();
 
-    onMounted(() => {
-      messageRef.value = message;
-      loadingBarRef.value = loadingBar;
-    });
+    loadingBarRef.value = useLoadingBar();
 
     return {};
   },
