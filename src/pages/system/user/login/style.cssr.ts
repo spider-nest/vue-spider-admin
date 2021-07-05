@@ -2,6 +2,10 @@ import { c, cB, cE } from "@/utils/cssr";
 
 import BackgroundSvg from "@/assets/background.svg";
 
+import { commonLight } from "@/styles/common";
+
+const { textColor2, marginBase, textColor1 } = commonLight;
+
 export const selector = "login";
 
 export default c([
@@ -21,7 +25,23 @@ export default c([
         backgroundSize: "100%",
         boxSizing: "border-box",
       }),
-      cE("header", {}),
+      cE("header", {
+        textAlign: "center",
+      }),
+      cE("title", {
+        textAlign: "center",
+        fontSize: "22px",
+        fontWeight: 400,
+        color: textColor1,
+      }),
+      cE("logo", {
+        width: "48px",
+        verticalAlign: "middle",
+      }),
+      cE("desc", {
+        margin: `${marginBase / 2}px 0 ${marginBase * 2}px`,
+        color: textColor2,
+      }),
       cE("main", {}),
       cE("footer", {
         position: "absolute",
