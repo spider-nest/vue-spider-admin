@@ -16,7 +16,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NForm v-bind="$attrs">
+  <NForm v-bind="$attrs" :label-placement="labelPlacement">
     <slot />
   </NForm>
 </template>
