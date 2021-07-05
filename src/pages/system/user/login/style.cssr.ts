@@ -42,7 +42,11 @@ export default c([
         margin: `${marginBase / 2}px 0 ${marginBase * 2}px`,
         color: textColor2,
       }),
-      cE("main", {}),
+      cE("main", {
+        maxWidth: "368px",
+        minWidth: "260px",
+        margin: "0 auto",
+      }),
       cE("footer", {
         position: "absolute",
         right: 0,

@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NLayout, NButton } from "naive-ui";
+import { NLayout } from "naive-ui";
 
 import LayoutDefaultFooter from "@/layouts/default/footer/Index.vue";
+import LoginForm from "./Form.vue";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 import useThemeStyle from "@/hooks/web/useThemeStyle";
@@ -17,7 +18,7 @@ const name = "Login";
 
 export default defineComponent({
   name,
-  components: { NLayout, NButton, LayoutDefaultFooter },
+  components: { NLayout, LayoutDefaultFooter, LoginForm },
   setup() {
     const { styleNamespace } = useAppConfig();
 
@@ -45,7 +46,7 @@ export default defineComponent({
           <div :class="`${cE}desc`">前天看到了小兔，昨天是小鹿，今天是你</div>
         </div>
         <div :class="`${cE}main`">
-          <NButton>main</NButton>
+          <LoginForm />
         </div>
         <div :class="`${cE}footer`">
           <LayoutDefaultFooter />
