@@ -4,7 +4,7 @@ import { NFormItem } from "naive-ui";
 
 import SInput from "@/components/input/SInput.vue";
 import SIcon from "@/components/icon/SIcon.vue";
-import SForm from "@/components/form/SForm";
+import SForm from "@/components/form/SForm.vue";
 
 export default defineComponent({
   name: "EmailLoginForm",
