@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NLayout } from "naive-ui";
 
+import SLayout from "@/components/layout/SLayout.vue";
 import LayoutDefaultFooter from "@/layouts/default/footer/Index.vue";
 import LoginForm from "./Form.vue";
 
@@ -18,7 +18,7 @@ const name = "Login";
 
 export default defineComponent({
   name,
-  components: { NLayout, LayoutDefaultFooter, LoginForm },
+  components: { SLayout, LayoutDefaultFooter, LoginForm },
   setup() {
     const { styleNamespace } = useAppConfig();
 
@@ -35,7 +35,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NLayout position="absolute">
+  <SLayout position="absolute">
     <div :class="cB">
       <div :class="`${cE}container`">
         <div :class="`${cE}header`">
@@ -53,5 +53,5 @@ export default defineComponent({
         </div>
       </div>
     </div>
-  </NLayout>
+  </SLayout>
 </template>

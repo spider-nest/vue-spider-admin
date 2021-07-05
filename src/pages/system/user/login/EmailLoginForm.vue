@@ -1,32 +1,32 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NFormItem } from "naive-ui";
 
 import SInput from "@/components/input/SInput.vue";
 import SIcon from "@/components/icon/SIcon.vue";
 import SForm from "@/components/form/SForm.vue";
+import SFormItem from "@/components/form/SFormItem.vue";
 
 export default defineComponent({
   name: "EmailLoginForm",
-  components: { SForm, NFormItem, SInput, SIcon },
+  components: { SForm, SFormItem, SInput, SIcon },
 });
 </script>
 
 <template>
   <SForm>
-    <NFormItem path="email">
+    <SFormItem path="email">
       <SInput>
         <template #prefix>
           <SIcon name="Mail24Regular" />
         </template>
       </SInput>
-    </NFormItem>
-    <NFormItem path="password">
+    </SFormItem>
+    <SFormItem path="password">
       <SInput type="password" :show-password-toggle="true">
         <template #prefix>
           <SIcon name="LockShield24Regular" />
         </template>
       </SInput>
-    </NFormItem>
+    </SFormItem>
   </SForm>
 </template>

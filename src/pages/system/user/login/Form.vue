@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { NTabs, NTabPane } from "naive-ui";
 
+import STabs from "@/components/tabs/STabs.vue";
+import STabPane from "@/components/tabs/STabPane.vue";
 import EmailLoginForm from "./EmailLoginForm.vue";
 import PhoneLoginForm from "./PhoneLoginForm.vue";
 
@@ -12,8 +13,8 @@ const name = "LoginForm";
 export default defineComponent({
   name,
   components: {
-    NTabs,
-    NTabPane,
+    STabs,
+    STabPane,
     EmailLoginForm,
     PhoneLoginForm,
   },
@@ -26,15 +27,15 @@ export default defineComponent({
 </script>
 
 <template>
-  <NTabs
+  <STabs
     :default-value="FormStateEnum.EMAIL_LOGIN"
     justify-content="space-evenly"
   >
-    <NTabPane :name="FormStateEnum.EMAIL_LOGIN" tab="邮箱登入">
+    <STabPane :name="FormStateEnum.EMAIL_LOGIN" tab="邮箱登入">
       <EmailLoginForm />
-    </NTabPane>
-    <NTabPane :name="FormStateEnum.PHONE_LOGIN" tab="手机登入">
+    </STabPane>
+    <STabPane :name="FormStateEnum.PHONE_LOGIN" tab="手机登入">
       <PhoneLoginForm />
-    </NTabPane>
-  </NTabs>
+    </STabPane>
+  </STabs>
 </template>
