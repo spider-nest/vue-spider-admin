@@ -6,7 +6,7 @@ import STabs from "@/components/tabs/STabs.vue";
 import EmailLoginForm from "./EmailLoginForm.vue";
 import PhoneLoginForm from "./PhoneLoginForm.vue";
 
-import { FormStateEnum, useState } from "./useForm";
+import { FormStateEnum } from "./useForm";
 
 const name = "LoginForm";
 
@@ -19,9 +19,7 @@ export default defineComponent({
     PhoneLoginForm,
   },
   setup() {
-    const { getState } = useState();
-
-    return { getState, FormStateEnum };
+    return { FormStateEnum };
   },
 });
 </script>
