@@ -12,7 +12,7 @@ export default defineComponent({
   components: { SForm, SFormItem, SInput, SIcon, SButton },
   inheritAttrs: false,
   setup() {
-    const formRef = ref(null);
+    const formRef = ref();
 
     const formModel = reactive({
       email: "",
@@ -53,7 +53,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <SForm :ref="formRef" :model="formModel" :rules="formRules">
+  <SForm ref="formRef" :model="formModel" :rules="formRules">
     <SFormItem path="email">
       <SInput v-model:value.trim="formModel.email">
         <template #prefix>
