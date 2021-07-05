@@ -29,7 +29,7 @@ export default c([
     "-webkit-font-smoothing": "antialiased",
     "-moz-osx-font-smoothing": "grayscale",
     textRendering: "optimizeLegibility",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#f0f2f5",
   }),
   c("canvas", {
     display: "block",
