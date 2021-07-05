@@ -3,10 +3,6 @@ import type { AppConfig } from "@/types/config";
 import { SessionTimeoutProcessingEnum } from "@/enums/appEnum";
 import { CacheTypeEnum } from "@/enums/cacheEnum";
 
-import { commonLight } from "@/styles/common";
-
-const { infoColor } = commonLight;
-
 import {
   namespace as styleNamespace,
   prefix as stylePrefix,
@@ -15,7 +11,6 @@ import {
 const appConfig: AppConfig = {
   permissionCacheType: CacheTypeEnum.LOCAL,
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum.ROUTE_JUMP,
-  themeColor: infoColor, // #2080f0
   fullContent: false,
   menuConfig: {
     collapsed: false,

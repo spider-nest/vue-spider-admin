@@ -9,16 +9,11 @@ import {
   NNotificationProvider,
   NDialogProvider,
 } from "naive-ui";
+import { IconConfigProvider } from "@vicons/utils";
 
 import App from "@/pages/App.vue";
 
-import appConfig from "@/configs/appConfig";
-
-import {
-  createHoverColor,
-  createPressedColor,
-  createSupplColor,
-} from "@/utils/color";
+import { commonLight } from "@/styles/common";
 
 export default defineComponent({
   name: "Provider",
@@ -28,17 +23,25 @@ export default defineComponent({
     NMessageProvider,
     NNotificationProvider,
     NDialogProvider,
+    IconConfigProvider,
     App,
   },
   setup() {
-    const { themeColor } = appConfig;
+    const {
+      primaryColor,
+      primaryColorHover,
+      primaryColorPressed,
+      primaryColorSuppl,
+      fontSize,
+      textColor1,
+    } = commonLight;
 
     const themeOverrides = {
       common: {
-        primaryColor: themeColor,
-        primaryColorHover: createHoverColor(themeColor),
-        primaryColorPressed: createPressedColor(themeColor),
-        primaryColorSuppl: createSupplColor(themeColor),
+        primaryColor,
+        primaryColorHover,
+        primaryColorPressed,
+        primaryColorSuppl,
       },
     };
 
@@ -46,6 +49,8 @@ export default defineComponent({
       zhCN,
       dateZhCN,
       themeOverrides,
+      fontSize,
+      textColor1,
     };
   },
 });
@@ -61,7 +66,9 @@ export default defineComponent({
       <NMessageProvider>
         <NNotificationProvider>
           <NDialogProvider>
-            <App />
+            <IconConfigProvider :size="fontSize" :color="textColor1">
+              <App />
+            </IconConfigProvider>
           </NDialogProvider>
         </NNotificationProvider>
       </NMessageProvider>

@@ -1,0 +1,23 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Icon } from "@vicons/utils";
+import { Mail24Regular, LockShield24Regular } from "@vicons/fluent";
+
+export default defineComponent({
+  name: "SICon",
+  components: { Icon, Mail24Regular, LockShield24Regular },
+  inheritAttrs: false,
+  props: {
+    name: {
+      type: String,
+      default: undefined,
+    },
+  },
+});
+</script>
+
+<template>
+  <Icon v-if="name">
+    <component :is="name" />
+  </Icon>
+</template>

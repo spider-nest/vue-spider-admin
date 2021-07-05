@@ -38,6 +38,8 @@
     "postinstall": "yarn install:husky"
   },
   "dependencies": {
+    "@vicons/fluent": "^0.10.0",
+    "@vicons/utils": "^0.1.4",
     "@vueuse/core": "^5.0.3",
     "axios": "^0.21.1",
     "crypto-js": "^4.0.0",

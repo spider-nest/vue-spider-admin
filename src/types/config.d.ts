@@ -18,8 +18,6 @@ export interface AppConfig {
   permissionCacheType: CacheTypeEnum;
   // 会话超时处理类型
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum;
-  // 主题颜色
-  themeColor: string;
   // 页面主内容以全屏显示，即不显示菜单和顶部
   fullContent: boolean;
   menuConfig: MenuConfig;
