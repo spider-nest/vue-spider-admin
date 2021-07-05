@@ -2,16 +2,23 @@ import { c } from "@/utils/cssr";
 
 import { commonLight } from "./common";
 
+const {
+  scrollbarWidth,
+  scrollbarHeight,
+  scrollbarThumbBackgroundColor,
+  primaryColorHover,
+} = commonLight;
+
 export default c([
   c(`::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece`, {
     backgroundColor: "transparent",
   }),
   c("::-webkit-scrollbar", {
-    width: commonLight.scrollbarWidth,
-    height: commonLight.scrollbarHeight,
+    width: `${scrollbarWidth}px`,
+    height: `${scrollbarHeight}px`,
   }),
   c(`::-webkit-scrollbar-thumb`, {
-    backgroundColor: commonLight.scrollbarThumbBackgroundColor,
+    backgroundColor: scrollbarThumbBackgroundColor,
     borderRadius: "4px",
   }),
   c("html, body, #spider", {
@@ -34,4 +41,23 @@ export default c([
     maxWidth: "100%",
     maxHeight: "100%",
   }),
+  c(
+    "a",
+    {
+      textDecoration: "none",
+      backgroundColor: "transparent",
+      outline: "none",
+    },
+    [
+      c("&:hover", {
+        color: primaryColorHover,
+      }),
+    ]
+  ),
+  c(
+    "a, area, button, [role='button'], input:not([type='range']), label, select, summary, textarea",
+    {
+      touchAction: "manipulation",
+    }
+  ),
 ]);

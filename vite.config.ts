@@ -7,7 +7,7 @@ import { loadEnv } from "vite";
 import { format } from "date-fns";
 
 import createVitePlugins from "./src/build";
-import { version } from "./package.json";
+import { version, homepage, bugs } from "./package.json";
 
 const root = process.cwd();
 const base = "/";
@@ -35,7 +35,12 @@ const handleViteEnv = (viteEnv): ViteEnv => {
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === "build";
   const viteEnv = handleViteEnv(loadEnv(mode, root));
-  const { VITE_SERVER_PORT, VITE_API_PREFIX, VITE_APP_SHORTNAME } = viteEnv;
+  const {
+    VITE_SERVER_PORT,
+    VITE_API_PREFIX,
+    VITE_APP_SHORTNAME,
+    VITE_APP_NAME,
+  } = viteEnv;
 
   return {
     root,
@@ -83,9 +88,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     define: {
       __APP_INFO__: {
         version,
+        homepage,
+        issues: bugs.url,
         buildTime: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       },
       __VITE_ENV__: {
+        appName: VITE_APP_NAME,
         appShortname: VITE_APP_SHORTNAME,
         apiPrefix: VITE_API_PREFIX,
       },

@@ -4,9 +4,12 @@ declare global {
   // vite define
   const __APP_INFO__: {
     version: string;
+    homepage: string;
+    issues: string;
     buildTime: string;
   };
   const __VITE_ENV__: {
+    appName: string;
     appShortname: string;
     apiPrefix: string;
   };

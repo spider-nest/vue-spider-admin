@@ -2,9 +2,11 @@ import { c, cB, cE } from "@/utils/cssr";
 
 import BackgroundSvg from "@/assets/background.svg";
 
+export const selector = "login";
+
 export default c([
   cB(
-    "login",
+    selector,
     {
       width: "100%",
       height: "100%",
@@ -18,6 +20,15 @@ export default c([
         background: `#fafafc url(${BackgroundSvg}) no-repeat 50%`,
         backgroundSize: "100%",
         boxSizing: "border-box",
+      }),
+      cE("header", {}),
+      cE("main", {}),
+      cE("footer", {
+        position: "absolute",
+        right: 0,
+        bottom: 0,
+        left: 0,
+        textAlign: "center",
       }),
     ]
   ),
