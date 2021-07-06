@@ -7,6 +7,8 @@ import SForm from "@/components/form/SForm.vue";
 import SFormItem from "@/components/form/SFormItem.vue";
 import SButton from "@/components/button/SButton.vue";
 
+import useForm from "@/hooks/web/useForm";
+
 export default defineComponent({
   name: "EmailLoginForm",
   components: { SForm, SFormItem, SInput, SIcon, SButton },
@@ -32,10 +34,12 @@ export default defineComponent({
       },
     };
 
+    const { validate } = useForm(formRef);
+
     const onSubmit = () => {
-      formRef.value.validate((error) => {
-        if (error) {
-          return console.error(error);
+      validate((errors) => {
+        if (errors) {
+          return console.error(errors);
         }
 
         console.log(formModel);

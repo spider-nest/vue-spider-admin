@@ -1,6 +1,8 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { NForm } from "naive-ui";
+
+import useForm from "@/hooks/web/useForm";
 
 export default defineComponent({
   name: "SForm",
@@ -12,11 +14,18 @@ export default defineComponent({
       default: "left",
     },
   },
+  setup() {
+    const formRef = ref();
+
+    const { validate, restoreValidation } = useForm(formRef);
+
+    return { formRef, validate, restoreValidation };
+  },
 });
 </script>
 
 <template>
-  <NForm v-bind="$attrs" :label-placement="labelPlacement">
+  <NForm ref="formRef" v-bind="$attrs" :label-placement="labelPlacement">
     <slot />
   </NForm>
 </template>
