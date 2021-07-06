@@ -1,3 +1,4 @@
+import type { UserInfo } from "@/types/store";
 import type {
   UserLoginFormModel,
   UserLoginResult,
@@ -14,6 +15,12 @@ export function requestUserLogin(formModel: UserLoginFormModel) {
   return SAxios.post<UserLoginResult>({
     url: SystemUserApi.Login,
     params,
+  });
+}
+
+export function requestUserInfo() {
+  return SAxios.get<UserInfo>({
+    url: SystemUserApi.Info,
   });
 }
 

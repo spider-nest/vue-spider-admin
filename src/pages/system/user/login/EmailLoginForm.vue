@@ -8,7 +8,6 @@ import SFormItem from "@/components/form/SFormItem.vue";
 import SButton from "@/components/button/SButton.vue";
 
 import useForm from "@/hooks/web/useForm";
-import { useSuccessMessage } from "@/hooks/web/useMessage";
 
 import { useUserStore } from "@/store/modules/user";
 
@@ -48,9 +47,7 @@ export default defineComponent({
             return console.error(errors);
           }
           const userStore = useUserStore();
-          userStore.emailLogin(toRaw(formModel)).then(() => {
-            useSuccessMessage();
-          });
+          userStore.handleUserLogin(toRaw(formModel));
         })
         .catch((error) => {
           console.error(error);

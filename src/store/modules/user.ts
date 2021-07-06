@@ -12,6 +12,12 @@ import { PageEnum } from "@/enums/pageEnum";
 
 import { getAuthCache, setAuthCache } from "@/utils/auth";
 
+import { useSuccessMessage } from "@/hooks/web/useMessage";
+import {
+  requestUserLogin,
+  requestUserInfo,
+} from "@/services/modules/system/user";
+
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
@@ -72,8 +78,36 @@ export const useUserStore = defineStore({
     logout(goLogin): void {
       goLogin && router.push(PageEnum.BASE_LOGIN);
     },
-    async emailLogin(formModel: UserLoginFormModel): Promise<void> {
-      console.log(formModel);
+    async handleUserInfo() {
+      const userInfo = await requestUserInfo();
+      const { roles } = userInfo;
+      const roleList = roles.map((item) => item.value) as RoleEnum[];
+
+      this.setUserInfo(userInfo);
+      this.setRoleList(roleList);
+
+      return userInfo;
+    },
+    async handleUserLogin(
+      formModel: UserLoginFormModel,
+      successMessage?: string
+    ): Promise<Nullable<UserInfo>> {
+      try {
+        const loginResult = await requestUserLogin(formModel);
+        const { token } = loginResult;
+        this.setToken(token);
+
+        const userInfo = await this.handleUserInfo();
+
+        await router.replace(PageEnum.BASE_HOME);
+
+        useSuccessMessage(successMessage);
+
+        return userInfo;
+      } catch (error) {
+        console.error(error);
+        return Promise.reject(error);
+      }
     },
   },
 });
