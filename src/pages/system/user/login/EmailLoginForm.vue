@@ -36,20 +36,32 @@ export default defineComponent({
 
     const { validate } = useForm(formRef);
 
+    const submitting = ref(false);
     const onSubmit = () => {
-      validate((errors) => {
-        if (errors) {
-          return console.error(errors);
-        }
+      submitting.value = true;
+      validate()
+        .then((errors) => {
+          if (errors) {
+            return console.error(errors);
+          }
 
-        console.log(formModel);
-      });
+          console.log(formModel);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            submitting.value = false;
+          }, 300);
+        });
     };
 
     return {
       formRef,
       formModel,
       formRules,
+      submitting,
       onSubmit,
     };
   },
@@ -77,7 +89,15 @@ export default defineComponent({
       </SInput>
     </SFormItem>
     <SFormItem>
-      <SButton type="primary" :block="true" @click="onSubmit">登入</SButton>
+      <SButton
+        type="primary"
+        :block="true"
+        :loading="submitting"
+        :disabled="submitting"
+        @click="onSubmit"
+      >
+        登入
+      </SButton>
     </SFormItem>
   </SForm>
 </template>
