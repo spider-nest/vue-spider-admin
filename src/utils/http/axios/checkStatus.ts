@@ -8,7 +8,7 @@ import { useErrorMessage } from "@/hooks/web/useMessage";
 
 export default function checkStatus(status: number, msg: string): void {
   const userStore = useUserStoreWithout();
-  let errMessage = "";
+  let errMessage = "未知状态";
 
   switch (status) {
     case 400:

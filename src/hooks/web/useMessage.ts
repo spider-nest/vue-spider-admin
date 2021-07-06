@@ -15,7 +15,7 @@ function createMessageOptions(options?: MessageOptions) {
 }
 
 export function useErrorMessage(
-  content: string | (() => VueNode),
+  content: string | (() => VueNode) = "操作失败",
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
@@ -31,7 +31,7 @@ export function useInfoMessage(
 }
 
 export function useLoadingMessage(
-  content: string | (() => VueNode),
+  content: string | (() => VueNode) = "处理中",
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);
@@ -39,7 +39,7 @@ export function useLoadingMessage(
 }
 
 export function useSuccessMessage(
-  content: string | (() => VueNode),
+  content: string | (() => VueNode) = "操作成功",
   options?: MessageOptions
 ): MessageReactive {
   const messageOptions = createMessageOptions(options);

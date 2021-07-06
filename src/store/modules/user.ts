@@ -1,3 +1,4 @@
+import type { UserLoginFormModel } from "@/services/types/system/user";
 import type { UserInfo } from "@/types/store";
 import type { RoleEnum } from "@/enums/roleEnum";
 
@@ -70,6 +71,9 @@ export const useUserStore = defineStore({
     },
     logout(goLogin): void {
       goLogin && router.push(PageEnum.BASE_LOGIN);
+    },
+    async emailLogin(formModel: UserLoginFormModel): Promise<void> {
+      console.log(formModel);
     },
   },
 });

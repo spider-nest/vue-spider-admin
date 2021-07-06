@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref, reactive, toRaw } from "vue";
 
 import SInput from "@/components/input/SInput.vue";
 import SIcon from "@/components/icon/SIcon.vue";
@@ -8,6 +8,9 @@ import SFormItem from "@/components/form/SFormItem.vue";
 import SButton from "@/components/button/SButton.vue";
 
 import useForm from "@/hooks/web/useForm";
+import { useSuccessMessage } from "@/hooks/web/useMessage";
+
+import { useUserStore } from "@/store/modules/user";
 
 export default defineComponent({
   name: "EmailLoginForm",
@@ -17,8 +20,8 @@ export default defineComponent({
     const formRef = ref();
 
     const formModel = reactive({
-      email: "",
-      password: "",
+      email: "spider",
+      password: "spider",
     });
 
     const formRules = {
@@ -44,8 +47,10 @@ export default defineComponent({
           if (errors) {
             return console.error(errors);
           }
-
-          console.log(formModel);
+          const userStore = useUserStore();
+          userStore.emailLogin(toRaw(formModel)).then(() => {
+            useSuccessMessage();
+          });
         })
         .catch((error) => {
           console.error(error);
@@ -69,7 +74,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <SForm ref="formRef" :model="formModel" :rules="formRules">
+  <SForm
+    ref="formRef"
+    :model="formModel"
+    :rules="formRules"
+    @keypress.enter="onSubmit"
+  >
     <SFormItem path="email">
       <SInput v-model:value.trim="formModel.email">
         <template #prefix>
