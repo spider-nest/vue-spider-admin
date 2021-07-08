@@ -11,5 +11,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <SLayoutAside>LayoutDefaultSidebar</SLayoutAside>
+  <SLayoutAside>LayoutAside</SLayoutAside>
 </template>
