@@ -59,7 +59,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       strictPort: true,
       proxy: {
         [VITE_API_PREFIX]: {
-          target: "http://localhost",
+          target: `http://localhost:${VITE_SERVER_PORT}`,
           changeOrigin: true,
           ws: true,
           secure: false,
