@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 import SLayout from "@/components/layout/SLayout.vue";
 import LayoutPage from "@/layouts/page/Index.vue";
-import LayoutDefaultSidebar from "./sidebar/Index.vue";
+import LayoutDefaultSidebar from "./aside/Index.vue";
 
 export default defineComponent({
   name: "LayoutDefault",
