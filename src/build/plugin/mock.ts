@@ -5,7 +5,7 @@ import { viteMockServe } from "vite-plugin-mock";
 export default function mockPlugin(isBuild: boolean): Plugin {
   return viteMockServe({
     ignore: /^_/,
-    mockPath: "mock",
+    mockPath: "./src/mock",
     localEnabled: !isBuild,
     prodEnabled: isBuild,
     injectCode: `

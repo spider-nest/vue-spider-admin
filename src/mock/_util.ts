@@ -5,6 +5,8 @@ export interface requestParams {
   query: any;
 }
 
+export const apiPrefix = "/api";
+
 export function successfulResult<T = any>(data: T, { message = "ok" } = {}) {
   return {
     code: 0,

@@ -3,10 +3,13 @@ import type { requestParams } from "../_util";
 import { MockMethod } from "vite-plugin-mock";
 
 import { SystemMenuApi } from "../../services/enums/system/menu";
-import { failureResult, successfulResult, getRequestToken } from "../_util";
+import {
+  apiPrefix,
+  failureResult,
+  successfulResult,
+  getRequestToken,
+} from "../_util";
 import { createUserList } from "./user";
-
-const { apiPrefix } = __VITE_ENV__;
 
 const dashboardRoute = {
   path: "/dashboard",
@@ -71,12 +74,12 @@ export default [
     response: (request: requestParams) => {
       const token = getRequestToken(request);
       if (!token) {
-        return failureResult("Invalid token");
+        return failureResult("token 无效");
       }
 
       const user = createUserList().find((item) => item.token === token);
       if (!user) {
-        return failureResult("Invalid user");
+        return failureResult("用户无效");
       }
 
       if (user.userId === 999) {

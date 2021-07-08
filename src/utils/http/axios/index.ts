@@ -36,12 +36,12 @@ const transform: AxiosTransform = {
       throw new Error("请求失败");
     }
 
-    const { code, result, message } = data;
+    const { code, message } = data;
 
     const hasSuccess =
       data && Reflect.has(data, "code") && code === ResultEnum.SUCCESS;
     if (hasSuccess) {
-      return result;
+      return data.data;
     }
 
     let timeoutMsg = "";

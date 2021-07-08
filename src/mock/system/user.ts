@@ -3,20 +3,26 @@ import type { requestParams } from "../_util";
 import { MockMethod } from "vite-plugin-mock";
 
 import { SystemUserApi } from "../../services/enums/system/user";
-import { failureResult, successfulResult, getRequestToken } from "../_util";
-
-const { apiPrefix } = __VITE_ENV__;
+import {
+  apiPrefix,
+  failureResult,
+  successfulResult,
+  getRequestToken,
+} from "../_util";
 
 export function createUserList() {
   return [
     {
       userId: 999,
       account: "spider",
-      realName: "cnguu",
+      email: "spider",
+      phone: 123456789012,
+      code: "spider",
+      realName: "spider",
       avatar:
         "https://cdn.jsdelivr.net/gh/cnguu/pic@master/20171231/logo128.png",
       desc: "administrator",
-      password: "123456",
+      password: "spider",
       token: "token-administrator",
       roles: [
         {
@@ -28,11 +34,14 @@ export function createUserList() {
     {
       userId: 1000,
       account: "test",
-      password: "123456",
+      email: "test",
+      phone: 123456789012,
+      code: "test",
       realName: "test user",
       avatar:
         "https://cdn.jsdelivr.net/gh/cnguu/pic@master/20171231/logo128.png",
       desc: "tester",
+      password: "test",
       token: "token-test",
       roles: [
         {
@@ -58,12 +67,14 @@ export default [
     timeout: 200,
     method: "post",
     response: ({ body }: requestParams) => {
-      const { account, password } = body;
-      const user = createUserList().find(
-        (item) => item.account === account && password === item.password
+      const { email, password, phone, code } = body;
+      const user = createUserList().find((item) =>
+        email
+          ? item.email === email && password === item.password
+          : item.phone === phone && code
       );
       if (!user) {
-        return failureResult("Incorrect account or password");
+        return failureResult("帐户或密码不正确");
       }
 
       const {
@@ -92,12 +103,12 @@ export default [
     response: (request: requestParams) => {
       const token = getRequestToken(request);
       if (!token) {
-        return failureResult("Invalid token");
+        return failureResult("token 无效");
       }
 
       const user = createUserList().find((item) => item.token === token);
       if (!user) {
-        return failureResult("Invalid user");
+        return failureResult("用户无效");
       }
 
       return successfulResult(user);
@@ -110,12 +121,12 @@ export default [
     response: (request: requestParams) => {
       const token = getRequestToken(request);
       if (!token) {
-        return failureResult("Invalid token");
+        return failureResult("token 无效");
       }
 
       const user = createUserList().find((item) => item.token === token);
       if (!user) {
-        return failureResult("Invalid user");
+        return failureResult("用户无效");
       }
 
       const codeList = createCodeList(user.userId);

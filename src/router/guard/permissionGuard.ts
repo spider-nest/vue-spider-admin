@@ -15,8 +15,16 @@ export default function permissionGuard(router: Router) {
   const permissionStore = usePermissionStoreWithout();
 
   router.beforeEach(async (to, from, next) => {
-    // 登入跳到 404 页面时，重定向到主页
+    const token = userStore.getToken;
+
+    // 登入后跳到 404 页面时，重定向到主页
     if (from.path === LOGIN_PATH && to.name === PAGE_NOT_FOUND_ROUTE.name) {
+      next(PageEnum.BASE_HOME);
+      return;
+    }
+
+    // 已登入时，访问登入页，重定向到主页
+    if (token && to.path === LOGIN_PATH) {
       next(PageEnum.BASE_HOME);
       return;
     }
@@ -26,8 +34,6 @@ export default function permissionGuard(router: Router) {
       next();
       return;
     }
-
-    const token = userStore.getToken;
 
     if (!token) {
       // 路由忽略权限校验
