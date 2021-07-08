@@ -70,29 +70,29 @@ const transform: AxiosTransform = {
 
     const params = config.params || {};
     if (config.method?.toUpperCase() === RequestEnum.GET) {
-      if (!isString(params)) {
+      if (isString(params)) {
+        // 兼容 restful 风格
+        config.url = `${config.url}${params}${joinTimestamp(joinTime, true)}`;
+        config.params = undefined;
+      } else {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据
         config.params = Object.assign(
           params || {},
           joinTimestamp(joinTime, false)
         );
-      } else {
-        // 兼容 restful 风格
-        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
-        config.params = undefined;
       }
     } else {
-      if (!isString(params)) {
+      if (isString(params)) {
+        // 兼容 restful 风格
+        config.url = config.url + params;
+        config.params = undefined;
+      } else {
         formatDate && formatRequestDate(params);
         config.data = params;
         config.params = undefined;
         if (joinParamsToUrl) {
           config.url = httpBuildQuery(config.url as string, config.data);
         }
-      } else {
-        // 兼容 restful 风格
-        config.url = config.url + params;
-        config.params = undefined;
       }
     }
 

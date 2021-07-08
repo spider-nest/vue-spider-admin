@@ -2,6 +2,8 @@ import type { Ref } from "vue";
 import type { FormInst } from "naive-ui";
 import type { RuleItem, ErrorList } from "async-validator";
 
+import { unref } from "vue";
+
 type FormValidateCallback = (errors?: ErrorList[]) => void;
 
 type ValidationTrigger = "input" | "change" | "blur" | "focus";
@@ -31,7 +33,7 @@ export default function useForm(formRef: Ref): FormInst {
     validateCallback?: FormValidateCallback,
     shouldRuleBeApplied: ApplyRule = () => true
   ): Promise<void> =>
-    formRef.value.validate(validateCallback, shouldRuleBeApplied);
+    unref(formRef).validate(validateCallback, shouldRuleBeApplied);
 
   const restoreValidation = (): void => formRef.value.restoreValidation();
 

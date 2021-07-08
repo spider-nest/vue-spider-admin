@@ -41,22 +41,16 @@ export default defineComponent({
     const submitting = ref(false);
     const onSubmit = () => {
       submitting.value = true;
-      validate()
-        .then((errors) => {
-          if (errors) {
-            return console.error(errors);
-          }
-          const userStore = useUserStore();
-          userStore.handleUserLogin(toRaw(formModel));
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          setTimeout(() => {
-            submitting.value = false;
-          }, 300);
-        });
+      validate((errors) => {
+        if (errors) {
+          return console.error(errors);
+        }
+        const userStore = useUserStore();
+        userStore.handleUserLogin(toRaw(formModel));
+        setTimeout(() => {
+          submitting.value = false;
+        }, 300);
+      });
     };
 
     return {

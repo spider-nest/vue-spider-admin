@@ -6,24 +6,24 @@ import type {
 
 import { SystemUserApi } from "@/services/enums/system/user";
 
-import SAxios from "@/utils/http/axios";
+import defaultHttp from "@/utils/http/axios";
 import { pickByValid } from "@/utils/object";
 
 export function requestUserLogin(formModel: UserLoginFormModel) {
   const params = pickByValid(formModel, ["email", "password", "phone", "code"]);
 
-  return SAxios.post<UserLoginResult>({
+  return defaultHttp.post<UserLoginResult>({
     url: SystemUserApi.Login,
     params,
   });
 }
 
 export function requestUserInfo() {
-  return SAxios.get<UserInfo>({
+  return defaultHttp.get<UserInfo>({
     url: SystemUserApi.Info,
   });
 }
 
 export function requestPermissionCodeList() {
-  return SAxios.get<string[]>({ url: SystemUserApi.CodeList });
+  return defaultHttp.get<string[]>({ url: SystemUserApi.CodeList });
 }
