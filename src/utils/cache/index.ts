@@ -1,7 +1,6 @@
-import {
-  createStorage as createStorageCache,
-  CreateStorageParams,
-} from "./storageCache";
+import type { CreateStorageParams } from "./storageCache";
+
+import { createStorage as createStorageCache } from "./storageCache";
 
 import { DEFAULT_CACHE_TIME } from "@/configs/encryptionConfig";
 

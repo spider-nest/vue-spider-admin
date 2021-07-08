@@ -86,3 +86,36 @@ export default class Persistent {
     localMemory.clear();
   }
 }
+
+function initPersistentMemory() {
+  const localCache = ls.get(APP_LOCAL_CACHE_KEY);
+  const sessionCache = ss.get(APP_SESSION_CACHE_KEY);
+  localCache && localMemory.resetCache(localCache);
+  sessionCache && sessionMemory.resetCache(sessionCache);
+}
+
+function storageChange(e: any) {
+  const { key, nv, ov } = e;
+
+  if (!key) {
+    Persistent.clearAll();
+    return;
+  }
+
+  if (!!nv && !!ov) {
+    if (key === APP_LOCAL_CACHE_KEY) {
+      Persistent.clearLocal();
+    } else if (key === APP_SESSION_CACHE_KEY) {
+      Persistent.clearSession();
+    }
+  }
+}
+
+window.addEventListener("beforeunload", () => {
+  ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+  ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
+});
+
+window.addEventListener("storage", storageChange);
+
+initPersistentMemory();
