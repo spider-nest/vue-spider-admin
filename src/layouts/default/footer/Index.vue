@@ -13,10 +13,9 @@ const name = "LayoutDefaultFooter";
 export default defineComponent({
   name,
   setup() {
-    const { styleNamespace } = useAppConfig();
-
     useThemeStyle(name, style);
 
+    const { styleNamespace } = useAppConfig();
     const cB = `${styleNamespace}-${selector}`;
     const cE = `${cB}${elementPrefix}`;
 

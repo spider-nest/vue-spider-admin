@@ -1,19 +1,43 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SLayoutAside, SDivider } from "@/components";
+import {
+  SLayoutAside,
+  SLayoutHeader,
+  SLayout,
+  SLayoutContent,
+} from "@/components";
+
+import useAppConfig from "@/hooks/config/useAppConfig";
+import useThemeStyle from "@/hooks/web/useThemeStyle";
+
+import { elementPrefix } from "@/utils/cssr";
+
+import style, { selector } from "./style.cssr";
+
+const name = "LayoutDefaultSidebar";
 
 export default defineComponent({
-  name: "LayoutDefaultSidebar",
-  components: { SLayoutAside, SDivider },
+  name,
+  components: { SLayoutAside, SLayoutHeader, SLayout, SLayoutContent },
   inheritAttrs: false,
+  setup() {
+    useThemeStyle(name, style);
+
+    const { styleNamespace } = useAppConfig();
+    const cB = `${styleNamespace}-${selector}`;
+    const cE = `${cB}${elementPrefix}`;
+
+    return { cB, cE };
+  },
 });
 </script>
 
 <template>
   <SLayoutAside>
-    <div>LOGO</div>
-    <SDivider />
-    <div>MENU</div>
+    <SLayout>
+      <SLayoutHeader>LOGO</SLayoutHeader>
+      <SLayoutContent>MENU</SLayoutContent>
+    </SLayout>
   </SLayoutAside>
 </template>

@@ -10,7 +10,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <NDivider v-bind="$attrs">
+  <NDivider v-if="$slots.default" v-bind="$attrs">
     <slot />
   </NDivider>
+  <NDivider v-else v-bind="$attrs" />
 </template>

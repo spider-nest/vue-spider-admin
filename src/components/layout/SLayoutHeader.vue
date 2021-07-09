@@ -6,11 +6,17 @@ export default defineComponent({
   name: "SLayoutHeader",
   components: { NLayoutHeader },
   inheritAttrs: false,
+  props: {
+    bordered: {
+      type: Boolean,
+      default: true,
+    },
+  },
 });
 </script>
 
 <template>
-  <NLayoutHeader v-bind="$attrs">
+  <NLayoutHeader v-bind="$attrs" :bordered="bordered">
     <slot />
   </NLayoutHeader>
 </template>
