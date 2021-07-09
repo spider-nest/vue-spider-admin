@@ -1,11 +1,12 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import {
   SLayoutAside,
   SLayoutHeader,
   SLayout,
   SLayoutContent,
+  SIcon,
 } from "@/components";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
@@ -19,7 +20,7 @@ const name = "LayoutDefaultSidebar";
 
 export default defineComponent({
   name,
-  components: { SLayoutAside, SLayoutHeader, SLayout, SLayoutContent },
+  components: { SLayoutAside, SLayoutHeader, SLayout, SLayoutContent, SIcon },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -30,16 +31,27 @@ export default defineComponent({
 
     const { appName } = __VITE_ENV__;
 
-    return { cB, cE, appName };
+    const collapsed = ref(false);
+    const handleCollapse = () => {
+      collapsed.value = !collapsed.value;
+    };
+
+    return { cB, cE, appName, collapsed, handleCollapse };
   },
 });
 </script>
 
 <template>
-  <SLayoutAside :class="cB">
+  <SLayoutAside :class="cB" :collapsed="collapsed">
     <SLayout :class="`${cE}container`">
       <SLayoutHeader :class="`${cE}header`">
-        <span>{{ appName }}</span>
+        <SIcon
+          :class="`${cE}collapse`"
+          name="Glance24Regular"
+          size="24"
+          @click="handleCollapse"
+        />
+        <span v-show="!collapsed" :class="`${cE}title`">{{ appName }}</span>
       </SLayoutHeader>
       <SLayoutContent :class="`${cE}menu`">MENU</SLayoutContent>
     </SLayout>

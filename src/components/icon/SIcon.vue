@@ -1,11 +1,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Icon } from "@vicons/utils";
-import { Mail24Regular, LockShield24Regular } from "@vicons/fluent";
+import {
+  Mail24Regular,
+  LockShield24Regular,
+  Glance24Regular,
+} from "@vicons/fluent";
 
 export default defineComponent({
   name: "SICon",
-  components: { Icon, Mail24Regular, LockShield24Regular },
+  components: { Icon, Mail24Regular, LockShield24Regular, Glance24Regular },
   inheritAttrs: false,
   props: {
     name: {
@@ -17,7 +21,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Icon v-if="name">
+  <Icon v-if="name" v-bind="$attrs">
     <component :is="name" :key="name" />
   </Icon>
 </template>

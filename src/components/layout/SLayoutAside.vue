@@ -15,6 +15,14 @@ export default defineComponent({
       type: String,
       default: "width",
     },
+    collapsedWidth: {
+      type: Number,
+      default: 56,
+    },
+    width: {
+      type: Number,
+      default: 252,
+    },
   },
 });
 </script>
@@ -24,6 +32,8 @@ export default defineComponent({
     v-bind="$attrs"
     :bordered="bordered"
     :collapse-mode="collapseMode"
+    :collapsed-width="collapsedWidth"
+    :width="width"
   >
     <slot />
   </NLayoutSider>
