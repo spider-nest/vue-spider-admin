@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, toRaw } from "vue";
+import { defineComponent, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import { SMenu } from "@/components";
 
@@ -18,15 +19,18 @@ export default defineComponent({
     },
   },
   setup() {
+    const { currentRoute } = useRouter();
+    const value = ref("//todo");
+    value.value = currentRoute.value.path;
+
     const permissionStore = usePermissionStore();
     const options = permissionStore.getMenuList;
-    console.log(toRaw(options));
 
-    return { options };
+    return { value, options };
   },
 });
 </script>
 
 <template>
-  <SMenu :collapsed="collapsed" :options="options" />
+  <SMenu v-model:value="value" :collapsed="collapsed" :options="options" />
 </template>

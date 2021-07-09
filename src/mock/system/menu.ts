@@ -16,7 +16,7 @@ const dashboardRoute = {
   name: "DashboardAnalysis",
   component: "/dashboard/analysis/Index",
   meta: {
-    icon: "",
+    icon: "VehicleCar24Regular",
     title: "分析页",
   },
 };
@@ -27,7 +27,7 @@ const systemRoute = {
   component: "LAYOUT",
   redirect: "/system/account",
   meta: {
-    icon: "",
+    icon: "VehicleCar24Regular",
     title: "系统管理",
   },
   children: [

@@ -5,11 +5,18 @@ import {
   Mail24Regular,
   LockShield24Regular,
   Glance24Regular,
+  VehicleCar24Regular,
 } from "@vicons/fluent";
 
 export default defineComponent({
   name: "SICon",
-  components: { Icon, Mail24Regular, LockShield24Regular, Glance24Regular },
+  components: {
+    Icon,
+    Mail24Regular,
+    LockShield24Regular,
+    Glance24Regular,
+    VehicleCar24Regular,
+  },
   inheritAttrs: false,
   props: {
     name: {
