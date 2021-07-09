@@ -1,7 +1,5 @@
 import type { RouteRecordRaw, RouteMeta } from "vue-router";
 
-import type { RoleEnum } from "@/enums/roleEnum";
-
 import { defineComponent } from "vue";
 
 type Component<T extends any = any> =
@@ -16,26 +14,25 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta"> {
   component?: Component | string;
   components?: Component;
   children?: AppRouteRecordRaw[];
-  props?: Recordable;
-  fullPath?: string;
 }
 
 // 菜单
 export interface Menu {
-  // 名称
-  name: string;
-  // 图标
-  icon?: string;
-  // 路径
-  path: string;
-  // 是否不可点击
+  // naive-ui
+  key: string | number;
   disabled?: boolean;
+  icon?: () => VueNode;
+  extra?: string | (() => VueNode);
+  label: string | (() => VueNode);
+
   // 子菜单
   children?: Menu[];
-  // 角色信息
-  roles?: RoleEnum[];
   // 路由自定义数据
   meta?: Partial<RouteMeta>;
-  // 是否隐藏菜单
+  // 名称
+  name: string;
+  // 是否隐藏
   hideMenu?: boolean;
+  // 路径
+  path: string;
 }

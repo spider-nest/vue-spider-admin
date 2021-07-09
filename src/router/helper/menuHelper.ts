@@ -32,17 +32,28 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
 
   const list = treeMap(routeList, {
     conversion: (node: AppRouteRecordRaw) => {
-      const { meta: { title, hideMenu = false } = {} } = node;
+      const {
+        meta: {
+          disabled = false,
+          icon,
+          extra,
+          label,
+          title,
+          hideMenu = false,
+        } = {},
+      } = node;
 
       return {
-        ...(node.meta || {}),
-        meta: node.meta,
-        name: title,
+        disabled,
+        icon,
+        extra,
+        label,
+        name: title || label,
         hideMenu,
         path: node.path,
       };
     },
-  });
+  }) as Menu[];
 
   joinParentPath(list);
 

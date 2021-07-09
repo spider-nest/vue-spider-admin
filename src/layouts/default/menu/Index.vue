@@ -1,7 +1,9 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, toRaw } from "vue";
 
 import { SMenu } from "@/components";
+
+import { usePermissionStore } from "@/store/modules/permission";
 
 const name = "LayoutDefaultMenu";
 
@@ -15,9 +17,16 @@ export default defineComponent({
       default: false,
     },
   },
+  setup() {
+    const permissionStore = usePermissionStore();
+    const options = permissionStore.getMenuList;
+    console.log(toRaw(options));
+
+    return { options };
+  },
 });
 </script>
 
 <template>
-  <SMenu :collapsed="collapsed" />
+  <SMenu :collapsed="collapsed" :options="options" />
 </template>
