@@ -28,4 +28,7 @@ declare global {
   // vue
   declare type PropType<T> = VuePropType<T>;
   declare type VueNode = VNodeChild | JSX.Element;
+
+  // naive-ui
+  declare type NaiveFormLabelPlacement = "left" | "top";
 }

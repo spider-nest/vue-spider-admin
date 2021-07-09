@@ -1,11 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, toRaw } from "vue";
 
-import SInput from "@/components/input/SInput.vue";
-import SIcon from "@/components/icon/SIcon.vue";
-import SForm from "@/components/form/SForm.vue";
-import SFormItem from "@/components/form/SFormItem.vue";
-import SButton from "@/components/button/SButton.vue";
+import { SInput, SIcon, SForm, SFormItem, SButton } from "@/components";
 
 import useForm from "@/hooks/web/useForm";
 

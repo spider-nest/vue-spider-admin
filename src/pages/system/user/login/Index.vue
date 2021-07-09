@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import SLayout from "@/components/layout/SLayout.vue";
+import { SLayout } from "@/components";
 import LayoutDefaultFooter from "@/layouts/default/footer/Index.vue";
 import LoginForm from "./Form.vue";
 

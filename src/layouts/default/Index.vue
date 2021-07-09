@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import SLayout from "@/components/layout/SLayout.vue";
+import { SLayout } from "@/components";
 import LayoutPage from "@/layouts/page/Index.vue";
 import LayoutDefaultSidebar from "./aside/Index.vue";
 

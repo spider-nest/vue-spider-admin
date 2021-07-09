@@ -10,7 +10,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     labelPlacement: {
-      type: String,
+      type: String as PropType<NaiveFormLabelPlacement>,
       default: "left",
     },
   },

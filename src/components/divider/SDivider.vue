@@ -1,15 +1,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
-import { SLayout } from "@/components";
+import { NDivider } from "naive-ui";
 
 export default defineComponent({
-  name: "LayoutPage",
-  components: { SLayout },
+  name: "SDivider",
+  components: { NDivider },
   inheritAttrs: false,
 });
 </script>
 
 <template>
-  <SLayout>LayoutPage</SLayout>
+  <NDivider v-bind="$attrs">
+    <slot />
+  </NDivider>
 </template>

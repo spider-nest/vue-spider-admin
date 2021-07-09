@@ -1,15 +1,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import SLayoutAside from "@/components/layout/SLayoutAside.vue";
+import { SLayoutAside, SDivider } from "@/components";
 
 export default defineComponent({
   name: "LayoutDefaultSidebar",
-  components: { SLayoutAside },
+  components: { SLayoutAside, SDivider },
   inheritAttrs: false,
 });
 </script>
 
 <template>
-  <SLayoutAside>LayoutAside</SLayoutAside>
+  <SLayoutAside>
+    <div>LOGO</div>
+    <SDivider />
+    <div>MENU</div>
+  </SLayoutAside>
 </template>

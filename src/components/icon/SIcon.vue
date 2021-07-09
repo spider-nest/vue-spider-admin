@@ -18,6 +18,6 @@ export default defineComponent({
 
 <template>
   <Icon v-if="name">
-    <component :is="name" />
+    <component :is="name" :key="name" />
   </Icon>
 </template>

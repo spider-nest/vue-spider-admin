@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 import { NTabPane } from "naive-ui";
 
-import STabs from "@/components/tabs/STabs.vue";
+import { STabs } from "@/components";
 import EmailLoginForm from "./EmailLoginForm.vue";
 import PhoneLoginForm from "./PhoneLoginForm.vue";
 
