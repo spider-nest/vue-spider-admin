@@ -8,6 +8,7 @@ import {
   SLayoutContent,
   SIcon,
 } from "@/components";
+import LayoutDefaultMenu from "@/layouts/default/menu/Index.vue";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 import useThemeStyle from "@/hooks/web/useThemeStyle";
@@ -16,11 +17,18 @@ import { elementPrefix } from "@/utils/cssr";
 
 import style, { selector } from "./style.cssr";
 
-const name = "LayoutDefaultSidebar";
+const name = "LayoutDefaultAside";
 
 export default defineComponent({
   name,
-  components: { SLayoutAside, SLayoutHeader, SLayout, SLayoutContent, SIcon },
+  components: {
+    SLayoutAside,
+    SLayoutHeader,
+    SLayout,
+    SLayoutContent,
+    SIcon,
+    LayoutDefaultMenu,
+  },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -53,7 +61,9 @@ export default defineComponent({
         />
         <span v-show="!collapsed" :class="`${cE}title`">{{ appName }}</span>
       </SLayoutHeader>
-      <SLayoutContent :class="`${cE}menu`">MENU</SLayoutContent>
+      <SLayoutContent :class="`${cE}menu`">
+        <LayoutDefaultMenu :collapsed="collapsed" />
+      </SLayoutContent>
     </SLayout>
   </SLayoutAside>
 </template>
