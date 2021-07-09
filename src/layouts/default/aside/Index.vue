@@ -28,16 +28,20 @@ export default defineComponent({
     const cB = `${styleNamespace}-${selector}`;
     const cE = `${cB}${elementPrefix}`;
 
-    return { cB, cE };
+    const { appName } = __VITE_ENV__;
+
+    return { cB, cE, appName };
   },
 });
 </script>
 
 <template>
-  <SLayoutAside>
-    <SLayout>
-      <SLayoutHeader>LOGO</SLayoutHeader>
-      <SLayoutContent>MENU</SLayoutContent>
+  <SLayoutAside :class="cB">
+    <SLayout :class="`${cE}container`">
+      <SLayoutHeader :class="`${cE}header`">
+        <span>{{ appName }}</span>
+      </SLayoutHeader>
+      <SLayoutContent :class="`${cE}menu`">MENU</SLayoutContent>
     </SLayout>
   </SLayoutAside>
 </template>

@@ -40,7 +40,7 @@ export default defineComponent({
         <div :class="`${cE}header`">
           <div :class="`${cE}title`">
             <img :class="`${cE}logo`" :src="LogoPng" alt="logo" />
-            {{ appName }}
+            <span>{{ appName }}</span>
           </div>
           <div :class="`${cE}desc`">前天看到了小兔，昨天是小鹿，今天是你</div>
         </div>
