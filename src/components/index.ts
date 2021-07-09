@@ -16,4 +16,6 @@ export {
   SLayoutHeader,
 } from "./layout";
 
+export { SMenu } from "./menu";
+
 export { STabs, STabPane } from "./tabs";
