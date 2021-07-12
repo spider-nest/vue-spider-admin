@@ -7,7 +7,6 @@ import { SIcon } from "@/components";
 
 import { treeMap } from "@/utils/helper/treeHelper";
 import { isUrl } from "@/utils/is";
-import { generateId } from "@/utils/math";
 
 function joinParentPath(menus: Menu[], parentPath = "") {
   for (let index = 0; index < menus.length; index++) {
@@ -17,7 +16,7 @@ function joinParentPath(menus: Menu[], parentPath = "") {
       menu.key = path;
       menu.path = path;
     } else {
-      menu.key = generateId();
+      menu.key = menu.path;
     }
     if (menu?.children?.length) {
       joinParentPath(menu.children, menu.path);
@@ -48,7 +47,7 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
 
       return {
         disabled,
-        icon: icon ? () => h(SIcon, { name: icon }) : null,
+        icon: icon ? () => h(SIcon as any, { name: icon }) : null,
         extra,
         label: title,
         hideMenu,

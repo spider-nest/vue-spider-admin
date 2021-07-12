@@ -19,18 +19,27 @@ export default defineComponent({
     },
   },
   setup() {
-    const { currentRoute } = useRouter();
-    const value = ref("//todo");
-    value.value = currentRoute.value.path;
+    const router = useRouter();
+
+    const value = ref(router.currentRoute.value.path);
 
     const permissionStore = usePermissionStore();
     const options = permissionStore.getMenuList;
 
-    return { value, options };
+    const onUpdateValue = (_, item) => {
+      router.push({ path: item.path });
+    };
+
+    return { value, options, onUpdateValue };
   },
 });
 </script>
 
 <template>
-  <SMenu v-model:value="value" :collapsed="collapsed" :options="options" />
+  <SMenu
+    v-model:value="value"
+    :collapsed="collapsed"
+    :options="options"
+    @update:value="onUpdateValue"
+  />
 </template>
