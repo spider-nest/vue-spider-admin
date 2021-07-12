@@ -24,9 +24,7 @@ export default defineComponent({
     const value = ref(router.currentRoute.value.path);
 
     const permissionStore = usePermissionStore();
-    const options = permissionStore.getMenuList.filter(
-      (option) => option.hideMenu !== true
-    );
+    const options = permissionStore.getMenuList;
 
     return { value, options };
   },
