@@ -10,7 +10,13 @@ type Component<T extends any = any> =
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta"> {
   name: string;
-  meta: RouteMeta;
+  meta: RouteMeta & {
+    disabled?: boolean;
+    icon?: string;
+    extra?: string;
+    title?: string;
+    hideMenu?: boolean;
+  };
   component?: Component | string;
   components?: Component;
   children?: AppRouteRecordRaw[];

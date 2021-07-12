@@ -24,22 +24,15 @@ export default defineComponent({
     const value = ref(router.currentRoute.value.path);
 
     const permissionStore = usePermissionStore();
-    const options = permissionStore.getMenuList;
+    const options = permissionStore.getMenuList.filter(
+      (option) => option.hideMenu !== true
+    );
 
-    const onUpdateValue = (_, item) => {
-      router.push({ path: item.path });
-    };
-
-    return { value, options, onUpdateValue };
+    return { value, options };
   },
 });
 </script>
 
 <template>
-  <SMenu
-    v-model:value="value"
-    :collapsed="collapsed"
-    :options="options"
-    @update:value="onUpdateValue"
-  />
+  <SMenu v-model:value="value" :collapsed="collapsed" :options="options" />
 </template>

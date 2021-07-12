@@ -1,6 +1,6 @@
 import type { AppRouteRecordRaw, Menu } from "@/router/types";
 
-import { h } from "vue";
+import { RouterLink } from "vue-router";
 import { cloneDeep } from "lodash-es";
 
 import { SIcon } from "@/components";
@@ -11,15 +11,20 @@ import { isUrl } from "@/utils/is";
 function joinParentPath(menus: Menu[], parentPath = "") {
   for (let index = 0; index < menus.length; index++) {
     const menu = menus[index];
-    if (!(menu.path.startsWith("/") || isUrl(menu.path))) {
-      const path = `${parentPath}/${menu.path}`;
-      menu.key = path;
-      menu.path = path;
+    const { path, children, label } = menu;
+
+    if (!(path.startsWith("/") || isUrl(path))) {
+      const realPath = `${parentPath}/${path}`;
+      menu.key = realPath;
+      menu.path = realPath;
     } else {
-      menu.key = menu.path;
+      menu.key = path;
     }
-    if (menu?.children?.length) {
-      joinParentPath(menu.children, menu.path);
+
+    if (children?.length) {
+      joinParentPath(children, path);
+    } else {
+      menu.label = () => <RouterLink to={menu.path}>{label}</RouterLink>;
     }
   }
 }
@@ -41,18 +46,21 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
 
   const list = treeMap(routeList, {
     conversion: (node: AppRouteRecordRaw) => {
+      const menu: Recordable = {};
+
       const {
         meta: { disabled = false, icon, extra, title, hideMenu = false } = {},
+        path,
       } = node;
 
-      return {
-        disabled,
-        icon: icon ? () => h(SIcon as any, { name: icon }) : null,
-        extra,
-        label: title,
-        hideMenu,
-        path: node.path,
-      };
+      menu.disabled = disabled;
+      menu.icon = icon ? () => <SIcon name={icon} /> : null;
+      menu.extra = extra;
+      menu.label = title;
+      menu.hideMenu = hideMenu;
+      menu.path = path;
+
+      return menu;
     },
   }) as Menu[];
 
