@@ -1,3 +1,5 @@
+export { SBreadcrumb, SBreadcrumbItem } from "./breadcrumb";
+
 export { SButton } from "./button";
 
 export { SDivider } from "./divider";

@@ -57,6 +57,7 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
       menu.icon = icon ? () => <SIcon name={icon} /> : null;
       menu.extra = extra;
       menu.label = title;
+      menu.name = title;
       menu.hideMenu = hideMenu;
       menu.path = path;
 
