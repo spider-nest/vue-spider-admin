@@ -6,7 +6,7 @@ import fadeInTransition from "@/styles/transitions/fade-in.cssr";
 
 export const selector = "page-content";
 
-const { baseColor, dividerColor } = commonLight;
+const { baseColor, dividerColor, paddingBase } = commonLight;
 
 export default c([
   cB(
@@ -19,6 +19,7 @@ export default c([
     [
       fadeInTransition(),
       cE("main", { flex: 1 }),
+      cE("container", { padding: `${paddingBase}px` }),
       cE("aside", {
         width: "48px",
         backgroundColor: baseColor,

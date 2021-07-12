@@ -35,7 +35,7 @@ export default defineComponent({
     <div :class="`${cE}main`">
       <LayoutPageHeader />
       <div :class="`${cE}container`">
-        <slot name="container" />
+        <slot />
       </div>
     </div>
     <div :class="`${cE}aside`">

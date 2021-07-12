@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <LayoutPageContent>
-    <template #container> SystemAccount container </template>
     <template #toolbar> SystemAccount toolbar </template>
+    SystemAccount container
   </LayoutPageContent>
 </template>
