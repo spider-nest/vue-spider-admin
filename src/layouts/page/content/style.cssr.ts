@@ -2,6 +2,8 @@ import { c, cB, cE } from "@/utils/cssr";
 
 import { commonLight } from "@/styles/common";
 
+import fadeInTransition from "@/styles/transitions/fade-in.cssr";
+
 export const selector = "page-content";
 
 const { baseColor, dividerColor } = commonLight;
@@ -15,6 +17,7 @@ export default c([
       height: "100%",
     },
     [
+      fadeInTransition(),
       cE("main", { flex: 1 }),
       cE("aside", {
         width: "48px",

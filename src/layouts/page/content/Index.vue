@@ -25,7 +25,7 @@ export default defineComponent({
     const cB = `${styleNamespace}-${selector}`;
     const cE = `${cB}${elementPrefix}`;
 
-    return { cB, cE, elementPrefix };
+    return { cB, cE };
   },
 });
 </script>

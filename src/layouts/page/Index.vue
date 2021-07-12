@@ -28,6 +28,12 @@ export default defineComponent({
 
 <template>
   <SLayout :class="cB" :embedded="true">
-    <RouterView />
+    <RouterView>
+      <template #default="{ Component, route }">
+        <transition name="fade-in-transition" mode="out-in" :appear="true">
+          <component :is="Component" :key="route.fullPath" />
+        </transition>
+      </template>
+    </RouterView>
   </SLayout>
 </template>
