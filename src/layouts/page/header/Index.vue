@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SLayout } from "@/components";
+import { SLayoutHeader } from "@/components";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
 
@@ -9,25 +9,26 @@ import style, { selector } from "./style.cssr";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 
-const name = "LayoutPage";
+import { elementPrefix } from "@/utils/cssr";
+
+const name = "LayoutPageHeader";
 
 export default defineComponent({
   name,
-  components: { SLayout },
+  components: { SLayoutHeader },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
 
     const { styleNamespace } = useAppConfig();
     const cB = `${styleNamespace}-${selector}`;
+    const cE = `${cB}${elementPrefix}`;
 
-    return { cB };
+    return { cB, cE, elementPrefix };
   },
 });
 </script>
 
 <template>
-  <SLayout :class="cB">
-    <RouterView />
-  </SLayout>
+  <SLayoutHeader>main header</SLayoutHeader>
 </template>
