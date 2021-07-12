@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SLayoutHeader } from "@/components";
+import { SLayout } from "@/components";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
 
@@ -15,7 +15,7 @@ const name = "LayoutPageToolbar";
 
 export default defineComponent({
   name,
-  components: { SLayoutHeader },
+  components: { SLayout },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -24,11 +24,11 @@ export default defineComponent({
     const cB = `${styleNamespace}-${selector}`;
     const cE = `${cB}${elementPrefix}`;
 
-    return { cB, cE, elementPrefix };
+    return { cB, cE };
   },
 });
 </script>
 
 <template>
-  <SLayoutHeader>aside header</SLayoutHeader>
+  <SLayout :class="cB">aside header</SLayout>
 </template>
