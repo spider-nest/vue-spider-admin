@@ -7,6 +7,8 @@ import { PAGE_NOT_FOUND_ROUTE } from "@/router/routes/basic";
 
 import { PageEnum } from "@/enums/pageEnum";
 
+import { useLoadingMessage } from "@/hooks/web/useMessage";
+
 const LOGIN_PATH = PageEnum.BASE_LOGIN;
 const WHITE_PATH_LIST: PageEnum[] = [LOGIN_PATH];
 
@@ -68,11 +70,13 @@ export default function permissionGuard(router: Router) {
     }
 
     // 动态添加路由
+    const messageReactive = useLoadingMessage("菜单加载中", { duration: 0 });
     const routes = await permissionStore.buildRoutes();
     routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw);
     });
     permissionStore.setRouteDynamicallyAdded(true);
+    setTimeout(() => messageReactive?.destroy(), 1300);
 
     // 如果存在重定向，则重定向
     const redirectPath = (from.query.redirect || to.path) as string;

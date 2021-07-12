@@ -49,6 +49,10 @@ export const useAppStore = defineStore({
       this.appConfig = deepMerge(this.appConfig || {}, config);
       Persistent.setLocal(APP_CONFIG_KEY, this.appConfig);
     },
+    setMenuConfig(menuConfig: DeepPartial<MenuConfig>): void {
+      this.appConfig = deepMerge(this.appConfig || {}, { menuConfig });
+      Persistent.setLocal(APP_CONFIG_KEY, this.appConfig);
+    },
     resetAllState() {
       resetRouter();
       Persistent.clearAll();

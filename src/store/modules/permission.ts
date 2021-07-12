@@ -6,8 +6,6 @@ import { store } from "@/store";
 
 import { PAGE_NOT_FOUND_ROUTE } from "@/router/routes/basic";
 
-import { useLoadingMessage } from "@/hooks/web/useMessage";
-
 import { requestPermissionCodeList } from "@/services/modules/system/user";
 import { requestMenuList } from "@/services/modules/system/menu";
 
@@ -77,8 +75,6 @@ export const usePermissionStore = defineStore({
       this.setPermissionCodeList(permissionCodeList);
     },
     async buildRoutes(): Promise<AppRouteRecordRaw[]> {
-      useLoadingMessage("菜单加载中");
-
       let routes: AppRouteRecordRaw[] = [];
       let routeList: AppRouteRecordRaw[] = [];
 

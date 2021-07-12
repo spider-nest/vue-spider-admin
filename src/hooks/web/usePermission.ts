@@ -5,7 +5,10 @@ import type { RoleEnum } from "@/enums/roleEnum";
 import { intersection } from "lodash-es";
 
 import { router, resetRouter } from "@/router";
+
 import { usePermissionStore } from "@/store/modules/permission";
+
+import { useLoadingMessage } from "@/hooks/web/useMessage";
 
 import { isArray } from "@/utils/is";
 
@@ -14,12 +17,18 @@ export function usePermission() {
 
   // 重置并重新获得授权信息
   async function resume() {
+    const messageReactive = useLoadingMessage("菜单加载中", { duration: 0 });
+
     resetRouter();
+
     const routes = await permissionStore.buildRoutes();
     routes.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw);
     });
+
     permissionStore.setBuildMenuTime();
+
+    setTimeout(() => messageReactive?.destroy(), 1300);
   }
 
   // 确定是否有权限

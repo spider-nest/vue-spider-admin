@@ -13,6 +13,8 @@ import LayoutDefaultMenu from "@/layouts/default/menu/Index.vue";
 import useAppConfig from "@/hooks/config/useAppConfig";
 import useThemeStyle from "@/hooks/web/useThemeStyle";
 
+import { useAppStore } from "@/store/modules/app";
+
 import { elementPrefix } from "@/utils/cssr";
 
 import style, { selector } from "./style.cssr";
@@ -39,9 +41,12 @@ export default defineComponent({
 
     const { appName } = __VITE_ENV__;
 
-    const collapsed = ref(false);
+    const appStore = useAppStore();
+    const menuConfig = appStore.getMenuConfig;
+    const collapsed = ref(menuConfig.collapsed);
     const handleCollapse = () => {
       collapsed.value = !collapsed.value;
+      appStore.setMenuConfig({ collapsed: collapsed.value });
     };
 
     return { cB, cE, appName, collapsed, handleCollapse };
