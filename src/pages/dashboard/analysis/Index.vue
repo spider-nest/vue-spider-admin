@@ -2,10 +2,10 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "DashboardAnalysis",
+  name: "Overview",
 });
 </script>
 
 <template>
-  <div>DashboardAnalysis</div>
+  <div>Overview</div>
 </template>

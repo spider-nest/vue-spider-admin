@@ -30,5 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <SLayoutHeader>main header</SLayoutHeader>
+  <SLayoutHeader :class="cB">
+    <div>header</div>
+  </SLayoutHeader>
 </template>

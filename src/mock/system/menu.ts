@@ -11,13 +11,13 @@ import {
 } from "../_util";
 import { createUserList } from "./user";
 
-const dashboardRoute = {
-  path: "/dashboard",
-  name: "DashboardAnalysis",
-  component: "/dashboard/analysis/Index",
+const overviewRoute = {
+  path: "/overview",
+  name: "Overview",
+  component: "/overview/Index",
   meta: {
     icon: "VehicleCar24Regular",
-    title: "分析页",
+    title: "概况",
   },
 };
 
@@ -83,9 +83,9 @@ export default [
       }
 
       if (user.userId === 999) {
-        return successfulResult([dashboardRoute, systemRoute]);
+        return successfulResult([overviewRoute, systemRoute]);
       } else if (user.userId === 1000) {
-        return successfulResult([dashboardRoute]);
+        return successfulResult([overviewRoute]);
       }
     },
   },

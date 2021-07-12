@@ -27,7 +27,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <SLayout :class="cB">
+  <SLayout :class="cB" :embedded="true">
     <RouterView />
   </SLayout>
 </template>
