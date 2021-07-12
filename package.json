@@ -5,10 +5,12 @@
   "keywords": [
     "vue",
     "vue3",
-    "ant-design",
-    "ant-design-vue",
-    "ant-design-vue-pro",
-    "ant-design-vue-admin"
+    "naive",
+    "naive-pro",
+    "naive-admin",
+    "naive-ui",
+    "naive-ui-pro",
+    "naive-ui-admin"
   ],
   "author": {
     "name": "cnguu",
