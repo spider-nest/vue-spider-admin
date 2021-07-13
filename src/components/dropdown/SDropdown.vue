@@ -17,7 +17,7 @@ export default defineComponent({
 });
 </script>
 
-<!-- 套一个 span 才可以使 NDropdown 获取到节点 -->
+<!-- 套一个 span 才可以使 NDropdown 获取到节点 2.15.4 -->
 <template>
   <NDropdown v-bind="$attrs" :placement="placement">
     <span>

@@ -1,3 +1,5 @@
+export { SAvatar } from "./avatar";
+
 export { SBreadcrumb, SBreadcrumbItem } from "./breadcrumb";
 
 export { SButton } from "./button";
