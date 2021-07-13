@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRoute } from "vue-router";
 
 import {
   SLayoutHeader,
@@ -14,8 +15,6 @@ import style, { selector } from "./style.cssr";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 
-import { usePermissionStore } from "@/store/modules/permission";
-
 const name = "LayoutPageHeader";
 
 export default defineComponent({
@@ -28,10 +27,10 @@ export default defineComponent({
     const { styleNamespace } = useAppConfig();
     const cB = `${styleNamespace}-${selector}`;
 
-    const permissionStore = usePermissionStore();
-    const menus = permissionStore.getMenuList;
+    const route = useRoute();
+    const { matched } = route;
 
-    return { cB, menus };
+    return { cB, matched };
   },
 });
 </script>
@@ -39,12 +38,12 @@ export default defineComponent({
 <template>
   <SLayoutHeader :class="cB">
     <SBreadcrumb>
-      <template v-for="menu in menus" :key="menu.key">
-        <SBreadcrumbItem>
-          <template v-if="menu.icon">
-            <component :is="menu.icon" :key="menu.key" />
+      <template v-for="item in matched" :key="item.name">
+        <SBreadcrumbItem v-if="item?.meta?.title && item.path">
+          <template v-if="item?.meta?.icon">
+            <SIcon :name="item.meta.icon" />
           </template>
-          {{ menu.name }}
+          {{ item.meta.title }}
         </SBreadcrumbItem>
       </template>
     </SBreadcrumb>
