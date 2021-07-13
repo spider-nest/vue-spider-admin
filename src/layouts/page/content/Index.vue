@@ -2,6 +2,7 @@
 import { defineComponent } from "vue";
 
 import LayoutPageHeader from "@/layouts/page/header/Index.vue";
+import LayoutPageFooter from "@/layouts/page/footer/Index.vue";
 import LayoutPageToolbar from "@/layouts/page/toolbar/Index.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
@@ -16,7 +17,7 @@ const name = "LayoutPageContent";
 
 export default defineComponent({
   name,
-  components: { LayoutPageHeader, LayoutPageToolbar },
+  components: { LayoutPageHeader, LayoutPageFooter, LayoutPageToolbar },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -37,6 +38,7 @@ export default defineComponent({
       <div :class="`${cE}container`">
         <slot />
       </div>
+      <LayoutPageFooter />
     </div>
     <div :class="`${cE}aside`">
       <LayoutPageToolbar />
