@@ -1,6 +1,8 @@
 <script lang="ts">
 import type { AppRouteRecordRaw } from "@/router/types";
 
+import type { Breadcrumb } from "./types";
+
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
 
@@ -24,15 +26,6 @@ import { isUrl } from "@/utils/is";
 import { renderLabel } from "@/layouts/page/header/util";
 
 const name = "LayoutPageHeader";
-
-export interface Breadcrumb {
-  key: string;
-  icon?: string;
-  label?: string;
-  disabled?: boolean;
-  path?: string;
-  children?: Breadcrumb[];
-}
 
 export default defineComponent({
   name,

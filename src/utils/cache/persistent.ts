@@ -2,6 +2,7 @@ import type { AppConfig } from "@/types/config";
 import type { UserInfo } from "@/types/store";
 
 import { toRaw } from "vue";
+import { pick } from "lodash-es";
 
 import { createLocalStorage, createSessionStorage } from "./";
 import Memory from "./memory";
@@ -52,12 +53,14 @@ export default class Persistent {
     immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
   }
 
-  static removeLocal(key: LocalKeys): void {
+  static removeLocal(key: LocalKeys, immediate = false): void {
     localMemory.remove(key);
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
   }
 
-  static clearLocal(): void {
+  static clearLocal(immediate = false): void {
     localMemory.clear();
+    immediate && ls.clear();
   }
 
   static getSession<T>(key: SessionKeys) {
@@ -73,17 +76,23 @@ export default class Persistent {
     immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
   }
 
-  static removeSession(key: SessionKeys): void {
+  static removeSession(key: SessionKeys, immediate = false): void {
     sessionMemory.remove(key);
+    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
   }
 
-  static clearSession(): void {
+  static clearSession(immediate = false): void {
     sessionMemory.clear();
+    immediate && ss.clear();
   }
 
-  static clearAll() {
+  static clearAll(immediate = false) {
     sessionMemory.clear();
     localMemory.clear();
+    if (immediate) {
+      ls.clear();
+      ss.clear();
+    }
   }
 }
 
@@ -112,8 +121,15 @@ function storageChange(e: any) {
 }
 
 window.addEventListener("beforeunload", () => {
-  ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
-  ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
+  const pickProps = [TOKEN_KEY, USER_INFO_KEY, ROLES_KEY];
+  ls.set(APP_LOCAL_CACHE_KEY, {
+    ...localMemory.getCache,
+    ...pick(ls.get(APP_LOCAL_CACHE_KEY), pickProps),
+  });
+  ss.set(APP_SESSION_CACHE_KEY, {
+    ...sessionMemory.getCache,
+    ...pick(sessionMemory.getCache, pickProps),
+  });
 });
 
 window.addEventListener("storage", storageChange);

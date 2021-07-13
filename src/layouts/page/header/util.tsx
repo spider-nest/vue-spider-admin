@@ -1,4 +1,4 @@
-import type { Breadcrumb } from "@/layouts/page/header/Index.vue";
+import type { Breadcrumb } from "./types";
 
 import { RouterLink } from "vue-router";
 

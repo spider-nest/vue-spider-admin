@@ -101,7 +101,7 @@ const transform: AxiosTransform = {
 
   requestInterceptors: (config, options) => {
     const token = getToken();
-    if (token && options?.requestOptions?.withToken !== false) {
+    if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       config.headers.Authorization = options.authenticationScheme
         ? `${options.authenticationScheme} ${token}`
         : token;

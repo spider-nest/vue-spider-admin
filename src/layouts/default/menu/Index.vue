@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
 import { SMenu } from "@/components";
@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
 
-    const value = ref(router.currentRoute.value.path);
+    const value = computed(() => router.currentRoute.value.path);
 
     const permissionStore = usePermissionStore();
     const options = permissionStore.getMenuList;
@@ -32,5 +32,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <SMenu v-model:value="value" :collapsed="collapsed" :options="options" />
+  <SMenu :value="value" :collapsed="collapsed" :options="options" />
 </template>

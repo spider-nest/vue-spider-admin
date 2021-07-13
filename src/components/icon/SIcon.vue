@@ -6,7 +6,8 @@ import {
   LockShield24Regular,
   Glance24Regular,
   VehicleCar24Regular,
-} from "@vicons/fluent";
+  Home24Regular,
+} from "@vicons/fluent"; // https://www.xicons.org/#/zh-CN 统一使用24Regular
 
 export default defineComponent({
   name: "SICon",
@@ -16,6 +17,7 @@ export default defineComponent({
     LockShield24Regular,
     Glance24Regular,
     VehicleCar24Regular,
+    Home24Regular,
   },
   inheritAttrs: false,
   props: {
