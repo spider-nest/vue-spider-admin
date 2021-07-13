@@ -15,7 +15,18 @@ import style, { selector } from "./style.cssr";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 
+import { treeMap } from "@/utils/helper/treeHelper";
+import { isUrl } from "@/utils/is";
+
 const name = "LayoutPageHeader";
+
+interface Breadcrumb {
+  key: string;
+  icon?: string;
+  label?: string;
+  path?: string;
+  children?: Breadcrumb[];
+}
 
 export default defineComponent({
   name,
@@ -28,9 +39,33 @@ export default defineComponent({
     const cB = `${styleNamespace}-${selector}`;
 
     const route = useRoute();
-    const { matched } = route;
+    const breadcrumbs = treeMap(route.matched, {
+      conversion: (node): Breadcrumb => {
+        return {
+          key: node.name,
+          icon: node?.meta?.icon,
+          label: node?.meta?.title,
+          path: node?.path,
+        };
+      },
+    }) as unknown as Breadcrumb[];
+    const joinParentPath = (breadcrumbs: Breadcrumb[], parentPath = "") => {
+      for (let index = 0; index < breadcrumbs.length; index++) {
+        const breadcrumb = breadcrumbs[index];
+        const { path, children } = breadcrumb;
 
-    return { cB, matched };
+        if (path && !(path.startsWith("/") || isUrl(path))) {
+          breadcrumb.path = `${parentPath}/${path}`;
+        }
+        if (children?.length) {
+          joinParentPath(children, breadcrumb.path);
+        }
+      }
+    };
+    joinParentPath(breadcrumbs);
+    console.log(breadcrumbs);
+
+    return { cB, breadcrumbs };
   },
 });
 </script>
@@ -38,12 +73,12 @@ export default defineComponent({
 <template>
   <SLayoutHeader :class="cB">
     <SBreadcrumb>
-      <template v-for="item in matched" :key="item.name">
-        <SBreadcrumbItem v-if="item?.meta?.title && item.path">
-          <template v-if="item?.meta?.icon">
-            <SIcon :name="item.meta.icon" />
+      <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.key">
+        <SBreadcrumbItem v-if="breadcrumb.path && breadcrumb.label">
+          <template v-if="breadcrumb.icon">
+            <SIcon :name="breadcrumb.icon" />
           </template>
-          {{ item.meta.title }}
+          {{ breadcrumb.label }}
         </SBreadcrumbItem>
       </template>
     </SBreadcrumb>

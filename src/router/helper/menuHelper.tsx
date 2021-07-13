@@ -22,7 +22,7 @@ function joinParentPath(menus: Menu[], parentPath = "") {
     }
 
     if (children?.length) {
-      joinParentPath(children, path);
+      joinParentPath(children, menu.path);
     } else {
       menu.label = () => <RouterLink to={menu.path}>{label}</RouterLink>;
     }
