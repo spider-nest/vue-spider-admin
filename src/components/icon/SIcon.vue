@@ -7,6 +7,7 @@ import {
   Glance24Regular,
   VehicleCar24Regular,
   Home24Regular,
+  ArrowClockwise24Regular,
 } from "@vicons/fluent"; // https://www.xicons.org/#/zh-CN 统一使用24Regular
 
 export default defineComponent({
@@ -18,6 +19,7 @@ export default defineComponent({
     Glance24Regular,
     VehicleCar24Regular,
     Home24Regular,
+    ArrowClockwise24Regular,
   },
   inheritAttrs: false,
   props: {
