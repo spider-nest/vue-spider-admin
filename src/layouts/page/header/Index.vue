@@ -21,6 +21,8 @@ import useAppConfig from "@/hooks/config/useAppConfig";
 import { treeMap } from "@/utils/helper/treeHelper";
 import { isUrl } from "@/utils/is";
 
+import { renderLabel } from "@/layouts/page/header/util";
+
 const name = "LayoutPageHeader";
 
 export interface Breadcrumb {
@@ -74,7 +76,7 @@ export default defineComponent({
     };
     joinParentPath(breadcrumbs);
 
-    return { cB, breadcrumbs };
+    return { cB, breadcrumbs, renderLabel };
   },
 });
 </script>
@@ -85,7 +87,10 @@ export default defineComponent({
       <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.key">
         <SBreadcrumbItem v-if="breadcrumb.path && breadcrumb.label">
           <template v-if="breadcrumb?.children">
-            <SDropdown :options="breadcrumb.children">
+            <SDropdown
+              :options="breadcrumb.children"
+              :render-label="renderLabel"
+            >
               <LayoutPageHeaderBreadcrumb :breadcrumb="breadcrumb" />
             </SDropdown>
           </template>
