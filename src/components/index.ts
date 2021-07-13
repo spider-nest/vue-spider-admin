@@ -4,6 +4,8 @@ export { SButton } from "./button";
 
 export { SDivider } from "./divider";
 
+export { SDropdown } from "./dropdown";
+
 export { SForm, SFormItem } from "./form";
 
 export { SIcon } from "./icon";

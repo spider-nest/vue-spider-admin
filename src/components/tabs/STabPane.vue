@@ -1,4 +1,4 @@
-<!-- NTabPane 不支持二次封装，不要使用这个组件 -->
+<!-- NTabPane 2.15.4 不支持二次封装，不要使用这个组件 -->
 <script lang="ts">
 import { defineComponent } from "vue";
 import { NTabPane } from "naive-ui";

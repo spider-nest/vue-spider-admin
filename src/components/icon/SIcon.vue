@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Icon v-if="name" v-bind="$attrs">
+  <Icon v-bind="$attrs">
     <component :is="name" :key="name" />
   </Icon>
 </template>

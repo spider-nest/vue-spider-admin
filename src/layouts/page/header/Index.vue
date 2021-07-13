@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { AppRouteRecordRaw } from "@/router/types";
+
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
 
@@ -6,8 +8,9 @@ import {
   SLayoutHeader,
   SBreadcrumb,
   SBreadcrumbItem,
-  SIcon,
+  SDropdown,
 } from "@/components";
+import LayoutPageHeaderBreadcrumb from "./Breadcrumb.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
 
@@ -20,17 +23,24 @@ import { isUrl } from "@/utils/is";
 
 const name = "LayoutPageHeader";
 
-interface Breadcrumb {
+export interface Breadcrumb {
   key: string;
   icon?: string;
   label?: string;
+  disabled?: boolean;
   path?: string;
   children?: Breadcrumb[];
 }
 
 export default defineComponent({
   name,
-  components: { SLayoutHeader, SBreadcrumb, SBreadcrumbItem, SIcon },
+  components: {
+    SLayoutHeader,
+    SBreadcrumb,
+    SBreadcrumbItem,
+    SDropdown,
+    LayoutPageHeaderBreadcrumb,
+  },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -40,11 +50,12 @@ export default defineComponent({
 
     const route = useRoute();
     const breadcrumbs = treeMap(route.matched, {
-      conversion: (node): Breadcrumb => {
+      conversion: (node: AppRouteRecordRaw): Breadcrumb => {
         return {
           key: node.name,
           icon: node?.meta?.icon,
           label: node?.meta?.title,
+          disabled: node?.meta?.disabled,
           path: node?.path,
         };
       },
@@ -53,7 +64,6 @@ export default defineComponent({
       for (let index = 0; index < breadcrumbs.length; index++) {
         const breadcrumb = breadcrumbs[index];
         const { path, children } = breadcrumb;
-
         if (path && !(path.startsWith("/") || isUrl(path))) {
           breadcrumb.path = `${parentPath}/${path}`;
         }
@@ -63,7 +73,6 @@ export default defineComponent({
       }
     };
     joinParentPath(breadcrumbs);
-    console.log(breadcrumbs);
 
     return { cB, breadcrumbs };
   },
@@ -75,10 +84,14 @@ export default defineComponent({
     <SBreadcrumb>
       <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.key">
         <SBreadcrumbItem v-if="breadcrumb.path && breadcrumb.label">
-          <template v-if="breadcrumb.icon">
-            <SIcon :name="breadcrumb.icon" />
+          <template v-if="breadcrumb?.children">
+            <SDropdown :options="breadcrumb.children">
+              <LayoutPageHeaderBreadcrumb :breadcrumb="breadcrumb" />
+            </SDropdown>
           </template>
-          {{ breadcrumb.label }}
+          <template v-else>
+            <LayoutPageHeaderBreadcrumb :breadcrumb="breadcrumb" />
+          </template>
         </SBreadcrumbItem>
       </template>
     </SBreadcrumb>
