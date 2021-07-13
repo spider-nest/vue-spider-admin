@@ -18,7 +18,7 @@ export default c([
     },
     [
       fadeInTransition(),
-      cE("main", { flex: 1 }),
+      cE("main", { flex: 1, overflow: "auto" }),
       cE("container", { padding: `${paddingBase}px` }),
       cE("aside", {
         width: "48px",
