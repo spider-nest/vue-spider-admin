@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Icon } from "@vicons/utils";
+import { NIcon } from "naive-ui";
 import {
   Mail24Regular,
   LockShield24Regular,
@@ -11,7 +11,7 @@ import {
 export default defineComponent({
   name: "SICon",
   components: {
-    Icon,
+    NIcon,
     Mail24Regular,
     LockShield24Regular,
     Glance24Regular,
@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Icon v-bind="$attrs">
+  <NIcon v-bind="$attrs">
     <component :is="name" :key="name" />
-  </Icon>
+  </NIcon>
 </template>

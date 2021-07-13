@@ -9,7 +9,6 @@ import {
   NNotificationProvider,
   NDialogProvider,
 } from "naive-ui";
-import { IconConfigProvider } from "@vicons/utils";
 
 import App from "@/pages/App.vue";
 
@@ -23,7 +22,6 @@ export default defineComponent({
     NMessageProvider,
     NNotificationProvider,
     NDialogProvider,
-    IconConfigProvider,
     App,
   },
   setup() {
@@ -66,9 +64,7 @@ export default defineComponent({
       <NMessageProvider>
         <NNotificationProvider>
           <NDialogProvider>
-            <IconConfigProvider :size="fontSize" :color="textColor1">
-              <App />
-            </IconConfigProvider>
+            <App />
           </NDialogProvider>
         </NNotificationProvider>
       </NMessageProvider>
