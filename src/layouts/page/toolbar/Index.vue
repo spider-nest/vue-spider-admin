@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { SLayout, SAvatar, SIcon } from "@/components";
+import { SLayout, SAvatar, SIcon, STooltip } from "@/components";
 
 import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
@@ -17,7 +17,7 @@ const name = "LayoutPageToolbar";
 
 export default defineComponent({
   name,
-  components: { SLayout, SAvatar, LayoutPageToolbarItem, SIcon },
+  components: { SLayout, SAvatar, LayoutPageToolbarItem, SIcon, STooltip },
   inheritAttrs: false,
   setup() {
     useThemeStyle(name, style);
@@ -38,8 +38,13 @@ export default defineComponent({
     <LayoutPageToolbarItem>
       <SAvatar>{{ userInfo.realName }}</SAvatar>
     </LayoutPageToolbarItem>
-    <LayoutPageToolbarItem>
-      <SIcon name="ArrowClockwise24Regular" />
-    </LayoutPageToolbarItem>
+    <STooltip placement="left">
+      <template #trigger>
+        <LayoutPageToolbarItem>
+          <SIcon name="ArrowClockwise24Regular" />
+        </LayoutPageToolbarItem>
+      </template>
+      刷新页面
+    </STooltip>
   </SLayout>
 </template>

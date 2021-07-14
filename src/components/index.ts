@@ -25,3 +25,5 @@ export {
 export { SMenu } from "./menu";
 
 export { STabs, STabPane } from "./tabs";
+
+export { STooltip } from "./tooltip";
