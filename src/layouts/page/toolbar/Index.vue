@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 
 import { SLayout, SAvatar, SIcon, STooltip } from "@/components";
 
@@ -31,13 +31,6 @@ export default defineComponent({
 
     const redo = useRedo();
 
-    onMounted(() => {
-      document.onkeyup = (event: KeyboardEvent) => {
-        const { ctrlKey, keyCode } = event;
-        console.log(ctrlKey, keyCode);
-      };
-    });
-
     return { cB, userInfo, redo };
   },
 });
@@ -54,7 +47,7 @@ export default defineComponent({
           <SIcon name="ArrowClockwise24Regular" />
         </LayoutPageToolbarItem>
       </template>
-      刷新页面(ctrl+r)
+      刷新页面
     </STooltip>
   </SLayout>
 </template>
