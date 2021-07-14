@@ -54,6 +54,7 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
       const {
         meta: { disabled = false, icon, extra, title, hideMenu = false } = {},
         path,
+        redirect,
       } = node;
 
       menu.disabled = disabled;
@@ -63,6 +64,9 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
       menu.name = title;
       menu.hideMenu = hideMenu;
       menu.path = path;
+      if (redirect) {
+        menu.redirect = redirect;
+      }
 
       return menu;
     },

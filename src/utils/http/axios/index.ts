@@ -4,7 +4,7 @@ import type { RequestOptions, Result } from "./types";
 import type { AxiosTransform, CreateAxiosOptions } from "./axiosTransform";
 
 import { deepMerge, httpBuildQuery } from "@/utils/object";
-import { isString } from "@/utils/is";
+import { isObject, isString } from "@/utils/is";
 
 import { ContentTypeEnum, ResultEnum, RequestEnum } from "@/enums/httpEnum";
 
@@ -36,7 +36,7 @@ const transform: AxiosTransform = {
       throw new Error("请求失败");
     }
 
-    const { code, message } = data;
+    const { code, message = "请求失败" } = data;
 
     const hasSuccess =
       data && Reflect.has(data, "code") && code === ResultEnum.SUCCESS;
@@ -44,21 +44,14 @@ const transform: AxiosTransform = {
       return data.data;
     }
 
-    let timeoutMsg = "";
-    switch (code) {
-      case ResultEnum.TIMEOUT:
-        timeoutMsg = "请求超时";
-        break;
-      default:
-        if (message) {
-          timeoutMsg = message;
-        }
-        break;
+    let timeoutMsg = message;
+    if (code === ResultEnum.TIMEOUT) {
+      timeoutMsg = "请求超时";
     }
 
     useErrorMessage(timeoutMsg);
 
-    throw new Error(timeoutMsg || "请求失败");
+    throw new Error(timeoutMsg);
   },
 
   beforeRequestHook: (config, options) => {
@@ -69,6 +62,8 @@ const transform: AxiosTransform = {
     }
 
     const params = config.params || {};
+    const data = config.data;
+    formatDate && data && !isString(data) && formatRequestDate(data);
     if (config.method?.toUpperCase() === RequestEnum.GET) {
       if (isString(params)) {
         // 兼容 restful 风格
@@ -88,10 +83,19 @@ const transform: AxiosTransform = {
         config.params = undefined;
       } else {
         formatDate && formatRequestDate(params);
-        config.data = params;
-        config.params = undefined;
+        if (data && isObject(data) && Object.keys(config.data).length > 0) {
+          config.data = data;
+          config.params = params;
+        } else {
+          // 非 GET 请求如果没有提供 data，则将 params 视为 data
+          config.data = params;
+          config.params = undefined;
+        }
         if (joinParamsToUrl) {
-          config.url = httpBuildQuery(config.url as string, config.data);
+          config.url = httpBuildQuery(config.url as string, {
+            ...config.params,
+            ...config.data,
+          });
         }
       }
     }
