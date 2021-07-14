@@ -38,7 +38,7 @@ export default defineComponent({
 
 <template>
   <SLayout :class="cB">
-    <LayoutPageToolbarItem>
+    <LayoutPageToolbarItem size="default">
       <SAvatar>{{ userInfo.realName }}</SAvatar>
     </LayoutPageToolbarItem>
     <STooltip placement="left">

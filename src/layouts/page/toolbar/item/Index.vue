@@ -7,24 +7,35 @@ import style, { selector } from "./style.cssr";
 
 import useAppConfig from "@/hooks/config/useAppConfig";
 
+import { modifierPrefix } from "@/utils/cssr";
+
 const name = "LayoutPageToolbarItem";
+
+type Size = "small" | "default";
 
 export default defineComponent({
   name,
   inheritAttrs: false,
+  props: {
+    size: {
+      type: String as PropType<Size>,
+      default: "small",
+    },
+  },
   setup() {
     useThemeStyle(name, style);
 
     const { styleNamespace } = useAppConfig();
     const cB = `${styleNamespace}-${selector}`;
+    const cM = `${cB}${modifierPrefix}`;
 
-    return { cB };
+    return { cB, cM };
   },
 });
 </script>
 
 <template>
-  <div v-bind="$attrs" :class="cB">
+  <div v-bind="$attrs" :class="{ [cB]: true, [`${cM}${size}`]: true }">
     <slot />
   </div>
 </template>
