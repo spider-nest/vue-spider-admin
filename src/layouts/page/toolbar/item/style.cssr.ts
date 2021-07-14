@@ -18,6 +18,9 @@ export default c([
       boxSizing: "border-box",
     },
     [
+      c("&:hover", {
+        cursor: "pointer",
+      }),
       c(".n-avatar", {
         margin: "7px",
       }),
