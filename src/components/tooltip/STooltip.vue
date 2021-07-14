@@ -1,5 +1,4 @@
 <script lang="ts">
-// 无法弹出 bug 2.15.4
 import { defineComponent } from "vue";
 import { NTooltip } from "naive-ui";
 
