@@ -37,8 +37,8 @@ export function transformRouteToMenu(routeModList: AppRouteRecordRaw[]) {
   const routeList: AppRouteRecordRaw[] = [];
 
   cloneRouteModList.forEach((item) => {
-    if (item.meta?.hideMenu !== true) {
-      if (item.meta?.single) {
+    if (item?.meta?.hideMenu !== true) {
+      if (item?.meta?.single) {
         const realItem = item?.children?.[0];
         realItem && routeList.push(realItem);
       } else {

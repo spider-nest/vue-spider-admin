@@ -41,7 +41,7 @@ export const REDIRECT_ROUTE: AppRouteRecordRaw = {
       name: REDIRECT_NAME,
       component: () => import("@/pages/Redirect.vue"),
       meta: {
-        title: REDIRECT_NAME,
+        title: "跳转中...",
         hideBreadcrumb: true,
       },
     },

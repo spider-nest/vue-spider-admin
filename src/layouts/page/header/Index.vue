@@ -44,7 +44,16 @@ export default defineComponent({
     const cB = `${styleNamespace}-${selector}`;
 
     const route = useRoute();
-    const breadcrumbs = treeMap(route.matched, {
+    const matched = [];
+    route.matched.forEach((item) => {
+      if (
+        item?.meta?.hideMenu !== true ||
+        item?.meta?.hideBreadcrumb !== true
+      ) {
+        matched.push(item);
+      }
+    });
+    const breadcrumbs = treeMap(matched, {
       conversion: (node: AppRouteRecordRaw): Breadcrumb => {
         return {
           key: node.name,

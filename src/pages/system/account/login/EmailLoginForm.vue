@@ -65,7 +65,7 @@ export default defineComponent({
     ref="formRef"
     :model="formModel"
     :rules="formRules"
-    @keypress.enter="onSubmit"
+    @keyup.enter="onSubmit"
   >
     <SFormItem path="email">
       <SInput v-model:value.trim="formModel.email">

@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="cB">
+  <div v-bind="$attrs" :class="cB">
     <slot />
   </div>
 </template>

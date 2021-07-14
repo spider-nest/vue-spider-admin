@@ -4,13 +4,18 @@ import { unref, ref } from "vue";
 
 import { useTransitionConfig } from "@/hooks/config/useTransitionConfig";
 
+import { REDIRECT_NAME } from "@/router/constant";
+
 export const loadingBarRef = ref();
 
 export default function loadingBarGuard(router: Router) {
   const { getLoadingBar } = useTransitionConfig();
 
-  router.beforeEach((to) => {
+  router.beforeEach((to, from) => {
     if (to.meta.loaded) {
+      return;
+    }
+    if (to.name === REDIRECT_NAME || from.name === REDIRECT_NAME) {
       return;
     }
     unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.start();

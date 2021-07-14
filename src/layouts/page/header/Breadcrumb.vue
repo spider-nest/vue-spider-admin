@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Breadcrumb } from "@/layouts/page/header/Index.vue";
+import type { Breadcrumb } from "./types";
 
 import { defineComponent } from "vue";
 

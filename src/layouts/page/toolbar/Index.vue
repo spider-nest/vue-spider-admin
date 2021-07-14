@@ -1,11 +1,12 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 
 import { SLayout, SAvatar, SIcon, STooltip } from "@/components";
 
 import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
+import { useRedo } from "@/hooks/web/usePage";
 
 import style, { selector } from "./style.cssr";
 
@@ -28,7 +29,16 @@ export default defineComponent({
     const userStore = useUserStore();
     const userInfo = userStore.getUserInfo;
 
-    return { cB, userInfo };
+    const redo = useRedo();
+
+    onMounted(() => {
+      document.onkeyup = (event: KeyboardEvent) => {
+        const { ctrlKey, keyCode } = event;
+        console.log(ctrlKey, keyCode);
+      };
+    });
+
+    return { cB, userInfo, redo };
   },
 });
 </script>
@@ -40,11 +50,11 @@ export default defineComponent({
     </LayoutPageToolbarItem>
     <STooltip placement="left">
       <template #trigger>
-        <LayoutPageToolbarItem>
+        <LayoutPageToolbarItem @click.stop.prevent="redo">
           <SIcon name="ArrowClockwise24Regular" />
         </LayoutPageToolbarItem>
       </template>
-      刷新页面
+      刷新页面(ctrl+r)
     </STooltip>
   </SLayout>
 </template>
