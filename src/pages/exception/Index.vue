@@ -29,7 +29,7 @@ export default defineComponent({
 
     const go = useGo();
     const goHome = () => {
-      go(PageEnum.BASE_HOME);
+      go(PageEnum.BASE_HOME, true);
     };
 
     return { cB, cE, goHome };
