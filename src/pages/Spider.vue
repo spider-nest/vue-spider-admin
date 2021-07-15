@@ -26,10 +26,14 @@ export default defineComponent({
   },
   setup() {
     const {
+      // themeOverrides
       primaryColor,
       primaryColorHover,
       primaryColorPressed,
       primaryColorSuppl,
+      scrollbarColor,
+      scrollbarColorHover,
+      // app
       fontSize,
       textColor1,
     } = commonLight;
@@ -40,6 +44,8 @@ export default defineComponent({
         primaryColorHover,
         primaryColorPressed,
         primaryColorSuppl,
+        scrollbarColor,
+        scrollbarColorHover,
       },
     };
 

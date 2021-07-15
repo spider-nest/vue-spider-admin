@@ -5,6 +5,7 @@ import { commonLight } from "./common";
 const {
   scrollbarWidth,
   scrollbarHeight,
+  scrollbarBorderRadius,
   scrollbarThumbBackgroundColor,
   primaryColorHover,
 } = commonLight;
@@ -19,7 +20,7 @@ export default c([
   }),
   c(`::-webkit-scrollbar-thumb`, {
     backgroundColor: scrollbarThumbBackgroundColor,
-    borderRadius: "4px",
+    borderRadius: `${scrollbarBorderRadius}px`,
   }),
   c("html, body, #spider", {
     width: "100%",

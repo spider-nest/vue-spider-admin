@@ -12,7 +12,17 @@ export default defineComponent({
 
 <template>
   <LayoutPageContent>
-    <template #toolbar> SystemAccount toolbar </template>
+    <template #toolbar>
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar SystemAccount toolbar SystemAccount toolbar
+      SystemAccount toolbar
+    </template>
     SystemAccount container <br />
     SystemAccount container <br />
     SystemAccount container <br />
