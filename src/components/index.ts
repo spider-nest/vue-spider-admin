@@ -4,6 +4,8 @@ export { SBreadcrumb, SBreadcrumbItem } from "./breadcrumb";
 
 export { SButton } from "./button";
 
+export { SCard } from "./card";
+
 export { SDivider } from "./divider";
 
 export { SDropdown } from "./dropdown";
@@ -23,6 +25,8 @@ export {
 } from "./layout";
 
 export { SMenu } from "./menu";
+
+export { SResult } from "./result";
 
 export { STabs, STabPane } from "./tabs";
 

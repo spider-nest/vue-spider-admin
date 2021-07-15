@@ -2,16 +2,15 @@
 import { defineComponent } from "vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
-
-import style, { selector } from "./style.cssr";
-
 import useAppConfig from "@/hooks/config/useAppConfig";
 
 import { modifierPrefix } from "@/utils/cssr";
 
-const name = "LayoutPageToolbarItem";
+import style, { selector } from "./style.cssr";
 
 type Size = "small" | "default";
+
+const name = "LayoutPageToolbarItem";
 
 export default defineComponent({
   name,

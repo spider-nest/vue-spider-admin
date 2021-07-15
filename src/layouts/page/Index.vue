@@ -4,10 +4,9 @@ import { defineComponent } from "vue";
 import { SLayout } from "@/components";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
+import useAppConfig from "@/hooks/config/useAppConfig";
 
 import style, { selector } from "./style.cssr";
-
-import useAppConfig from "@/hooks/config/useAppConfig";
 
 const name = "LayoutPage";
 

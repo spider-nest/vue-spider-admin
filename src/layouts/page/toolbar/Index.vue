@@ -2,17 +2,15 @@
 import { defineComponent } from "vue";
 
 import { SLayout, SAvatar, SIcon, STooltip } from "@/components";
-
 import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
+import useAppConfig from "@/hooks/config/useAppConfig";
 import { useRedo } from "@/hooks/web/usePage";
 
-import style, { selector } from "./style.cssr";
-
-import useAppConfig from "@/hooks/config/useAppConfig";
-
 import { useUserStore } from "@/store/modules/user";
+
+import style, { selector } from "./style.cssr";
 
 const name = "LayoutPageToolbar";
 

@@ -6,12 +6,11 @@ import LayoutPageFooter from "@/layouts/page/footer/Index.vue";
 import LayoutPageToolbar from "@/layouts/page/toolbar/Index.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
-
-import style, { selector } from "./style.cssr";
-
 import useAppConfig from "@/hooks/config/useAppConfig";
 
 import { elementPrefix } from "@/utils/cssr";
+
+import style, { selector } from "./style.cssr";
 
 const name = "LayoutPageContent";
 

@@ -8,7 +8,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   name: "ErrorPage",
   component: LAYOUT,
   meta: {
-    title: "ErrorPage",
+    title: "出了点问题",
     hideBreadcrumb: true,
     hideMenu: true,
   },
@@ -18,7 +18,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
       name: "ErrorPage",
       component: EXCEPTION_COMPONENT,
       meta: {
-        title: "ErrorPage",
+        title: "出了点问题",
         hideBreadcrumb: true,
       },
     },

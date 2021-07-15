@@ -15,15 +15,13 @@ import {
 import LayoutPageHeaderBreadcrumb from "./Breadcrumb.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
-
-import style, { selector } from "./style.cssr";
-
 import useAppConfig from "@/hooks/config/useAppConfig";
 
 import { treeMap } from "@/utils/helper/treeHelper";
 import { isUrl } from "@/utils/is";
+import { renderLabel } from "./util";
 
-import { renderLabel } from "@/layouts/page/header/util";
+import style, { selector } from "./style.cssr";
 
 const name = "LayoutPageHeader";
 
