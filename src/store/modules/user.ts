@@ -77,7 +77,7 @@ export const useUserStore = defineStore({
     },
     async logout(): Promise<void> {
       this.resetState();
-      window.location.href = router.resolve(PageEnum.BASE_LOGIN).href;
+      window.location.reload();
     },
     async handleUserInfo() {
       const userInfo = await requestUserInfo();
