@@ -54,7 +54,7 @@ export const useUserStore = defineStore({
     },
   },
   actions: {
-    setUserInfo(userInfo: UserInfo): void {
+    setUserInfo(userInfo: Nullable<UserInfo>): void {
       this.userInfo = userInfo;
       setAuthCache(USER_INFO_KEY, userInfo);
     },
@@ -70,13 +70,14 @@ export const useUserStore = defineStore({
       this.sessionTimeout = flag;
     },
     resetState(): void {
-      this.userInfo = null;
-      this.token = "";
-      this.roleList = [];
-      this.sessionTimeout = false;
+      this.setUserInfo(null);
+      this.setToken(undefined);
+      this.setRoleList([]);
+      this.setSessionTimeout(false);
     },
-    logout(goLogin): void {
-      goLogin && router.push(PageEnum.BASE_LOGIN);
+    async logout(): Promise<void> {
+      this.resetState();
+      window.location.href = PageEnum.BASE_LOGIN;
     },
     async handleUserInfo() {
       const userInfo = await requestUserInfo();

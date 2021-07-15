@@ -15,7 +15,11 @@ export default function loadingBarGuard(router: Router) {
     if (to.meta.loaded) {
       return;
     }
-    if (to.name === REDIRECT_NAME || from.name === REDIRECT_NAME) {
+    if (
+      to.name === REDIRECT_NAME ||
+      from.name === REDIRECT_NAME ||
+      to.name === from.name
+    ) {
       return;
     }
     unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.start();

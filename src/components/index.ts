@@ -26,6 +26,8 @@ export {
 
 export { SMenu } from "./menu";
 
+export { SPopover } from "./popover";
+
 export { SResult } from "./result";
 
 export { STabs, STabPane } from "./tabs";

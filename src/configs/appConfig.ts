@@ -1,6 +1,5 @@
 import type { AppConfig } from "@/types/config";
 
-import { SessionTimeoutProcessingEnum } from "@/enums/appEnum";
 import { CacheTypeEnum } from "@/enums/cacheEnum";
 
 import {
@@ -10,7 +9,6 @@ import {
 
 const appConfig: AppConfig = {
   permissionCacheType: CacheTypeEnum.LOCAL,
-  sessionTimeoutProcessing: SessionTimeoutProcessingEnum.ROUTE_JUMP,
   fullContent: false,
   menuConfig: {
     collapsed: false,

@@ -1,4 +1,3 @@
-import type { SessionTimeoutProcessingEnum } from "@/enums/appEnum";
 import type { CacheTypeEnum } from "@/enums/cacheEnum";
 
 // 菜单配置
@@ -16,8 +15,6 @@ export interface TransitionConfig {
 export interface AppConfig {
   // 权限缓存类型
   permissionCacheType: CacheTypeEnum;
-  // 会话超时处理类型
-  sessionTimeoutProcessing: SessionTimeoutProcessingEnum;
   // 页面主内容以全屏显示，即不显示菜单和顶部
   fullContent: boolean;
   menuConfig: MenuConfig;

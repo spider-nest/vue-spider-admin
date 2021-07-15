@@ -1,9 +1,5 @@
 import { useUserStoreWithout } from "@/store/modules/user";
 
-import appConfig from "@/configs/appConfig";
-
-import { SessionTimeoutProcessingEnum } from "@/enums/appEnum";
-
 import { useErrorMessage } from "@/hooks/web/useMessage";
 
 export default function checkStatus(status: number, msg: string): void {
@@ -16,15 +12,7 @@ export default function checkStatus(status: number, msg: string): void {
       break;
     case 401:
       errMessage = "未经许可";
-      if (
-        appConfig.sessionTimeoutProcessing ===
-        SessionTimeoutProcessingEnum.PAGE_COVERAGE
-      ) {
-        userStore.setToken(undefined);
-        userStore.setSessionTimeout(true);
-      } else {
-        userStore.logout(true);
-      }
+      userStore.logout();
       break;
     case 403:
       errMessage = "禁止访问";

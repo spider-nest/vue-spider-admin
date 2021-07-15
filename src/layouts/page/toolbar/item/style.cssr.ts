@@ -15,6 +15,7 @@ export default c([
     selector,
     {
       borderBottom: `1px solid ${dividerColor}`,
+      overflow: "hidden",
       boxSizing: "border-box",
     },
     [

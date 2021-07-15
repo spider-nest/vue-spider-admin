@@ -2,8 +2,10 @@ import type { Breadcrumb } from "./types";
 
 import { RouterLink } from "vue-router";
 
-export const renderLabel = (option: Breadcrumb): VueNode => {
-  const { label } = option;
-  if (!option.path) return label;
-  return <RouterLink to={option.path}>{option.label}</RouterLink>;
+export const renderLabel = (
+  option: Breadcrumb
+): VueNode | string | undefined => {
+  const { label, path } = option;
+  if (!path) return label;
+  return <RouterLink to={path}>{label}</RouterLink>;
 };
