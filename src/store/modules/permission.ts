@@ -61,14 +61,14 @@ export const usePermissionStore = defineStore({
       this.menuList = menuList;
       menuList.length > 0 && this.setBuildMenuTime();
     },
-    setBuildMenuTime(): void {
-      this.buildMenuTime = new Date().getTime();
+    setBuildMenuTime(time?: number): void {
+      this.buildMenuTime = time ?? new Date().getTime();
     },
     resetState(): void {
-      this.routeDynamicallyAdded = false;
-      this.permissionCodeList = [];
-      this.menuList = [];
-      this.buildMenuTime = 0;
+      this.setRouteDynamicallyAdded(false);
+      this.setPermissionCodeList([]);
+      this.setMenuList([]);
+      this.setBuildMenuTime(0);
     },
     async changePermissionCode() {
       const permissionCodeList = await requestPermissionCodeList();
