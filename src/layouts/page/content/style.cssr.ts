@@ -6,13 +6,7 @@ import fadeInTransition from "@/styles/transitions/fade-in.cssr";
 
 export const selector = "page-content";
 
-const {
-  baseColor,
-  dividerColor,
-  paddingBase,
-  scrollbarWidth,
-  scrollbarBorderRadius,
-} = commonLight;
+const { baseColor, dividerColor, paddingBase } = commonLight;
 
 export default c([
   cB(
@@ -38,31 +32,7 @@ export default c([
           backgroundColor: baseColor,
           borderLeft: `1px solid ${dividerColor}`,
         },
-        [
-          c(".n-scrollbar", [
-            c("& > .n-scrollbar-rail", [
-              c(
-                "&.n-scrollbar-rail--vertical",
-                {
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: `${scrollbarWidth}px !important`,
-                },
-                [
-                  c("& > .n-scrollbar-rail__scrollbar", {
-                    width: `${scrollbarWidth}px !important`,
-                    borderRadius: `${scrollbarBorderRadius}px !important`,
-                  }),
-                  c("& > .n-scrollbar-rail__scrollbar:hover", {
-                    width: `${scrollbarWidth}px !important`,
-                    borderRadius: `${scrollbarBorderRadius}px !important`,
-                  }),
-                ]
-              ),
-            ]),
-          ]),
-        ]
+        [c(".n-scrollbar > .n-scrollbar-rail", { display: "none" })]
       ),
     ]
   ),
