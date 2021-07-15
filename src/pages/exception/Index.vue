@@ -41,7 +41,7 @@ export default defineComponent({
   <SLayout position="absolute">
     <div :class="cB">
       <div :class="`${cE}content`">
-        <SResult>
+        <SResult status="418" title="我是一个杯具" description="一切尽在不言中">
           <template #footer>
             <SButton @click.stop.prevent="goHome">去主页</SButton>
           </template>
