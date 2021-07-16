@@ -11,16 +11,16 @@ export default defineComponent({
 
 <template>
   <NCard v-bind="$attrs">
-    <template #cover>
+    <template v-if="$slots.cover" #cover>
       <slot name="cover" />
     </template>
-    <template #header>
+    <template v-if="$slots.header" #header>
       <slot name="header" />
     </template>
-    <template #header-extra>
+    <template v-if="$slots['header-extra']" #header-extra>
       <slot name="header-extra" />
     </template>
-    <template #footer>
+    <template v-if="$slots.footer" #footer>
       <slot name="footer" />
     </template>
     <template v-if="$slots.action" #action>
