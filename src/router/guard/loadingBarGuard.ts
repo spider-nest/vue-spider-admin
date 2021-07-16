@@ -25,7 +25,8 @@ export default function loadingBarGuard(router: Router) {
     unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.start();
   });
 
-  router.afterEach(() => {
+  router.afterEach((to, from) => {
+    if (to.name === from.name) return;
     unref(getLoadingBar) && loadingBarRef.value && loadingBarRef.value.finish();
   });
 }
