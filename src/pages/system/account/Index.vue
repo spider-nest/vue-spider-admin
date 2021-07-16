@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
 
-import { SCard, SForm, SFormItem, SInput } from "@/components";
+import { SCard, SForm, SFormItem, SInput, SIcon } from "@/components";
 import LayoutPageContent from "@/layouts/page/content/Index.vue";
 import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
@@ -12,6 +12,7 @@ export default defineComponent({
     SForm,
     SFormItem,
     SInput,
+    SIcon,
     LayoutPageContent,
     LayoutPageToolbarItem,
   },
@@ -19,12 +20,15 @@ export default defineComponent({
   setup() {
     const formModel = reactive({
       id: "",
-      name: "",
+      realName: "",
     });
 
     const submitting = ref(false);
     const onSubmit = () => {
       submitting.value = true;
+      setTimeout(() => {
+        submitting.value = false;
+      }, 300);
     };
 
     return {
@@ -39,15 +43,21 @@ export default defineComponent({
 <template>
   <LayoutPageContent>
     <template #toolbar>
-      <LayoutPageToolbarItem>SystemAccount container</LayoutPageToolbarItem>
+      <LayoutPageToolbarItem
+        :loading="submitting"
+        tooltip="查询"
+        @click.stop.prevent="onSubmit"
+      >
+        <SIcon name="Search24Regular" />
+      </LayoutPageToolbarItem>
     </template>
     <SCard>
-      <SForm :model="formModel" @keyup.enter="onSubmit">
-        <SFormItem>
+      <SForm mode="list" :model="formModel" @keyup.enter="onSubmit">
+        <SFormItem label="账号ID">
           <SInput v-model:value.trim="formModel.id" />
         </SFormItem>
-        <SFormItem>
-          <SInput v-model:value.trim="formModel.name" />
+        <SFormItem label="账号姓名">
+          <SInput v-model:value.trim="formModel.realName" />
         </SFormItem>
       </SForm>
     </SCard>

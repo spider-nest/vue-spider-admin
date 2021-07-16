@@ -11,6 +11,9 @@ export default defineComponent({
 
 <template>
   <NFormItem v-bind="$attrs">
+    <template v-if="$slots.label" #label>
+      <slot name="label" />
+    </template>
     <slot />
   </NFormItem>
 </template>

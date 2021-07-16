@@ -30,6 +30,8 @@ export { SPopover } from "./popover";
 
 export { SResult } from "./result";
 
+export { SSpin } from "./spin";
+
 export { STabs, STabPane } from "./tabs";
 
 export { STooltip } from "./tooltip";

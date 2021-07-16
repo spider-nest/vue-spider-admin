@@ -10,6 +10,7 @@ import {
   ArrowClockwise24Regular,
   InprivateAccount24Regular,
   SignOut24Regular,
+  Search24Regular,
 } from "@vicons/fluent"; // https://www.xicons.org/#/zh-CN 统一使用24Regular
 
 export default defineComponent({
@@ -24,6 +25,7 @@ export default defineComponent({
     ArrowClockwise24Regular,
     InprivateAccount24Regular,
     SignOut24Regular,
+    Search24Regular,
   },
   inheritAttrs: false,
   props: {
