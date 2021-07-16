@@ -13,12 +13,16 @@ export default defineComponent({
       type: String as PropType<PopoverTrigger>,
       default: "click",
     },
+    delay: {
+      type: Number,
+      default: 300,
+    },
   },
 });
 </script>
 
 <template>
-  <NPopover v-bind="$attrs" :trigger="trigger">
+  <NPopover v-bind="$attrs" :trigger="trigger" :delay="delay">
     <template #trigger>
       <slot name="trigger" />
     </template>

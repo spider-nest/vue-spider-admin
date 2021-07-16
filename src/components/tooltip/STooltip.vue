@@ -6,11 +6,17 @@ export default defineComponent({
   name: "STooltip",
   components: { NTooltip },
   inheritAttrs: false,
+  props: {
+    delay: {
+      type: Number,
+      default: 300,
+    },
+  },
 });
 </script>
 
 <template>
-  <NTooltip v-bind="$attrs">
+  <NTooltip v-bind="$attrs" :delay="delay">
     <template #trigger>
       <slot name="trigger" />
     </template>
