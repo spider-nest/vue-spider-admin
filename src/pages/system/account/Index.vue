@@ -48,7 +48,7 @@ export default defineComponent({
         tooltip="查询"
         @click.stop.prevent="onSubmit"
       >
-        <SIcon name="Search24Regular" />
+        <SIcon name="Cursor24Regular" />
       </LayoutPageToolbarItem>
     </template>
     <SCard>

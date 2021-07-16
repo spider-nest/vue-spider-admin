@@ -22,6 +22,7 @@ export default c([
     cE("collapse", {
       padding: headerPadding,
       verticalAlign: "top",
+      cursor: "pointer",
     }),
     cE("title", {
       padding: headerPadding,

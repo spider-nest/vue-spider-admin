@@ -4,13 +4,13 @@ import { NIcon } from "naive-ui";
 import {
   Mail24Regular,
   LockShield24Regular,
-  Glance24Regular,
   VehicleCar24Regular,
   Home24Regular,
   ArrowClockwise24Regular,
   InprivateAccount24Regular,
   SignOut24Regular,
-  Search24Regular,
+  AppsList24Regular,
+  Cursor24Regular,
 } from "@vicons/fluent"; // https://www.xicons.org/#/zh-CN 统一使用24Regular
 
 export default defineComponent({
@@ -19,13 +19,13 @@ export default defineComponent({
     NIcon,
     Mail24Regular,
     LockShield24Regular,
-    Glance24Regular,
     VehicleCar24Regular,
     Home24Regular,
     ArrowClockwise24Regular,
     InprivateAccount24Regular,
     SignOut24Regular,
-    Search24Regular,
+    AppsList24Regular,
+    Cursor24Regular,
   },
   inheritAttrs: false,
   props: {

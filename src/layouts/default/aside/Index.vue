@@ -60,7 +60,7 @@ export default defineComponent({
       <SLayoutHeader :class="`${cE}header`">
         <SIcon
           :class="`${cE}collapse`"
-          name="Glance24Regular"
+          name="AppsList24Regular"
           size="24"
           @click="handleCollapse"
         />
