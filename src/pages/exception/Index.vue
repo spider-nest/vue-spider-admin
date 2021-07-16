@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import { LayoutDefaultFooter } from "@/layouts";
 import { SResult, SButton, SLayout } from "@/components";
-import LayoutDefaultFooter from "@/layouts/default/footer/Index.vue";
 
 import useThemeStyle from "@/hooks/web/useThemeStyle";
 import useAppConfig from "@/hooks/config/useAppConfig";

@@ -1,21 +1,20 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
 
+import { LayoutPageContent, LayoutPageToolbarItem } from "@/layouts";
 import { SCard, SForm, SFormItem, SInput, SIcon, SSpace } from "@/components";
-import LayoutPageContent from "@/layouts/page/content/Index.vue";
-import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
 export default defineComponent({
   name: "SystemAccount",
   components: {
+    LayoutPageContent,
+    LayoutPageToolbarItem,
     SCard,
     SForm,
     SFormItem,
     SInput,
     SIcon,
     SSpace,
-    LayoutPageContent,
-    LayoutPageToolbarItem,
   },
   inheritAttrs: false,
   setup() {

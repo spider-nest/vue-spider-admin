@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import { LayoutPageToolbarItem } from "@/layouts";
 import { SIcon } from "@/components";
-import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
 import { useRedo } from "@/hooks/web/usePage";
 
