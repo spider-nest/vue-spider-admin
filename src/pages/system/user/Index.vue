@@ -5,7 +5,7 @@ import { LayoutPageContent, LayoutPageToolbarItem } from "@/layouts";
 import { SCard, SForm, SFormItem, SInput, SIcon, SSpace } from "@/components";
 
 export default defineComponent({
-  name: "SystemAccount",
+  name: "SystemUser",
   components: {
     LayoutPageContent,
     LayoutPageToolbarItem,
@@ -54,10 +54,10 @@ export default defineComponent({
     <SSpace :vertical="true">
       <SCard>
         <SForm mode="list" :model="formModel" @keyup.enter="onSubmit">
-          <SFormItem label="账号ID">
+          <SFormItem label="用户ID">
             <SInput v-model:value.trim="formModel.id" />
           </SFormItem>
-          <SFormItem label="账号姓名">
+          <SFormItem label="用户姓名">
             <SInput v-model:value.trim="formModel.realName" />
           </SFormItem>
         </SForm>

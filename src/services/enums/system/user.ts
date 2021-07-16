@@ -1,5 +1,5 @@
 export enum SystemUserApi {
-  Login = "/system/account/login",
-  Info = "/system/account/info",
-  CodeList = "/system/account/codeList",
+  Login = "/system/user/login",
+  Info = "/system/user/info",
+  CodeList = "/system/user/codeList",
 }

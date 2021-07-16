@@ -25,18 +25,18 @@ const systemRoute = {
   path: "/system",
   name: "System",
   component: "LAYOUT",
-  redirect: "/system/account",
+  redirect: "/system/user",
   meta: {
     icon: "VehicleCar24Regular",
     title: "系统管理",
   },
   children: [
     {
-      path: "account",
-      name: "SystemAccount",
-      component: "/system/account/Index",
+      path: "user",
+      name: "SystemUser",
+      component: "/system/user/Index",
       meta: {
-        title: "账号管理",
+        title: "用户管理",
       },
     },
     {

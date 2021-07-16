@@ -28,7 +28,7 @@ export const RootRoute: AppRouteRecordRaw = {
 export const LoginRoute: AppRouteRecordRaw = {
   path: PageEnum.BASE_LOGIN,
   name: "Login",
-  component: () => import("@/pages/system/account/login/Index.vue"),
+  component: () => import("@/pages/system/user/login/Index.vue"),
   meta: {
     title: "登入",
   },

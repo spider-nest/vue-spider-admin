@@ -17,9 +17,9 @@ export default defineComponent({
 
     const options = [
       {
-        key: "SystemAccount",
-        label: "账号管理 ",
-        path: "/system/account",
+        key: "SystemUser",
+        label: "用户管理 ",
+        path: "/system/user",
         iconName: "InprivateAccount24Regular",
       },
       {
