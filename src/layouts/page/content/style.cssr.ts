@@ -20,7 +20,7 @@ export default c([
       fadeInTransition(),
       cE("main", { flex: 1, overflow: "auto" }),
       cE("container", {
-        padding: `${paddingBase}px`,
+        padding: `${paddingBase / 2}px`,
         minHeight: "calc(100% - 148px)",
         boxSizing: "border-box",
       }),

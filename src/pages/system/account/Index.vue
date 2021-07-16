@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
 
-import { SCard, SForm, SFormItem, SInput, SIcon } from "@/components";
+import { SCard, SForm, SFormItem, SInput, SIcon, SSpace } from "@/components";
 import LayoutPageContent from "@/layouts/page/content/Index.vue";
 import LayoutPageToolbarItem from "@/layouts/page/toolbar/item/Index.vue";
 
@@ -13,6 +13,7 @@ export default defineComponent({
     SFormItem,
     SInput,
     SIcon,
+    SSpace,
     LayoutPageContent,
     LayoutPageToolbarItem,
   },
@@ -51,15 +52,18 @@ export default defineComponent({
         <SIcon name="Cursor24Regular" />
       </LayoutPageToolbarItem>
     </template>
-    <SCard>
-      <SForm mode="list" :model="formModel" @keyup.enter="onSubmit">
-        <SFormItem label="账号ID">
-          <SInput v-model:value.trim="formModel.id" />
-        </SFormItem>
-        <SFormItem label="账号姓名">
-          <SInput v-model:value.trim="formModel.realName" />
-        </SFormItem>
-      </SForm>
-    </SCard>
+    <SSpace :vertical="true">
+      <SCard>
+        <SForm mode="list" :model="formModel" @keyup.enter="onSubmit">
+          <SFormItem label="账号ID">
+            <SInput v-model:value.trim="formModel.id" />
+          </SFormItem>
+          <SFormItem label="账号姓名">
+            <SInput v-model:value.trim="formModel.realName" />
+          </SFormItem>
+        </SForm>
+      </SCard>
+      <SCard> table </SCard>
+    </SSpace>
   </LayoutPageContent>
 </template>
