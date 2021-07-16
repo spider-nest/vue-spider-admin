@@ -37,15 +37,15 @@ export default defineComponent({
     const submitting = ref(false);
     const onSubmit = () => {
       submitting.value = true;
-      validate((errors) => {
+      validate(async (errors) => {
         if (errors) {
           return console.error(errors);
         }
+
         const userStore = useUserStore();
-        userStore.handleUserLogin(toRaw(formModel));
-        setTimeout(() => {
-          submitting.value = false;
-        }, 300);
+        await userStore.handleUserLogin(toRaw(formModel));
+
+        submitting.value = false;
       });
     };
 

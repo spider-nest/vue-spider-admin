@@ -8,6 +8,7 @@ import {
   failureResult,
   successfulResult,
   getRequestToken,
+  successfulListResult,
 } from "../_util";
 
 export function createUserList() {
@@ -94,6 +95,16 @@ export default [
         realName,
         desc,
       });
+    },
+  },
+  {
+    url: `${apiPrefix}${SystemUserApi.List}`,
+    timeout: 200,
+    method: "get",
+    response: ({ query }: requestParams) => {
+      const { page = 1, pageSize = 15 } = query;
+
+      return successfulListResult(page, pageSize, createUserList());
     },
   },
   {

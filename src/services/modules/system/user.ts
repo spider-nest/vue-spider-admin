@@ -2,6 +2,7 @@ import type { UserInfo } from "@/types/store";
 import type {
   UserLoginFormModel,
   UserLoginResult,
+  UserListFormModel,
 } from "@/services/types/system/user";
 
 import { SystemUserApi } from "@/services/enums/system/user";
@@ -14,6 +15,15 @@ export function requestUserLogin(formModel: UserLoginFormModel) {
 
   return defaultHttp.post<UserLoginResult>({
     url: SystemUserApi.Login,
+    params,
+  });
+}
+
+export function requestUserList(formModel: UserListFormModel) {
+  const params = pickByValid(formModel, ["page", "pageSize", "id", "realName"]);
+
+  return defaultHttp.get<UserInfo[]>({
+    url: SystemUserApi.List,
     params,
   });
 }

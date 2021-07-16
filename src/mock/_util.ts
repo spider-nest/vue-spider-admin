@@ -31,25 +31,23 @@ export function pagination<T = any>(
   pageSize: number,
   records: T[]
 ): T[] {
-  const offset = (page - 1) * Number(pageSize);
-  return offset + Number(pageSize) >= records.length
+  const offset = (page - 1) * pageSize;
+  return offset + pageSize >= records.length
     ? records.slice(offset, records.length)
-    : records.slice(offset, offset + Number(pageSize));
+    : records.slice(offset, offset + pageSize);
 }
 
-export function successfulList<T = any>(
+export function successfulListResult<T = any>(
   page: number,
   pageSize: number,
-  records: T[],
-  { message = "ok" } = {}
+  records: T[]
 ) {
-  const items = pagination(page, pageSize, records);
+  const lists = pagination(page, pageSize, records);
   return {
     ...successfulResult({
-      items,
+      lists,
       total: records.length,
     }),
-    message,
   };
 }
 

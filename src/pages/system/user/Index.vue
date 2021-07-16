@@ -1,8 +1,10 @@
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, onMounted, toRaw } from "vue";
 
 import { LayoutPageContent, LayoutPageToolbarItem } from "@/layouts";
 import { SCard, SForm, SFormItem, SInput, SIcon, SSpace } from "@/components";
+
+import { requestUserList } from "@/services/modules/system/user";
 
 export default defineComponent({
   name: "SystemUser",
@@ -19,17 +21,26 @@ export default defineComponent({
   inheritAttrs: false,
   setup() {
     const formModel = reactive({
+      page: 1,
+      pageSize: 15,
+      pageSizes: [15, 25, 50, 100],
       id: "",
       realName: "",
     });
 
     const submitting = ref(false);
-    const onSubmit = () => {
+    const onSubmit = async () => {
       submitting.value = true;
-      setTimeout(() => {
-        submitting.value = false;
-      }, 300);
+
+      const listResult = await requestUserList(toRaw(formModel));
+      console.log(listResult);
+
+      submitting.value = false;
     };
+
+    onMounted(() => {
+      onSubmit();
+    });
 
     return {
       formModel,

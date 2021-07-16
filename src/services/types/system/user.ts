@@ -15,3 +15,8 @@ export interface UserLoginResult {
   token: string;
   roles: RoleInfo[];
 }
+
+export interface UserListFormModel {
+  id?: UserId;
+  realName?: string;
+}
