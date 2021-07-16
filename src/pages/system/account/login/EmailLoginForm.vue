@@ -15,7 +15,7 @@ export default defineComponent({
     const formRef = ref();
 
     const formModel = reactive({
-      email: "spider",
+      email: "spider@spider.com",
       password: "spider",
     });
 

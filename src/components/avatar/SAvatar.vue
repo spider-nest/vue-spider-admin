@@ -9,6 +9,12 @@ export default defineComponent({
   name: "SAvatar",
   components: { NAvatar },
   inheritAttrs: false,
+  props: {
+    round: {
+      type: Boolean,
+      default: true,
+    },
+  },
   setup() {
     const { primaryColor } = commonLight;
 
@@ -23,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NAvatar v-bind="$attrs" :style="style">
+  <NAvatar v-bind="$attrs" :style="style" :round="round">
     <slot />
   </NAvatar>
 </template>

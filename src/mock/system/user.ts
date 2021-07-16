@@ -15,7 +15,7 @@ export function createUserList() {
     {
       userId: 999,
       account: "spider",
-      email: "spider",
+      email: "spider@spider.com",
       phone: 123456789012,
       code: "spider",
       realName: "spider",
@@ -34,7 +34,7 @@ export function createUserList() {
     {
       userId: 1000,
       account: "test",
-      email: "test",
+      email: "test@test.com",
       phone: 123456789012,
       code: "test",
       realName: "test user",
